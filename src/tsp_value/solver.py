@@ -179,29 +179,38 @@ def load_state(path):
     return state
 
 
-def paired_continuation(state, reference_edge, candidate_edge, seeds, horizon, rule=None):
+def paired_action_set(state, reference_edge, candidate_edges, seeds, horizon, rule=None):
     """Same-state/action intervention, common RNG and exact work per branch.
 
 Returns empirical finite-horizon relative benefit, never an optimal Q value.
-The baseline snapshot is unchanged; each seed reuses its reference rollout.
+    The baseline snapshot is unchanged. Exactly one reference rollout is run
+    per seed and reused for all candidates, costing (K+1)*len(seeds) branches.
 """
-    if not state['needs_penalty'] or horizon <= 0 or not seeds:
+    if not state['needs_penalty'] or horizon <= 0 or not seeds or not candidate_edges:
         raise ValueError('Need a decision state, positive horizon and paired seeds')
     records = []
     for seed in seeds:
         base = clone(state)
         base['rng_state'] = np.random.default_rng(seed).bit_generator.state
-        outcomes = []
-        for edge in (reference_edge, candidate_edge):
+        def rollout(edge):
             branch = clone(base)
             penalize(branch, edge)
             before = branch['delta_evaluations']
             run(branch, horizon, rule=rule)
             assert branch['delta_evaluations']-before == horizon
-            outcomes.append(branch)
-        ref, cand = outcomes
-        records.append(dict(seed=int(seed), reference_edge=list(reference_edge), candidate_edge=list(candidate_edge),
+            return branch
+        ref = rollout(reference_edge)
+        for candidate_index, candidate_edge in enumerate(candidate_edges):
+            cand = rollout(candidate_edge)
+            records.append(dict(seed=int(seed), candidate_index=candidate_index,
+                            reference_edge=list(reference_edge), candidate_edge=list(candidate_edge),
                             horizon_delta_evaluations=int(horizon), reference_length=ref['best_length'],
                             candidate_length=cand['best_length'], normalization_length=state['best_length'],
                             relative_benefit=(ref['best_length']-cand['best_length'])/state['best_length']))
-    return records
+    return dict(records=records, branches_executed=(len(candidate_edges)+1)*len(seeds),
+                reference_branches_executed=len(seeds))
+
+
+def paired_continuation(state, reference_edge, candidate_edge, seeds, horizon, rule=None):
+    """Convenience wrapper for one candidate versus one reference action."""
+    return paired_action_set(state, reference_edge, [candidate_edge], seeds, horizon, rule)['records']

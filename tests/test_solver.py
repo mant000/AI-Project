@@ -5,11 +5,12 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src'))
 from tsp_value.data import distances, length, parse_author, validate_tour
 from tsp_value.solver import (create_state, clone, run, save_state, load_state,
-                              penalize, select_edge, paired_continuation)
+                              penalize, select_edge, paired_continuation, paired_action_set)
 
 # Hand-written asymmetric six-city fixture, not an experimental instance.
 COORDS = np.array([[0.,0.], [.9,.1], [.8,.8], [.3,.9], [.15,.35], [.6,.4]])
@@ -126,6 +127,17 @@ class SolverCorrectness(unittest.TestCase):
             penalize(s,(0,0))
         with self.assertRaises(ValueError):
             run(s,-1)
+
+    def test_multi_candidate_reference_is_executed_once_per_seed(self):
+        s=create_state(COORDS)
+        run(s,10000,stop_at_decision=True)
+        t=s['tour']
+        with patch('tsp_value.solver.run',wraps=run) as measured:
+            result=paired_action_set(s,tuple(t[:2]),[tuple(t[1:3]),tuple(t[2:4])],[41,42],103)
+        self.assertEqual(result['branches_executed'],6)
+        self.assertEqual(result['reference_branches_executed'],2)
+        self.assertEqual(measured.call_count,6)
+        self.assertEqual(len(result['records']),4)
 
 
 if __name__ == '__main__':

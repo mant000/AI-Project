@@ -71,11 +71,16 @@ def main():
                         actual=length(state['best_tour'],distances(item['coords']))
                         assert abs(actual-state['best_length'])<1e-10
                         gap=100*(actual/item['reference_length']-1)
-                        assert gap > -1e-7, 'Author reference is longer than our result; investigate conventions'
+                        # Author routes are reference solutions, not certified
+                        # continuous-Euclidean optima. Preserve negative gaps.
+                        scalar=sum(float(np.linalg.norm(np.asarray(item['coords'])[u]-np.asarray(item['coords'])[v]))
+                                   for u,v in zip(state['best_tour'],np.roll(state['best_tour'],-1)))
+                        assert abs(actual-scalar)<1e-10
                         record.update(original_length=actual,gap_percent=gap,
                             delta_evaluations=state['delta_evaluations'],sweeps=state['sweeps'],moves=state['moves'],
                             penalty_events=state['penalty_events'],lambda_=state['lambda_'],
-                            scan_cursor=state['cursor'],terminated=state['terminated'],best_tour=state['best_tour'].tolist())
+                            scan_cursor=state['cursor'],terminated=state['terminated'],best_tour=state['best_tour'].tolist(),
+                            reference_bettered=bool(gap < -1e-7),independent_scalar_length=scalar)
                     except Exception as error:
                         record.update(error_type=type(error).__name__,error=str(error))
                     record.update(wall_seconds=time.perf_counter()-wall,cpu_seconds=time.process_time()-proc,
@@ -87,7 +92,10 @@ def main():
     summary=dict(provenance=provenance,config=cfg,instances_by_nodes=dict(counts),
                  run_count=len(output),error_count=sum(r['error_type'] is not None for r in output),
                  elapsed_wall_seconds=time.perf_counter()-started,cpu_seconds=time.process_time()-cpu,
-                 peak_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,groups=[])
+                 peak_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                 negative_gap_runs=[dict(instance_id=r['instance_id'],seed=r['seed'],method=r['method'],
+                     gap_percent=r['gap_percent'],original_length=r['original_length'],reference_length=r['reference_length'])
+                     for r in output if r.get('reference_bettered')],groups=[])
     for n in (50,100):
         for method in cfg['methods']:
             group=[r for r in output if r['nodes']==n and r['method']==method and r['error_type'] is None]
