@@ -13,6 +13,7 @@ OUT="$TSP_ARCHIVE/backups/stage0-$STAMP.tar.gz"
 ITEMS=(code artifacts logs checkpoints)
 [[ ! -d "$TSP_ROOT/operations" ]] || ITEMS+=(operations)
 [[ ! -d "$TSP_ROOT/data/bootstrap" ]] || ITEMS+=(data/bootstrap)
+[[ ! -d "$TSP_ROOT/data/prepared/project_val" ]] || ITEMS+=(data/prepared/project_val)
 tar --exclude=code/.git --exclude='*/__pycache__' --exclude='*.tmp' \
     -czf "$OUT.tmp" -C "$TSP_ROOT" "${ITEMS[@]}"
 mv "$OUT.tmp" "$OUT"
