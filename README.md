@@ -155,8 +155,9 @@ bash scripts/backup_remote.sh
 This refuses an unmounted file-storage path, archives code, artifacts, logs,
 and checkpoints, runs an archive integrity check, and writes a SHA256 sidecar.
 Copy both outputs to an independent machine and verify the sidecar there.
-Weights/caches/data are excluded from this small operational backup; author
-release URLs, hashes, and download scripts support retrieval.
+Small audited bootstrap data is included when present. Weights, caches, and
+large raw archives are excluded; author release URLs, hashes, and download
+scripts support retrieval.
 
 ## Publication
 
