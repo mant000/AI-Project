@@ -2,7 +2,7 @@
 
 Research question: can feedback about decisions at a shared guided local search
 state help a frozen code LLM discover better TSP penalty rules? This repository
-currently implements **stage 0 infrastructure only**. Solver evaluation, paired
+currently implements **stage 0 infrastructure and a TSP50 author-data bootstrap**. Solver evaluation, paired
 labels, graph Transformer training, and A/B program discovery are subsequent
 stages. No research performance results are claimed here.
 
@@ -122,6 +122,24 @@ probe. It intentionally fails while data is incomplete. Stage 1 must add
 instance-level manifests/splits, distance/reference validation, NN/2-opt/GLS,
 state restore and paired-run correctness checks before any learning results.
 Do not use final datasets to tune methods.
+
+A separate bootstrap mode allows stage-1 solver development from 512 complete
+author **train** rows already recovered from the tar.gz prefix. It validates
+coordinates, tours, duplicate coordinate sets, source-row hashes, and the
+normalized data hash. This mode makes no full-archive CRC/SHA256 claim and
+provides no author validation set or TSP100 data:
+
+```bash
+python scripts/prepare_author_bootstrap.py \
+  --archive-prefix /path/to/tsp-data.tar.gz.prefix \
+  --output "$TSP_ROOT/data/bootstrap" --count 512
+bash scripts/stage1_preflight.sh bootstrap
+```
+
+The same preparation command can read the full author archive later; selected
+source-row hashes must match `splits/bootstrap_reserved_rows.csv`. Keep these
+rows in training/development pools when building the full instance split.
+This bootstrap supports engineering checks, not final performance conclusions.
 
 ## Logs and backups
 

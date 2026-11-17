@@ -13,6 +13,7 @@ import os
 import re
 import shutil
 import tarfile
+import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -49,6 +50,7 @@ def main():
     p.add_argument('--root', type=Path, required=True)
     p.add_argument('--workers', type=int, default=6)
     p.add_argument('--chunk-mib', type=int, default=8)
+    p.add_argument('--proxy', help='Optional HTTP or SOCKS proxy; do not embed credentials')
     a = p.parse_args()
     assert 1 <= a.workers <= 8 and 1 <= a.chunk_mib <= 16
     config = json.loads((Path(__file__).resolve().parents[1]/'configs/sources.json').read_text(encoding='utf-8'))[a.source]
@@ -64,6 +66,8 @@ def main():
             'started_at_utc': datetime.now(timezone.utc).isoformat(), 'status': 'running',
             'method': 'validated_small_http_ranges', 'pid': os.getpid()}
     started = time.perf_counter()
+    cancelled = threading.Event()
+    network = {'proxies':{'https':a.proxy,'http':a.proxy}} if a.proxy else {}
 
     def save():
         info['updated_at_utc'] = datetime.now(timezone.utc).isoformat()
@@ -73,7 +77,7 @@ def main():
 
     save()
     try:
-        with requests.get(url, headers={'Range':'bytes=0-0'}, timeout=(15, 30)) as r:
+        with requests.get(url, headers={'Range':'bytes=0-0'}, timeout=(15, 30), **network) as r:
             assert r.status_code == 206, f'Expected range response, got HTTP {r.status_code}'
             match = re.fullmatch(r'bytes 0-0/(\d+)', r.headers.get('Content-Range',''))
             assert match, 'Invalid probe Content-Range'
@@ -95,11 +99,19 @@ def main():
             if path.exists() and path.stat().st_size == size and side.exists() and digest(path) == side.read_text(encoding='ascii').strip():
                 return size
             for attempt in range(1,9):
+                if cancelled.is_set():
+                    raise RuntimeError('Cancelled after another range failed')
                 try:
-                    with requests.get(url, headers={'Range':f'bytes={start}-{end}'}, timeout=(15,40)) as r:
+                    with requests.get(url, headers={'Range':f'bytes={start}-{end}'}, timeout=(15,25),stream=True, **network) as r:
                         assert r.status_code == 206, f'HTTP {r.status_code}'
                         assert r.headers.get('Content-Range') == f'bytes {start}-{end}/{total}', 'Range mismatch'
-                        content = r.content
+                        parts=[]
+                        range_start=time.perf_counter()
+                        for piece in r.iter_content(64*1024):
+                            assert not cancelled.is_set(), 'Cancelled after another range failed'
+                            assert time.perf_counter()-range_start < 120, 'Range exceeded wall-time limit'
+                            parts.append(piece)
+                        content = b''.join(parts)
                         assert len(content) == size, 'Truncated range'
                     temp = path.with_suffix('.tmp')
                     temp.write_bytes(content)
@@ -107,19 +119,27 @@ def main():
                     side.write_text(hashlib.sha256(content).hexdigest()+'\n', encoding='ascii')
                     return size
                 except Exception as e:
-                    print(f'Range {start}-{end}, attempt {attempt}: {type(e).__name__}', flush=True)
+                    print(f'Range {start}-{end}, attempt {attempt}: {repr(e)[:250]}', flush=True)
                     if attempt == 8:
                         raise
                     time.sleep(min(10,attempt*2))
 
         done = count = 0
-        with concurrent.futures.ThreadPoolExecutor(max_workers=a.workers) as pool:
-            for future in concurrent.futures.as_completed([pool.submit(fetch,pair) for pair in pairs]):
+        pool=concurrent.futures.ThreadPoolExecutor(max_workers=a.workers)
+        futures=[pool.submit(fetch,pair) for pair in pairs]
+        try:
+            for future in concurrent.futures.as_completed(futures):
                 done += future.result()
                 count += 1
                 info.update(downloaded_chunk_bytes=done, completed_chunks=count)
                 save()
                 print(f'Validated {count}/{len(pairs)} chunks, {done}/{total} bytes', flush=True)
+        except BaseException:
+            cancelled.set()
+            for future in futures:future.cancel()
+            raise
+        finally:
+            pool.shutdown(wait=True,cancel_futures=True)
         info['phase'] = 'assembling_and_crc_audit'
         save()
         assembled = target.with_suffix(target.suffix+'.assembling')
