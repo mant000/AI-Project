@@ -41,7 +41,7 @@ def create_state(coords, seed=0, mode='gls', alpha=0.1):
     tour = nearest_neighbor(d, rng.integers(n))
     pairs = [(i, j) for i in range(n) for j in range(i+2, n) if not (i == 0 and j == n-1)]
     pi, pj = np.asarray(pairs, dtype=np.int64).T
-    return dict(schema_version=1, mode=mode, alpha=float(alpha), coords=np.asarray(coords).copy(),
+    return dict(schema_version=1, mode=mode, alpha=float(alpha), coords=np.asarray(coords, dtype=np.float64).copy(),
                 distance=d, pair_i=pi, pair_j=pj, tour=tour, best_tour=tour.copy(),
                 current_length=length(tour, d), best_length=length(tour, d),
                 penalties=np.zeros((n, n), dtype=np.int64), lambda_=0.0,
