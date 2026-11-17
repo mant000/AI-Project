@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Source this file from any working directory, including non-interactive SSH.
+export TSP_ROOT="${TSP_ROOT:-/root/autodl-tmp/tsp-state-value}"
+export TSP_ARCHIVE="${TSP_ARCHIVE:-/root/autodl-fs/tsp-state-value}"
+export HF_HOME="$TSP_ROOT/cache/huggingface"
+export HF_HUB_CACHE="$HF_HOME/hub"
+export TORCH_HOME="$TSP_ROOT/cache/torch"
+export PIP_CACHE_DIR="$TSP_ROOT/cache/pip"
+export XDG_CACHE_HOME="$TSP_ROOT/cache"
+export TMPDIR="$TSP_ROOT/tmp"
+export HF_HUB_DOWNLOAD_TIMEOUT=60
+export HF_HUB_ETAG_TIMEOUT=30
+export HF_HUB_DISABLE_TELEMETRY=1
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export MPLCONFIGDIR="$TSP_ROOT/cache/matplotlib"
+export PATH="$TSP_ROOT/envs/milestone/bin:/root/miniconda3/bin:$PATH"
+export PYTHONUNBUFFERED=1
