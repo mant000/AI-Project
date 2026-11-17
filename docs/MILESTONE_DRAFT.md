@@ -128,6 +128,12 @@ checkpoint representation mismatch, then an overly strict assertion against
 negative reference gaps. A prior launch failed immediately because a system
 timing executable was absent. Logs and failed outputs are retained. No model
 training or candidate generation cost has yet been incurred by stage 1.
+An anonymous HTTPS clone of public commit `e21a399` replayed all 288 runs
+with identical tours, quality and work/progress fields, taking 9.38 seconds.
+It reused the verified environment and source inputs. Including failed
+attempts and this replay, measured child commands consumed 50.48 wall
+seconds / 50.45 CPU seconds; the manifest audit is included once in that
+total. Transfers and human implementation time are outside this accounting.
 
 Next, a 64-instance training-only pilot will measure finite-horizon label
 signal, ties, seed sensitivity and branch throughput before H and state

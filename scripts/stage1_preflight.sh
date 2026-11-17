@@ -45,7 +45,7 @@ if received.exists():
     print('Archive:', d['archive_format'], d['archive_sha256'])
     print('Validation is held out from author train; no separate author val files were present.')
     print('Received 7z is a repack; its hash does not identify the original author gzip.')
-    print('Stage 1 still builds full instance manifests and solvers; final test remains reserved.')
+    print('This gate checks source prerequisites; see splits/manifest.csv and results/stage1 for completed solver evidence. Final remains reserved.')
     raise SystemExit(0)
 p = root/'artifacts/joshi_download.json'
 assert p.exists(), 'No Joshi download record; inspect logs before launching another job'

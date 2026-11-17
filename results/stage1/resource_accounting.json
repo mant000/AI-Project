@@ -1,0 +1,73 @@
+{
+  "records": [
+    {
+      "scope": "failed attempt r2",
+      "command": [
+        "bash",
+        "scripts/run_stage1.sh"
+      ],
+      "started_at_utc": "2026-11-17T14:32:12.293156+00:00",
+      "exit_code": 1,
+      "wall_seconds": 21.98300463333726,
+      "child_user_cpu_seconds": 18.302969,
+      "child_system_cpu_seconds": 3.659195,
+      "maximum_child_peak_rss_kib": 82352,
+      "gpu_compute_used": false
+    },
+    {
+      "scope": "failed attempt r3",
+      "command": [
+        "bash",
+        "scripts/run_stage1.sh",
+        "--reuse-manifest"
+      ],
+      "started_at_utc": "2026-11-17T14:38:13.952091+00:00",
+      "exit_code": 1,
+      "wall_seconds": 9.6033752001822,
+      "child_user_cpu_seconds": 9.379412,
+      "child_system_cpu_seconds": 0.217026,
+      "maximum_child_peak_rss_kib": 139836,
+      "gpu_compute_used": false
+    },
+    {
+      "scope": "successful baseline and checks",
+      "command": [
+        "bash",
+        "scripts/run_stage1.sh",
+        "--reuse-manifest"
+      ],
+      "started_at_utc": "2026-11-17T14:40:11.169521+00:00",
+      "exit_code": 0,
+      "wall_seconds": 9.509546618908644,
+      "child_user_cpu_seconds": 9.341335,
+      "child_system_cpu_seconds": 0.172519,
+      "maximum_child_peak_rss_kib": 142452,
+      "gpu_compute_used": false
+    },
+    {
+      "scope": "anonymous public source replay",
+      "command": [
+        "bash",
+        "scripts/replay_stage1.sh",
+        "/root/autodl-tmp/tsp-state-value",
+        "/root/autodl-tmp/tsp-state-value/artifacts/stage1-public-replay"
+      ],
+      "started_at_utc": "2026-11-17T14:47:16.631424+00:00",
+      "exit_code": 0,
+      "wall_seconds": 9.382219061255455,
+      "child_user_cpu_seconds": 9.154789,
+      "child_system_cpu_seconds": 0.220134,
+      "maximum_child_peak_rss_kib": 142572,
+      "gpu_compute_used": false
+    }
+  ],
+  "total_measured_wall_seconds": 50.47814551368356,
+  "total_measured_child_cpu_seconds": 50.447379,
+  "gpu_compute_seconds": 0,
+  "external_llm_api_calls": 0,
+  "research_candidate_calls": 0,
+  "manifest_audit_included_in_failed_attempt_r2": true,
+  "manifest_audit_wall_seconds": 20.986652076244354,
+  "manifest_audit_cpu_seconds": 20.975206616,
+  "excluded": "SSH/transfer and human implementation time; first launch failed before starting work because /usr/bin/time was absent"
+}

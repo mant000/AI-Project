@@ -144,6 +144,15 @@ compared for equality. Same-action diagnostic benefits are zero at H=50,000.
 The two different-action engineering probes also tie; this is not a label
 pilot or evidence of learnability.
 
+An anonymous fresh HTTPS clone of commit `e21a399` replayed all 288 runs
+with zero differences in route, quality and work/progress fields. This used
+the existing verified environment and inputs, not a newly installed
+environment. See `results/stage1/public_replay_verification.json`. Including
+failed attempts and replay, measured child commands used 50.48 wall seconds /
+50.45 CPU seconds with zero GPU compute; the 20.99-second manifest audit is
+included once. Transfers and implementation time are excluded. Full accounting
+is in `results/stage1/resource_accounting.json`.
+
 Operational pipeline on the prepared server (before baseline logs exist):
 
 ```bash
