@@ -1,218 +1,201 @@
-# AI-Project: Learning TSP Heuristic Programs from Search-State Values
+# Learning TSP Heuristic Programs from Search-State Values
 
-Research question: can feedback about decisions at a shared guided local search
-state help a frozen code LLM discover better TSP penalty rules? This repository
-currently implements **stage 0 infrastructure and a TSP50 author-data bootstrap**. Solver evaluation, paired
-labels, graph Transformer training, and A/B program discovery are subsequent
-stages. No research performance results are claimed here.
+Can feedback about decisions at a shared guided local search state help a
+frozen code LLM discover better TSP penalty rules?
 
-## Verified environment
+**Stage 1 is implemented and measured.** This repository provides fixed data
+splits, identity/overlap auditing, nearest neighbor, best-improvement 2-opt,
+single-edge conventional GLS, complete JSON checkpoints and budget-matched
+paired interventions. Transformer training and frozen-7B A/B discovery have
+not run. SFT/GRPO are later extensions. Working report text is in
+[docs/MILESTONE_DRAFT.md](docs/MILESTONE_DRAFT.md).
 
-Measured on 2026-11-16: NVIDIA RTX 3090 (24 GiB), Intel Xeon Gold 6330,
-14 vCPU cgroup quota, 60 GiB memory limit, Ubuntu 22.04, Python 3.10.8,
-PyTorch 2.1.2+cu121, NVIDIA driver 580.105.08. The driver advertises CUDA 13.0;
-the **PyTorch runtime is CUDA 12.1**. Host CPU count and host RAM are not the
-container allocation. `scripts/system_probe.py` records both with cgroup limits.
+## Actual preliminary results
 
-The project venv is on the data disk and inherits the image's existing PyTorch
-wheel using `--system-site-packages`. Project dependencies install into that
-venv; the base environment is preserved. On a fresh Python 3.10 machine, create
-a normal venv and install both requirements files:
+32 project value-validation instances (16 per size), three common solver
+seeds, 288 runs, zero errors. Validation is held out from **author train**;
+there is no independent author validation file in the received data.
+
+| Size | NN gap-to-reference (%) | 2-opt (%) | GLS (%) |
+| --- | ---: | ---: | ---: |
+| TSP50 | 22.7997 | 3.2449 | 1.8333 |
+| TSP100 | 27.4375 | 4.0042 | 2.8971 |
+
+These baselines do not test the proposed learned-feedback method. Gaps retain
+negative values: two GLS runs on one TSP50 instance improve the supplied
+reference by 0.0513%. References are not claimed to be certified continuous-
+Euclidean optima. Raw logs, summaries and costs are in
+[results/stage1](results/stage1); failed attempts are retained in
+[results/stage1_attempts](results/stage1_attempts). The predeclared configuration
+is [configs/stage1_baseline.json](configs/stage1_baseline.json).
+
+## Environment and data
+
+Measured hardware: RTX 3090 24GiB, Xeon Gold 6330, 14-vCPU cgroup quota,
+60GiB RAM; Python 3.10.8, PyTorch 2.1.2+cu121, NumPy 1.26.4,
+NVIDIA driver 580.105.08, Ubuntu 22.04. CPU affinity lists more CPUs than
+the container quota. Stage 1 uses one CPU process and one BLAS thread, with
+zero GPU compute. No new package is needed for stage 1.
+
+On a fresh machine:
 
 ```bash
 python3.10 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-torch.txt -r requirements.txt
 pip check
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 ```
 
-The AutoDL-specific setup is:
+On the already-installed AutoDL environment, do not reinstall:
 
 ```bash
-# Repository copied to /root/autodl-tmp/tsp-state-value/code
 cd /root/autodl-tmp/tsp-state-value/code
-bash scripts/bootstrap_remote.sh
 source scripts/env.sh
 ```
 
-The bootstrap verifies a CUDA attention forward/backward update, optimizer and
-checkpoint restore, and tiny randomly initialized Qwen forward/backward and
-generation. It does **not** validate loading the full 7B model or GRPO.
-Outputs: `$TSP_ROOT/artifacts/system_probe.json`, `environment.freeze.txt`, and
-`environment.packages.json`. The CUDA smoke itself took about 0.82 s; package
-installation time depends on the network. The full inherited environment is
-recorded for auditing; `requirements.txt` lists the project overlay.
+`scripts/env.sh` selects the project venv and puts caches on the data disk;
+source it in noninteractive SSH sessions too. Stage 0 package inventories
+are in `environment/`. The prior 7B BF16 smoke is infrastructure evidence,
+not a program-discovery result. Stage 1 does not load Qwen.
 
-The full fixed 7B snapshot was subsequently verified against all four author
-weight hashes and loaded in BF16 for one short greedy smoke generation:
-4.68 s loading, 0.57 s generation, peak allocated 15,292,781,568 bytes. This
-37-input-token / 2-output-token check is not a throughput benchmark or program
-discovery result. Repeat it after author hash verification with
-`python scripts/model_smoke.py`; output is `artifacts/model_smoke.json`.
+`configs/sources.json` fixes the upstream repositories/revisions and author
+URLs for Joshi et al. CP 2021, INViT ICML 2024 and TSPLIB95. Qwen2.5-Coder-7B-
+Instruct is fixed at `c03e6d358207e414f1eca0bb1891e29f1db0e242`; its four
+author weight hashes were verified. Large data/weights are excluded from Git.
 
-## Storage and cache
+The received Joshi data is a seven-volume 7z repack (5,739,945,309 bytes,
+SHA256 `ea6ed955a48028627653c6674fb5038b4073db64e7a2805ff1c88ab6399a64d3`).
+Its 11 member hashes/counts are in `configs/joshi_received_files.json`.
+This is not a verified hash of the original author gzip. Member integrity,
+independent author-prefix agreement and bootstrap reservations passed.
+The obsolete interrupted Google download is not needed or restarted.
 
-`source scripts/env.sh` is required for non-interactive SSH too. It places
-pip/Hugging Face/PyTorch/Matplotlib/temp caches on the 50 GiB local data disk.
-Code lives in `$TSP_ROOT/code`, downloaded author releases in
-`$TSP_ROOT/data/raw`, logs in `$TSP_ROOT/logs`, and measurements in
-`$TSP_ROOT/artifacts`. The verified file-storage mount resolves from
-`/root/autodl-fs` to `/autodl-fs/data` (FUSE, 200 GiB capacity).
+Provide these verified sources under `$TSP_ROOT`:
 
-Keep a single copy of Qwen weights in the Hub cache (about 15.23 GB decimal).
-Reserve at least 8 GiB local free space for subsequent work. Keep author
-archives compressed and extract only required members or selected rows;
-inspect the manifest's uncompressed size before extraction. File storage is
-for compact results/checkpoints/backups, with an independent local backup.
-No weights or raw data are committed.
-
-## Author releases and model
-
-`configs/sources.json` fixes upstream repository commits and the model
-revision. `configs/qwen_weight_hashes.json` contains the author's four LFS
-SHA256 hashes, checked on completion of the model download.
-
-- [Joshi et al., CP 2021](https://github.com/chaitjo/learning-tsp):
-  `tsp-data.tar.gz`, approximately 5.84 GB compressed. Author train supplies
-  disjoint project training/validation pools; author test is final-only.
-- [INViT, ICML 2024](https://github.com/Kasumigaoka-Utaha/INViT):
-  `INViT_data.zip`, approximately 163 MB. Reserved for final OOD evaluation.
-- [Qwen2.5-Coder-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct):
-  revision `c03e6d358207e414f1eca0bb1891e29f1db0e242`.
-
-```bash
-bash scripts/start_job.sh tsp-data-joshi python scripts/download_sources.py joshi
-bash scripts/start_job.sh tsp-data-invit python scripts/download_sources.py invit
-bash scripts/start_job.sh tsp-model-qwen env HF_ENDPOINT=https://hf-mirror.com python scripts/download_sources.py qwen
+```text
+data/author_received/data/tsp/tsp{50,100}_train_concorde.txt
+data/author_received/data/tsp/tsp{50,100,200}_test_concorde.txt
+data/raw/INViT_data.zip
+data/raw/ALL_tsp.tar.gz
 ```
 
-The current server cannot reach Google Drive directly. A local Windows worker
-downloads with resume and uploads via SFTP; its operational entry is outside
-the public code directory in `milestone/continue_author_downloads.py`. Generic
-downloads above work where the author host is reachable. Resume rejects
-responses that fail to honor the requested byte range. A download is complete
-only when its JSON status says `completed_verified`. Archive inventory does
-not imply instance parsing, split correctness, or solver evaluation is done.
+An original author gzip may be extracted under `data/author_received`; member
+hashes must match. Generic retrieval tools remain in `scripts/download_sources.py`
+and `scripts/download_drive_ranges.py` for machines that reach the author
+hosts. Stage 1 launches no download. The repack is not hosted here; author
+URLs are the public retrieval route and may be subject to Drive quota.
 
-The legacy `/uc` endpoint may report a quota error while Google's confirmation
-page download domain still serves the same public author file. The following
-alternative uses that public download domain, small validated byte ranges,
-per-chunk SHA256, resumable chunk files, and a final full gzip CRC/tar audit:
+## Instance isolation and final lock
 
-```bash
-# Run on a machine that can reach drive.usercontent.google.com.
-python scripts/download_drive_ranges.py joshi --root "$TSP_ROOT" --workers 6 --chunk-mib 8
-```
+`configs/data_split_policy.json` fixes original author-train rows per size:
+value train 1–2048, discovery 2049–2112, value validation 100001–100256,
+program selection 100257–100320, and program development evaluation
+100321–100384. These are disjoint project validation pools held out from
+author train, never “author val”. TSP50 rows 1–512 stay in value train.
+Derived states inherit the original instance's pool.
 
-Keep sufficient space for both chunks and the assembled archive. No third-party
-dataset mirror or regenerated instances are substituted by this command.
+`splits/manifest.csv` fixes 6,186 selected instances: 4,992 project instances
+and 1,194 final identifiers. Fields include source URL/revision/file hash,
+original row, project use, coordinate hashes, reference locator and distance
+convention. TSPLIB file hashes cover decompressed `.tsp` content; the archive
+hash is separate. Auditing checks all 3,840 author test rows, 6,000 INViT
+rows in selected distributions and 42 TSPLIB instances against project pools.
+Exact and float32-quantized coordinate overlaps are zero; this does not
+exclude every possible geometric equivalence.
 
-Before starting another job, inspect existing tmux sessions, process state,
-download JSON, partial sizes, and logs. The current job may still be running.
+`configs/final_identity_policy.json` fixes first 256 author-test rows per
+size (50/100/200), first 128 INViT rows per distribution
+(clustered1/explosion/implosion), and 42 audited unconstrained TSPLIB EUC_2D
+instances of size 50–500. Final coordinates were read for identity only;
+no final solver run or reference-tour cost was computed. Final performance
+is unavailable for method selection. Joshi/INViT use continuous Euclidean
+distances; TSPLIB will use rounded EUC_2D at final evaluation.
 
-```bash
-tmux ls
-tail -n 30 "$TSP_ROOT/logs/tsp-model-qwen-mirror.log"
-cat "$TSP_ROOT/artifacts/qwen_download.json"
-bash scripts/stage1_preflight.sh
-```
+## Reproduce stage 1
 
-The preflight requires a verified Joshi archive and the passed environment
-probe. It intentionally fails while data is incomplete. Stage 1 must add
-instance-level manifests/splits, distance/reference validation, NN/2-opt/GLS,
-state restore and paired-run correctness checks before any learning results.
-Do not use final datasets to tune methods.
-
-A separate bootstrap mode allows stage-1 solver development from 512 complete
-author **train** rows already recovered from the tar.gz prefix. It validates
-coordinates, tours, duplicate coordinate sets, source-row hashes, and the
-normalized data hash. This mode makes no full-archive CRC/SHA256 claim and
-provides no author validation set or TSP100 data:
+Build the manifest and normalized **project-only** data:
 
 ```bash
-python scripts/prepare_author_bootstrap.py \
-  --archive-prefix /path/to/tsp-data.tar.gz.prefix \
-  --output "$TSP_ROOT/data/bootstrap" --count 512
-bash scripts/stage1_preflight.sh bootstrap
+python scripts/build_manifest.py --root "$TSP_ROOT" \
+  --tsplib-archive "$TSP_ROOT/data/raw/ALL_tsp.tar.gz"
 ```
 
-The same preparation command can read the full author archive later; selected
-source-row hashes must match `splits/bootstrap_reserved_rows.csv`. Keep these
-rows in training/development pools when building the full instance split.
-This bootstrap supports engineering checks, not final performance conclusions.
-
-## Received author data and validation policy
-
-On 2026-11-17 a user-supplied seven-volume 7z archive was merged without
-modifying its source volumes. It contains 11 extracted author text files
-(12,755,124,869 bytes), rather than the original `tsp-data.tar.gz`. The merged
-7z is 5,739,945,309 bytes with SHA256
-`ea6ed955a48028627653c6674fb5038b4073db64e7a2805ff1c88ab6399a64d3`.
-This identifies the repack and does not establish the original gzip's hash.
-`configs/joshi_received_files.json` records exact per-file hashes and counts.
-The independent original download prefix matches the complete TSP50 test file
-by bytes and the first 8 MiB of TSP50 train; test data is only hashed for
-integrity. All 512 bootstrap source-row hashes match.
-
-No separate `*_val` file exists in this received payload. Before any solver
-or learning experiment, `configs/data_split_policy.json` fixes disjoint
-original train-file line ranges, separately for TSP50 and TSP100: value train
-1–2048, discovery 2049–2112, value validation 100001–100256, program selection
-100257–100320, and program development evaluation 100321–100384. These are
-**project validation held out from author train**, never “author val”. The
-512 bootstrap rows stay in value train. Final author test/INViT/TSPLIB remain
-reserved. Stage 1 must still create the complete per-instance manifest and
-check final-source overlap using hashes before experiments.
-
-`scripts/audit_author_directory.py` validates file hashes, source-prefix
-agreement, all 4,992 selected source rows, disjoint coordinate sets, and
-bootstrap reservations. It creates two 384-row project-validation views.
-With `--extract` on Linux it verifies the received 7z hash, checks member paths,
-extracts via `7z` (including member CRC checks), and compares every extracted
-file against the recorded manifest. Ubuntu needs `p7zip-full` for that option.
-The original author's gzip can also be used after extracting it with tar;
-the auditor consumes the full gzip stream for its CRC and checks the same
-per-file hashes. That original-gzip route has not been replayed end to end
-here because Google Drive quota prevents completing the original download.
-
-Directory audit, as run locally (set paths to the files you actually have):
+Expected: 6,186 manifest records, zero overlap, and 4,992 normalized project
+instances in `$TSP_ROOT/data/prepared/stage1/project_instances.jsonl`.
+Audit time: 20.99 wall seconds / 20.98 CPU seconds on this server. It
+validates selected source-file hashes and 512 bootstrap reservations;
+it computes no final reference-route length or solver result.
 
 ```bash
-python scripts/audit_author_directory.py \
-  --directory /path/to/received_author_payload --project-root "$TSP_ROOT" \
-  --archive /path/to/tsp-data.received.7z \
-  --archive-prefix /path/to/tsp-data.tar.gz.prefix
+python -m pytest tests/test_solver.py -q
+python scripts/evaluate_baselines.py --root "$TSP_ROOT" \
+  --output "$TSP_ROOT/artifacts/stage1-replay"
+python scripts/compare_baselines.py results/stage1/baseline_runs.jsonl \
+  "$TSP_ROOT/artifacts/stage1-replay/baseline_runs.jsonl" \
+  --output "$TSP_ROOT/artifacts/stage1-replay/comparison.json"
 ```
 
-The server's full gate requires completed archive integrity and received-data
-audit records. Until its transfer and extraction finish, only the previously
-verified bootstrap gate is ready. No solver, baseline, labels or learning
-results are claimed by these data checks.
+Expected: ten checks pass; 288 rows with zero errors; identical route, quality,
+work and progress fields on replay. `--output` must be new; evaluation
+refuses to overwrite logs. Original baseline time was 7.39 seconds including
+independent scalar cost checks and JSON logging. Wall times vary and are not
+compared for equality. Same-action diagnostic benefits are zero at H=50,000.
+The two different-action engineering probes also tie; this is not a label
+pilot or evidence of learnability.
 
-## Logs and backups
-
-`start_job.sh SESSION COMMAND ...` starts one tmux session and records
-`logs/SESSION.log` plus the true command exit code in `logs/SESSION.exit`.
-Duplicate live session names are rejected. Confirmed disconnect survival is
-recorded in `logs/tsp-tmux-survival.log`.
+Operational pipeline on the prepared server (before baseline logs exist):
 
 ```bash
-bash scripts/backup_remote.sh
+bash scripts/stage1_preflight.sh full
+bash scripts/start_job.sh UNIQUE_SESSION python scripts/measure_command.py \
+  --output results/stage1/resources.json -- bash scripts/run_stage1.sh
 ```
 
-This refuses an unmounted file-storage path, archives code, artifacts, logs,
-and checkpoints, runs an archive integrity check, and writes a SHA256 sidecar.
-Copy both outputs to an independent machine and verify the sidecar there.
-Small audited bootstrap data is included when present. Weights, caches, and
-large raw archives are excluded; author release URLs, hashes, and download
-scripts support retrieval.
+`run_stage1.sh --reuse-manifest` checks existing manifest/normalized-data
+SHA256 values instead of rebuilding them. It still refuses to replace
+baseline logs. Successful tests/evaluation took 9.51 wall / 9.51 child CPU
+seconds, peaking at 139.1MiB child RSS; this includes data loading, tests,
+baselines and real-data checkpoint/pair diagnostics. Failed attempts and
+their resource costs are preserved; see the draft for accounting.
 
-## Publication
+## Shared solver and paired API
 
-The public repository is [mant000/AI-Project](https://github.com/mant000/AI-Project).
-Only the `implementation` directory is published; the original repository
-history is preserved. Scoped repository SSH authorization is used for Git
-pushes. A submission tag is pending later milestone results. Private course
-attachments, instructor comments, SSH credentials, and tokens stay outside
-this repository. Never add an experiment command to this README before it
-exists and has actually run.
+`src/tsp_value/solver.py` defines the interface. A work unit is one nonadjacent
+2-opt pair delta evaluation. Each complete sweep has n(n-3)/2 units. Fixed
+TSP50/100 caps are 235,000 / 970,000 units (200 sweeps including initial
+descent). NN has no delta search; 2-opt stops on convergence. Budget caps
+are shared, consumed work differs.
+
+GLS freezes lambda at 0.1 times the first unpenalized local optimum's mean
+edge length. It penalizes one maximum distance/(1+penalty) edge, uniformly
+resolving exact utility ties. Returned quality uses original distances.
+
+`create_state`, `run`, `save_state`, `load_state` and `clone` preserve full
+tour/penalty/progress/RNG state, distance/index caches and the best move in an
+unfinished sweep. `run(..., stop_at_decision=True)` stops at a penalty
+boundary. `paired_action_set` copies it for all actions using common seeds
+and exact additional work, executing each reference once per seed.
+`paired_continuation` is the single-candidate wrapper. Benefits are empirical
+finite-horizon effects under a fixed continuation, not optimal Q values.
+
+Checks cover valid tours, raw/augmented delta identities, exact small-instance
+reference parsing, arbitrary mid-sweep checkpoint replay and seeded ties,
+copy isolation, equal-work branches, same-action zero benefit and reference
+reuse. Real TSP50/100 training-instance replay records are in
+`results/stage1/real_data_correctness.json`.
+
+## Backup and next stage
+
+`scripts/start_job.sh` runs tmux jobs and retains logs/exit codes.
+`scripts/backup_remote.sh` verifies the actual file-storage mount, archives
+code/results/logs/checkpoints and prepared data, and writes a SHA256 sidecar.
+Keep an independently verified local copy. Raw archives/weights are excluded.
+
+Next: training-only label pilot (64 instances, four states, eight candidate
+actions, two paired seeds), diagnose H/ties/noise, then freeze labels and
+train the Transformer and MLP. Discovery, program selection and program
+development evaluation remain untouched by stage 1 baselines. A milestone
+submission tag awaits later stages and the formatted report. Only this
+implementation directory is public; credentials/private course attachments
+remain outside it.

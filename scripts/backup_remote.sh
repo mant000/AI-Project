@@ -9,11 +9,14 @@ FSTYPE="$(findmnt -n -o FSTYPE -T "$FS_REAL")"
 [[ "$FSTYPE" != overlay && "$FSTYPE" != tmpfs ]] || exit 1
 mkdir -p "$TSP_ARCHIVE/backups"
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
-OUT="$TSP_ARCHIVE/backups/stage0-$STAMP.tar.gz"
+LABEL="${1:-stage0}"
+[[ "$LABEL" =~ ^[a-zA-Z0-9_-]+$ ]] || { echo 'Invalid backup label'; exit 1; }
+OUT="$TSP_ARCHIVE/backups/$LABEL-$STAMP.tar.gz"
 ITEMS=(code artifacts logs checkpoints)
 [[ ! -d "$TSP_ROOT/operations" ]] || ITEMS+=(operations)
 [[ ! -d "$TSP_ROOT/data/bootstrap" ]] || ITEMS+=(data/bootstrap)
 [[ ! -d "$TSP_ROOT/data/prepared/project_val" ]] || ITEMS+=(data/prepared/project_val)
+[[ ! -d "$TSP_ROOT/data/prepared/stage1" ]] || ITEMS+=(data/prepared/stage1)
 tar --exclude=code/.git --exclude='*/__pycache__' --exclude='*.tmp' \
     -czf "$OUT.tmp" -C "$TSP_ROOT" "${ITEMS[@]}"
 mv "$OUT.tmp" "$OUT"

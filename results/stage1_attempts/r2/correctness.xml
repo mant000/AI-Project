@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="9" time="0.511" timestamp="2026-11-17T22:32:33.731020+08:00" hostname="autodl-container-c62840940c-5059bc68"><testcase classname="tests.test_solver.SolverCorrectness" name="test_all_raw_and_augmented_deltas" time="0.002" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_checkpoint_arbitrary_partial_sweeps" time="0.120" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_every_step_tours_and_costs" time="0.084" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_reference_parse_exact_enumeration_and_rounding" time="0.004" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_rng_checkpoint_with_utility_ties" time="0.022"><failure message="AssertionError: '{&quot;al[66 chars]: [[0, 0], [1, 0], [1, 1], [0, 1]], &quot;current_l[866 chars] 3]}' != '{&quot;al[66 chars]: [[0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1[882 chars] 3]}'&#10;Diff is 2227 characters long. Set self.maxDiff to None to see it.">self = &lt;test_solver.SolverCorrectness testMethod=test_rng_checkpoint_with_utility_ties&gt;
+
+    def test_rng_checkpoint_with_utility_ties(self):
+        s = create_state([[0,0],[1,0],[1,1],[0,1]],4)
+        run(s,2,stop_at_decision=True)
+        self.assertTrue(s['needs_penalty'])
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/'tie.json'
+            save_state(s,path)
+            restored = load_state(path)
+        run(s,131)
+        run(restored,131)
+&gt;       self.assertEqual(as_json(s),as_json(restored))
+E       AssertionError: '{"al[66 chars]: [[0, 0], [1, 0], [1, 1], [0, 1]], "current_l[866 chars] 3]}' != '{"al[66 chars]: [[0.0, 0.0], [1.0, 0.0], [1.0, 1.0], [0.0, 1[882 chars] 3]}'
+E       Diff is 2227 characters long. Set self.maxDiff to None to see it.
+
+tests/test_solver.py:107: AssertionError</failure></testcase><testcase classname="tests.test_solver.SolverCorrectness" name="test_rule_and_action_errors" time="0.001" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_same_action_zero_pair_and_copy_isolation" time="0.071" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_two_actions_equal_work_and_replay" time="0.094" /><testcase classname="tests.test_solver.SolverCorrectness" name="test_two_opt_local_optimum_and_gls_equivalence_before_penalty" time="0.007" /></testsuite></testsuites>
