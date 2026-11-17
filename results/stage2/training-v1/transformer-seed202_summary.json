@@ -1,0 +1,115 @@
+{
+  "validation": {
+    "states": 256,
+    "instances": 64,
+    "informative_states": 39,
+    "spearman": 0.20723868016569752,
+    "non_tied_pair_accuracy": 0.6841715976331361,
+    "top1_regret_pp": 0.027514090616023168,
+    "selected_benefit_pp": 0.002128410851582885,
+    "oracle_benefit_pp": 0.029642501467606053,
+    "top1_optimal_fraction": 0.95703125,
+    "mse": 0.011366864553753686,
+    "informative_top1_regret_pp": 0.18060531276158798,
+    "by_nodes": {
+      "50": {
+        "states": 128,
+        "instances": 32,
+        "informative_states": 20,
+        "spearman": 0.23409321576421482,
+        "non_tied_pair_accuracy": 0.707051282051282,
+        "top1_regret_pp": 0.033511747838929296,
+        "selected_benefit_pp": 0.00425682170316577,
+        "oracle_benefit_pp": 0.037768569542095065,
+        "top1_optimal_fraction": 0.9609375,
+        "mse": 0.015692308937104826,
+        "informative_top1_regret_pp": 0.21447518616914749
+      },
+      "100": {
+        "states": 128,
+        "instances": 32,
+        "informative_states": 19,
+        "spearman": 0.1789707479567319,
+        "non_tied_pair_accuracy": 0.6600877192982456,
+        "top1_regret_pp": 0.02151643339311704,
+        "selected_benefit_pp": 0.0,
+        "oracle_benefit_pp": 0.02151643339311704,
+        "top1_optimal_fraction": 0.953125,
+        "mse": 0.007041420170402546,
+        "informative_top1_regret_pp": 0.1449528144378411
+      }
+    },
+    "selected_benefit_pp_instance_bootstrap95": [
+      0.0,
+      0.005772748962044716
+    ]
+  },
+  "train": {
+    "states": 1024,
+    "instances": 256,
+    "informative_states": 183,
+    "spearman": 0.24744894787696298,
+    "non_tied_pair_accuracy": 0.7046040419810912,
+    "top1_regret_pp": 0.025305478028940342,
+    "selected_benefit_pp": 0.006252294248042745,
+    "oracle_benefit_pp": 0.03155777227698309,
+    "top1_optimal_fraction": 0.953125,
+    "mse": 0.008924073778076469,
+    "informative_top1_regret_pp": 0.14160005192150224,
+    "by_nodes": {
+      "50": {
+        "states": 512,
+        "instances": 128,
+        "informative_states": 74,
+        "spearman": 0.14895317875909386,
+        "non_tied_pair_accuracy": 0.6210322123365601,
+        "top1_regret_pp": 0.03309325794407414,
+        "selected_benefit_pp": 0.012238647730555385,
+        "oracle_benefit_pp": 0.045331905674629525,
+        "top1_optimal_fraction": 0.958984375,
+        "mse": 0.011788897236820972,
+        "informative_top1_regret_pp": 0.22896956847791836
+      },
+      "100": {
+        "states": 512,
+        "instances": 128,
+        "informative_states": 109,
+        "spearman": 0.3143176351679935,
+        "non_tied_pair_accuracy": 0.7613408804553599,
+        "top1_regret_pp": 0.017517698113806546,
+        "selected_benefit_pp": 0.0002659407655301038,
+        "oracle_benefit_pp": 0.01778363887933665,
+        "top1_optimal_fraction": 0.947265625,
+        "mse": 0.006059250319331966,
+        "informative_top1_regret_pp": 0.08228496728687111
+      }
+    },
+    "selected_benefit_pp_instance_bootstrap95": [
+      0.0012888065622973955,
+      0.013035773591718676
+    ]
+  },
+  "best_epoch": 7,
+  "epochs": 15,
+  "steps": 960,
+  "parameter_count": 862081,
+  "training_validation_wall_seconds": 45.43850890547037,
+  "peak_allocated_bytes": 200949760,
+  "peak_reserved_bytes": 224395264,
+  "resume_check": {
+    "uninterrupted_loss": 0.07048144191503525,
+    "resumed_loss": 0.07048144191503525,
+    "max_parameter_abs_error": 0.0,
+    "optimizer_and_rng_restored": true,
+    "optimizer_state_entries": 60,
+    "after_training_epoch": 1,
+    "checkpoint_sha256": "76649437397cb6248c36f064531eaf0933bee3915a353ec40523977cae0ee525"
+  },
+  "symmetry": {
+    "permutation_max_abs_error_pp": 1.4901161193847656e-08,
+    "undirected_edge_max_abs_error_pp": 0.0,
+    "tolerance_pp": 0.0001
+  },
+  "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/transformer-seed202/best.pt",
+  "checkpoint_sha256": "2282d0776dd8901875986094c391a7df58ac788bf728c71f4c6ecc54ec220631"
+}

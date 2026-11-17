@@ -3,12 +3,15 @@
 Can feedback about decisions at a shared guided local search state help a
 frozen code LLM discover better TSP penalty rules?
 
-**Stage 1 is implemented and measured.** This repository provides fixed data
-splits, identity/overlap auditing, nearest neighbor, best-improvement 2-opt,
-single-edge conventional GLS, complete JSON checkpoints and budget-matched
-paired interventions. Transformer training and frozen-7B A/B discovery have
-not run. SFT/GRPO are later extensions. Working report text is in
-[docs/MILESTONE_DRAFT.md](docs/MILESTONE_DRAFT.md).
+**Stage 2 is implemented and measured.** A 64-instance, 4,608-branch pilot
+expanded to 256 train +64 project-heldout validation instances and 23,040
+production branches including that pilot. Actual graph Transformer/MLP
+training, six optimizer/RNG restores, graph symmetry checks and selected-action
+solver replay passed. About 97% of labels are zero. Transformer mean validation
+benefit is +0.003910 percentage points with substantial limitations. Frozen-7B
+discovery A/B, SFT/GRPO and final evaluation have not run. Read the
+[stage2 results](docs/STAGE2_RESULTS.md), [next entry](docs/STAGE3_ENTRY.md),
+and working [report draft](docs/MILESTONE_DRAFT.md).
 
 ## Actual preliminary results
 
@@ -201,10 +204,23 @@ reuse. Real TSP50/100 training-instance replay records are in
 code/results/logs/checkpoints and prepared data, and writes a SHA256 sidecar.
 Keep an independently verified local copy. Raw archives/weights are excluded.
 
-Next: training-only label pilot (64 instances, four states, eight candidate
-actions, two paired seeds), diagnose H/ties/noise, then freeze labels and
-train the Transformer and MLP. Discovery, program selection and program
-development evaluation remain untouched by stage 1 baselines. A milestone
-submission tag awaits later stages and the formatted report. Only this
-implementation directory is public; credentials/private course attachments
-remain outside it.
+Next: frozen-7B controlled discovery A/B. See docs/STAGE3_ENTRY.md.
+
+## Reproduce stage 2
+
+On the existing prepared server, source scripts/env.sh and run with new paths:
+
+```bash
+bash scripts/run_stage2.sh "$TSP_ROOT/artifacts/stage2-replay" "$TSP_ROOT/checkpoints/stage2-replay"
+```
+
+This includes train-only diagnoses, exact 64-instance pilot, nested 256 train
++64 validation labels, actual MLP/Transformer training (three optimization
+seeds each), optimizer/RNG resume checks, isolation and graph symmetry checks,
+selected-action replay and four PNG/PDF/SVG figures. Existing outputs are
+never replaced. Label commands took 227.48 wall seconds /1709.09 worker CPU
+seconds; the full training command took 235.16 seconds. Replay/plotting and
+exclusions are in results/stage2/resource_accounting.json. Timings and gzip
+container hashes can vary; compare labels by original instance/state/action/
+seed. Checkpoints and snapshots are retained in the verified backup, with
+checkpoint hashes in training summaries. CPU label work does not load 7B.

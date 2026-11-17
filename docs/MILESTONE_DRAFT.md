@@ -1,6 +1,6 @@
 # Learning TSP Heuristic Programs from Search-State Values
 
-XuHongye, 72655146. Working report text, stage 1, 17 November 2026.
+XuHongye, 72655146. Working report text, stage 2, 18 November 2026.
 This editable draft will be typeset within four pages for the milestone.
 
 ## Problem and motivation
@@ -135,16 +135,56 @@ attempts and this replay, measured child commands consumed 50.48 wall
 seconds / 50.45 CPU seconds; the manifest audit is included once in that
 total. Transfers and human implementation time are outside this accounting.
 
-Next, a 64-instance training-only pilot will measure finite-horizon label
-signal, ties, seed sensitivity and branch throughput before H and state
-sampling are frozen. A graph Transformer and simple MLP will then be trained
-and evaluated by ranking, action regret and realized continuation benefit.
-The planned frozen Qwen2.5-Coder-7B-Instruct A/B compares endpoint-only
-feedback with endpoint plus state-value feedback, sharing seeds and candidate
-budgets. Programs will still be selected by real solution quality, using
-separate discovery/selection/development pools. Transformer training,
-program discovery, SFT and GRPO have not run. The current small baseline
-establishes feasibility and does not test the main hypothesis.
+## Stage 2 preliminary value-model evidence
+
+Training-only diagnostics compared H, fixed penalty-event state sampling and
+uniform/high-utility candidate edges. The frozen protocol uses H=58,750 deltas
+for TSP50 and 970,000 for TSP100, states at penalty events 0/8/32/96, eight
+uniform distinct nonreference edges and common seeds 71/72. The real 64-instance
+pilot executed 4,608 branches in 27.57 seconds (167.17 branches/s, 215.38 worker
+CPU s, 1.176 GiB summed process RSS). Around 96–97% of pilot labels are zero;
+the two continuation seeds have identical observed labels and terminal
+signatures, so they provide no independent random replication.
+
+The pilot is copied into 256 train instances. With 64 project-heldout validation
+instances, production totals 23,040 branches, 1,024 train and 256 val states.
+Only 183/39 train/val states have non-tied outcomes. All state/seed derivatives
+inherit their original instance pool; ID and coordinate-hash overlap is zero.
+
+A four-layer graph Transformer (hidden128, eight heads, 862,081 parameters)
+uses geometry, route adjacency, penalties and progress through pair-biased
+attention and symmetric undirected-edge readout. An MLP (20,353 parameters)
+uses edge/pooled features without message passing. Both use regression plus
+same-state non-tied ranking supervision and three fixed optimization seeds.
+Checkpoint selection uses validation top1 regret with the reference allowed.
+
+| Method | Spearman | Non-tied pair accuracy | Top1 regret (pp) | Selected benefit (pp) |
+| --- | ---: | ---: | ---: | ---: |
+| Conventional GLS | 0.1181 | 0.5907 | 0.029643 | 0 |
+| MLP, three-seed mean | 0.1835 | 0.6636 | 0.030065 | −0.000423 |
+| Graph Transformer, three-seed mean | 0.2001 | 0.6790 | 0.025733 | +0.003910 |
+
+Benefit is a finite-horizon paired relative length effect in percentage
+points, not full-solver gap improvement. The Transformer's apparent benefit
+is small, often concentrated on one or two instances. This same validation
+set selected checkpoints, and three optimization seeds share a dataset.
+Instance-clustered bootstrap intervals and per-size negative outcomes are
+retained; these results do not establish program-discovery effectiveness.
+
+All six trained models restored populated Adam moments and every RNG after
+epoch1; their next update matched uninterrupted execution exactly. City
+relabeling and undirected endpoint checks passed. Selected actions were
+independently replayed on all 256 validation states using 1,936 extra branches,
+with zero difference from stored labels. The training command took 235.16
+wall seconds /234.41 process CPU seconds. Transformer peak CUDA allocated/
+reserved memory was 191.64/216 MiB. Label diagnostics and production consumed
+227.48 wall seconds /1709.09 worker CPU seconds (parent logging excluded).
+Full raw metrics, costs, four figures and limitations are in
+`docs/STAGE2_RESULTS.md` and `results/stage2/`.
+
+Frozen Qwen endpoint-only versus endpoint+state-feedback discovery A/B is
+next; it has not run. No final data performance or SFT/GRPO result exists.
+The main research hypothesis still requires this controlled discovery test.
 
 ## Reproducibility and source notes
 

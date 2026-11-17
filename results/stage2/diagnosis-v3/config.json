@@ -1,0 +1,35 @@
+{
+  "mode": "diagnosis",
+  "pool": "value_train",
+  "instances_per_size": 8,
+  "state_penalty_events": [
+    0,
+    8,
+    32,
+    96
+  ],
+  "candidate_sampling": "uniform",
+  "candidates": 8,
+  "seeds": [
+    71,
+    72
+  ],
+  "horizons": [
+    {
+      "sweeps": 5
+    },
+    {
+      "sweeps": 10
+    },
+    {
+      "sweeps": 20
+    },
+    {
+      "sweeps": 50
+    },
+    {
+      "sweeps": 200
+    }
+  ],
+  "workers": 8
+}

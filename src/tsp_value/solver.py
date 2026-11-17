@@ -7,6 +7,8 @@ an unevaluated suffix. All returned quality uses the original distance matrix.
 """
 import copy
 import json
+import hashlib
+import time
 from pathlib import Path
 import numpy as np
 from .data import distances, length, validate_tour
@@ -179,7 +181,7 @@ def load_state(path):
     return state
 
 
-def paired_action_set(state, reference_edge, candidate_edges, seeds, horizon, rule=None):
+def paired_action_set(state, reference_edge, candidate_edges, seeds, horizon, rule=None, trace=False):
     """Same-state/action intervention, common RNG and exact work per branch.
 
 Returns empirical finite-horizon relative benefit, never an optimal Q value.
@@ -188,16 +190,25 @@ Returns empirical finite-horizon relative benefit, never an optimal Q value.
 """
     if not state['needs_penalty'] or horizon <= 0 or not seeds or not candidate_edges:
         raise ValueError('Need a decision state, positive horizon and paired seeds')
-    records = []
+    records, measurements = [], []
     for seed in seeds:
         base = clone(state)
         base['rng_state'] = np.random.default_rng(seed).bit_generator.state
         def rollout(edge):
+            started = time.perf_counter()
             branch = clone(base)
             penalize(branch, edge)
             before = branch['delta_evaluations']
             run(branch, horizon, rule=rule)
             assert branch['delta_evaluations']-before == horizon
+            if trace:
+                signature = hashlib.sha256()
+                for key in ('tour', 'best_tour', 'penalties'):
+                    signature.update(branch[key].tobytes())
+                signature.update(str((branch['cursor'], branch['moves'], branch['penalty_events'])).encode())
+                measurements.append(dict(seed=int(seed), edge=list(edge),
+                    wall_seconds=time.perf_counter()-started, best_length=branch['best_length'],
+                    trajectory_signature=signature.hexdigest(), delta_evaluations=int(horizon)))
             return branch
         ref = rollout(reference_edge)
         for candidate_index, candidate_edge in enumerate(candidate_edges):
@@ -207,8 +218,11 @@ Returns empirical finite-horizon relative benefit, never an optimal Q value.
                             horizon_delta_evaluations=int(horizon), reference_length=ref['best_length'],
                             candidate_length=cand['best_length'], normalization_length=state['best_length'],
                             relative_benefit=(ref['best_length']-cand['best_length'])/state['best_length']))
-    return dict(records=records, branches_executed=(len(candidate_edges)+1)*len(seeds),
-                reference_branches_executed=len(seeds))
+    result = dict(records=records, branches_executed=(len(candidate_edges)+1)*len(seeds),
+                  reference_branches_executed=len(seeds))
+    if trace:
+        result['branch_measurements'] = measurements
+    return result
 
 
 def paired_continuation(state, reference_edge, candidate_edge, seeds, horizon, rule=None):

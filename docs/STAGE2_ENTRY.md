@@ -1,3 +1,5 @@
+> Stage 2 completed on 18 November 2026. Historical start protocol follows. Current evidence: docs/STAGE2_RESULTS.md; next: docs/STAGE3_ENTRY.md.
+
 # Stage 2 entry: training-only label pilot
 
 Stage 1 is complete: 6,186 manifest identifiers, no project/final coordinate
