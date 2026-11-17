@@ -1,0 +1,705 @@
+{
+  "candidate_id": "A-seed402-candidate004",
+  "arm": "A",
+  "discovery_seed": 402,
+  "index": 4,
+  "parent_sha256": "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b",
+  "at_utc": "2026-11-17T19:54:40.587501+00:00",
+  "valid": true,
+  "expression": "(d - mean_d) ** 2 / (1 + p)",
+  "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - mean_d) ** 2 / (1 + p)\n",
+  "program_sha256": "bde4322e4800a1fd24141db795883fb8487f3e422783385b80b8a2b55f97d1ac",
+  "duplicate_program": false,
+  "evaluation_reused": false,
+  "mean_discovery_gap_percent": 2.791128182743586,
+  "gap_by_size": {
+    "50": 1.6933471020572057,
+    "100": 3.8889092634299667
+  },
+  "value_feedback": {
+    "bank_sha256": "758a8779097a124e12664b08028f6f5a89c4d4d6431e718d59f372ffcd8cebeb",
+    "states": 32,
+    "same_action_fraction": 0.625,
+    "mean_predicted_child_minus_parent_pp": -0.007537723761439945,
+    "qualified_preference_counts": {
+      "none": 25,
+      "parent_predicted": 6,
+      "child_predicted": 1
+    },
+    "states_detail": [
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2049:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          11,
+          13
+        ],
+        "child_edge": [
+          11,
+          13
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.2883462858055957,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2049:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          11,
+          13
+        ],
+        "child_edge": [
+          11,
+          13
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.0072920868794123335,
+        "child_predicted_pp": -0.0072920868794123335,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.2883462858055957,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2049:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          11,
+          13
+        ],
+        "child_edge": [
+          11,
+          13
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.009259975204865137,
+        "child_predicted_pp": -0.009259975204865137,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.2883462858055957,
+        "child_penalty": 2
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2049:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          11,
+          13
+        ],
+        "child_edge": [
+          37,
+          45
+        ],
+        "same_action": false,
+        "parent_predicted_pp": -0.04504472265640894,
+        "child_predicted_pp": -0.07037862638632457,
+        "predicted_child_minus_parent_pp": -0.02533390372991562,
+        "across_model_delta_std_pp": 0.011881224656935084,
+        "qualified_preference": "parent_predicted",
+        "child_distance": 0.02657959206241996,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2050:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          27,
+          41
+        ],
+        "child_edge": [
+          27,
+          41
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.3235950447133066,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2050:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          27,
+          41
+        ],
+        "child_edge": [
+          27,
+          41
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.001967556153734525,
+        "child_predicted_pp": -0.001967556153734525,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.3235950447133066,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2050:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          3,
+          16
+        ],
+        "child_edge": [
+          22,
+          28
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": -0.022884393110871315,
+        "predicted_child_minus_parent_pp": -0.022884393110871315,
+        "across_model_delta_std_pp": 0.008309168479010948,
+        "qualified_preference": "parent_predicted",
+        "child_distance": 0.017664390880618268,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2050:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          31,
+          32
+        ],
+        "child_edge": [
+          22,
+          28
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": -0.031502007196346916,
+        "predicted_child_minus_parent_pp": -0.031502007196346916,
+        "across_model_delta_std_pp": 0.03014410471617072,
+        "qualified_preference": "parent_predicted",
+        "child_distance": 0.017664390880618268,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2051:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          27,
+          46
+        ],
+        "child_edge": [
+          27,
+          46
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.32433044128931215,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2051:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          27,
+          46
+        ],
+        "child_edge": [
+          27,
+          46
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.0035719536244869232,
+        "child_predicted_pp": -0.0035719536244869232,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.32433044128931215,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2051:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          27,
+          46
+        ],
+        "child_edge": [
+          10,
+          24
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.0026477687060832977,
+        "child_predicted_pp": -0.022562777002652485,
+        "predicted_child_minus_parent_pp": -0.025210545708735783,
+        "across_model_delta_std_pp": 0.023625123649963817,
+        "qualified_preference": "parent_predicted",
+        "child_distance": 0.008919182720352335,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2051:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          27,
+          46
+        ],
+        "child_edge": [
+          10,
+          24
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.03109898914893468,
+        "child_predicted_pp": -0.0009039659053087234,
+        "predicted_child_minus_parent_pp": -0.03200295505424341,
+        "across_model_delta_std_pp": 0.034926357181444385,
+        "qualified_preference": "none",
+        "child_distance": 0.008919182720352335,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2052:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          0,
+          25
+        ],
+        "child_edge": [
+          0,
+          25
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.35978995450915546,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2052:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          0,
+          25
+        ],
+        "child_edge": [
+          0,
+          25
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.0054741427302360535,
+        "child_predicted_pp": -0.0054741427302360535,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.35978995450915546,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2052:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          12,
+          42
+        ],
+        "child_edge": [
+          12,
+          42
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.050858400762081146,
+        "child_predicted_pp": 0.050858400762081146,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.35200854862040193,
+        "child_penalty": 2
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2052:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          12,
+          42
+        ],
+        "child_edge": [
+          6,
+          17
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.014053481010099253,
+        "child_predicted_pp": 0.0014687348157167435,
+        "predicted_child_minus_parent_pp": -0.01258474619438251,
+        "across_model_delta_std_pp": 0.01584999285006601,
+        "qualified_preference": "none",
+        "child_distance": 0.007956826593580775,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2049:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          0,
+          68
+        ],
+        "child_edge": [
+          0,
+          68
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.23676475344220557,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2049:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          19,
+          37
+        ],
+        "child_edge": [
+          0,
+          68
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": -0.00616103783249855,
+        "predicted_child_minus_parent_pp": -0.00616103783249855,
+        "across_model_delta_std_pp": 0.005807750579534286,
+        "qualified_preference": "parent_predicted",
+        "child_distance": 0.23676475344220557,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2049:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          43,
+          48
+        ],
+        "child_edge": [
+          0,
+          68
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": -0.008873900398612022,
+        "predicted_child_minus_parent_pp": -0.008873900398612022,
+        "across_model_delta_std_pp": 0.008907925101783015,
+        "qualified_preference": "none",
+        "child_distance": 0.23676475344220557,
+        "child_penalty": 2
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2049:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          0,
+          68
+        ],
+        "child_edge": [
+          0,
+          68
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.01014263058702151,
+        "child_predicted_pp": -0.01014263058702151,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.23676475344220557,
+        "child_penalty": 3
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2050:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          3,
+          16
+        ],
+        "child_edge": [
+          3,
+          16
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.37432816242956257,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2050:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          3,
+          16
+        ],
+        "child_edge": [
+          3,
+          16
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.00996162494023641,
+        "child_predicted_pp": -0.00996162494023641,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.37432816242956257,
+        "child_penalty": 2
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2050:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          47,
+          95
+        ],
+        "child_edge": [
+          47,
+          95
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.011791308100024859,
+        "child_predicted_pp": -0.011791308100024859,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.27678883873575894,
+        "child_penalty": 2
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2050:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          64,
+          71
+        ],
+        "child_edge": [
+          47,
+          95
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.007496014858285586,
+        "child_predicted_pp": 0.01458753397067388,
+        "predicted_child_minus_parent_pp": 0.007091519112388293,
+        "across_model_delta_std_pp": 0.007792263854909396,
+        "qualified_preference": "none",
+        "child_distance": 0.27678883873575894,
+        "child_penalty": 4
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2051:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          8,
+          61
+        ],
+        "child_edge": [
+          8,
+          61
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.20225408945597403,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2051:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          14,
+          33
+        ],
+        "child_edge": [
+          8,
+          61
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0063828763862450915,
+        "predicted_child_minus_parent_pp": 0.0063828763862450915,
+        "across_model_delta_std_pp": 0.0016148450080062857,
+        "qualified_preference": "child_predicted",
+        "child_distance": 0.20225408945597403,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2051:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          8,
+          61
+        ],
+        "child_edge": [
+          8,
+          61
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.019087233891089756,
+        "child_predicted_pp": 0.019087233891089756,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.20225408945597403,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2051:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          8,
+          61
+        ],
+        "child_edge": [
+          24,
+          47
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.02132742541531722,
+        "child_predicted_pp": -0.06402425033350785,
+        "predicted_child_minus_parent_pp": -0.08535167574882507,
+        "across_model_delta_std_pp": 0.08461913086579237,
+        "qualified_preference": "parent_predicted",
+        "child_distance": 0.007286294204833163,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2052:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          36,
+          65
+        ],
+        "child_edge": [
+          36,
+          65
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.0,
+        "child_predicted_pp": 0.0,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.24282271929762295,
+        "child_penalty": 0
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2052:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          36,
+          65
+        ],
+        "child_edge": [
+          36,
+          65
+        ],
+        "same_action": true,
+        "parent_predicted_pp": -0.0010425746440887451,
+        "child_predicted_pp": -0.0010425746440887451,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.24282271929762295,
+        "child_penalty": 1
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2052:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          38,
+          68
+        ],
+        "child_edge": [
+          36,
+          65
+        ],
+        "same_action": false,
+        "parent_predicted_pp": 0.004165371259053548,
+        "child_predicted_pp": -0.0006110196312268575,
+        "predicted_child_minus_parent_pp": -0.004776390890280406,
+        "across_model_delta_std_pp": 0.005109533707019957,
+        "qualified_preference": "none",
+        "child_distance": 0.24282271929762295,
+        "child_penalty": 2
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2052:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          36,
+          65
+        ],
+        "child_edge": [
+          36,
+          65
+        ],
+        "same_action": true,
+        "parent_predicted_pp": 0.04697151482105255,
+        "child_predicted_pp": 0.04697151482105255,
+        "predicted_child_minus_parent_pp": 0.0,
+        "across_model_delta_std_pp": 0.0,
+        "qualified_preference": "none",
+        "child_distance": 0.24282271929762295,
+        "child_penalty": 3
+      }
+    ],
+    "warning": "Provisional predictions, not measured action outcomes or whole-solver gains. Three predeclared optimization seeds averaged; no accuracy calibration from value_val or heldout program pools."
+  }
+}

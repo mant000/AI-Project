@@ -1,6 +1,6 @@
 # Learning TSP Heuristic Programs from Search-State Values
 
-XuHongye, 72655146. Working report text, stage 2, 18 November 2026.
+XuHongye, 72655146. Working report text, stage 3, 18 November 2026.
 This editable draft will be typeset within four pages for the milestone.
 
 ## Problem and motivation
@@ -182,9 +182,64 @@ reserved memory was 191.64/216 MiB. Label diagnostics and production consumed
 Full raw metrics, costs, four figures and limitations are in
 `docs/STAGE2_RESULTS.md` and `results/stage2/`.
 
-Frozen Qwen endpoint-only versus endpoint+state-feedback discovery A/B is
-next; it has not run. No final data performance or SFT/GRPO result exists.
-The main research hypothesis still requires this controlled discovery test.
+## Stage 3: a preliminary negative frozen-generator A/B
+
+The fixed BF16 Qwen2.5-Coder-7B-Instruct generator (revision `c03e6d35`)
+used identical initial GLS rules, instance/work budgets, generation settings
+and paired discovery seeds 401/402. Each arm/seed generated 16 outputs,
+including failures and duplicates: 64 total, 47 valid and 17 invalid.
+A received real discovery endpoint feedback; B also received parent/child
+action-value differences on the same fixed discovery-only bank. Before
+discovery, the three existing Transformer checkpoints were fixed as an
+equal-weight ensemble. Programs were retained and selected only by true
+route quality. No value_val, program_select or dev example entered a prompt.
+
+Live inputs matched the original encoder exactly on 1,024 training states.
+The bank contains 8 discovery instances and 32 states, with every current
+edge scored without future labels. A separate 154-branch probe has 67/69
+true ties; both continuation seeds again coincide. The provisional
+prediction threshold flags 39 of those ties as preferences, so optimization
+seed dispersion is not calibrated uncertainty. Probe outcomes did not enter
+prompts. These finite-horizon conventional-continuation values also differ
+in scope from a rule changing every subsequent decision.
+
+Up to four discovery elites per arm/seed were assessed on 16 disjoint
+program_select instances. All four selections were frozen before evaluation
+on 32 program_dev_eval instances with three common solver seeds. Dev gap (%):
+
+| Program | TSP50 | TSP100 | Combined |
+| --- | ---: | ---: | ---: |
+| Conventional GLS | 1.9893 | 3.3592 | 2.6743 |
+| A401 | 1.9893 | 3.3592 | 2.6743 |
+| B401 | 1.9893 | 3.3592 | 2.6743 |
+| A402 | 1.5776 | 3.0656 | 2.3216 |
+| B402 | 1.9893 | 3.3592 | 2.6743 |
+
+A402 selected `(d-mean_d)/(1+p)`; the other three runs selected conventional
+`d/(1+p)`. B ties A in seed401 and is worse by 0.352612 gap pp in seed402.
+This does not support a learned-feedback benefit. Only two discovery repeats
+exist; the favorable A seed cannot represent the whole condition, and solver
+seeds/states are not independent discovery repeats. The small study was
+stopped without expansion, prompt retuning or opening final.
+
+Preparation took 35.22 wall seconds. The full generator/load/discovery/select/
+dev command took 206.48s, with 103.40 process CPU s and 108.58 child CPU s.
+Generation used 95.98 synchronized wall seconds; its 74,535 input /3,074
+output tokens include all invalid attempts. B used 46,062 input tokens versus
+A's 28,473, so matched outputs are not matched total cost. CUDA peak
+allocated/reserved memory was 14.54/15.15 GiB, not kernel-only time. The
+1,600 unique route evaluations include 640 discovery, 576 select and 384 dev
+runs; cache reuse is explicit. All saved tours recomputed with zero error;
+12 additional frozen-program replays matched exactly and ten solver tests
+passed. Stage2 costs remain part of total method cost. Full provenance,
+negative outcomes, resource details and two new figures with CSV sources are
+in `docs/STAGE3_RESULTS.md` and `results/stage3/`.
+
+The evidence establishes feasibility and a negative initial A/B, not the
+proposed method's success. No final performance or SFT/GRPO result exists.
+Further learning should wait for better action-value signal and a new
+predeclared evaluation, after the milestone report and public reproduction
+are complete.
 
 ## Reproducibility and source notes
 

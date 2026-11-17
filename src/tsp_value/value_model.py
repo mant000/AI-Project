@@ -6,8 +6,13 @@ from torch import nn
 NODE_DIM, PAIR_DIM, GLOBAL_DIM = 6, 4, 6
 
 
-def features(record):
-    s=record['state']; xy=np.asarray(s['coords'],dtype=np.float32); n=len(xy)
+def state_features(s, edges):
+    """Encode only observable state and requested edges; never access labels.
+
+    The final edge must be the common reference, as required by EdgeValue.
+    This is the identical, unfitted numerical encoding used in stage 2.
+    """
+    xy=np.asarray(s['coords'],dtype=np.float32); n=len(xy)
     d=np.linalg.norm(xy[:,None]-xy[None,:],axis=-1)
     tour=np.asarray(s['tour']); best=np.asarray(s['best_tour']); p=np.asarray(s['penalties'],dtype=np.float32)
     route=np.zeros((n,n),dtype=np.float32); incumbent=route.copy()
@@ -21,12 +26,17 @@ def features(record):
     glob=np.asarray([n/100,s['lambda_']/scale,s['best_length']/s['current_length'],
         np.log1p(s['penalty_events']),np.log1p(s['stagnation_sweeps']),
         np.log1p(s['delta_evaluations']/max(n*(n-3)/2,1))],dtype=np.float32)
-    edges=np.asarray(record['candidates']+[record['reference_edge']],dtype=np.int64)
-    y=np.asarray([x['relative_benefit'] for x in record['records']],dtype=np.float64).reshape(2,-1).mean(0)
-    y=np.r_[y,0].astype(np.float32)*100  # percentage points, not fractional gains
+    edges=np.asarray(edges,dtype=np.int64)
     utility=d[edges[:,0],edges[:,1]]/(1+p[edges[:,0],edges[:,1]])
     return dict(node=node.astype(np.float32),pair=pair.astype(np.float32),glob=glob,
-                edges=edges,y=y,utility=utility.astype(np.float32))
+                edges=edges,utility=utility.astype(np.float32))
+
+
+def features(record):
+    encoded=state_features(record['state'], record['candidates']+[record['reference_edge']])
+    y=np.asarray([x['relative_benefit'] for x in record['records']],dtype=np.float64).reshape(2,-1).mean(0)
+    y=np.r_[y,0].astype(np.float32)*100  # percentage points, not fractional gains
+    return dict(**encoded,y=y)
 
 
 def collate(items,device):
@@ -35,9 +45,11 @@ def collate(items,device):
     mask=np.zeros((b,n),bool)
     for i,x in enumerate(items):
         k=len(x['node']); node[i,:k]=x['node']; pair[i,:k,:k]=x['pair']; mask[i,:k]=True
-    return {k:torch.as_tensor(v,device=device) for k,v in dict(node=node,pair=pair,mask=mask,
-        glob=np.stack([x['glob'] for x in items]), edges=np.stack([x['edges'] for x in items]),
-        y=np.stack([x['y'] for x in items])).items()}
+    result=dict(node=node,pair=pair,mask=mask,glob=np.stack([x['glob'] for x in items]),
+                edges=np.stack([x['edges'] for x in items]))
+    if all('y' in x for x in items): result['y']=np.stack([x['y'] for x in items])
+    elif any('y' in x for x in items): raise ValueError('Mixed labelled/unlabelled batch')
+    return {k:torch.as_tensor(v,device=device) for k,v in result.items()}
 
 
 class GraphBlock(nn.Module):

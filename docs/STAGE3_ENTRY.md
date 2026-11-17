@@ -1,5 +1,9 @@
 # Stage 3 entry: frozen 7B discovery A/B
 
+> Historical start protocol. Stage3 completed on 18 November 2026 with a
+> preliminary negative learned-feedback result. Read `docs/STAGE3_RESULTS.md`
+> and continue with `docs/STAGE4_ENTRY.md`; do not restart discovery.
+
 Stage 2 is complete. Read `docs/STAGE2_RESULTS.md`,
 `results/stage2/stage2_summary.json`, and `resource_accounting.json` first.
 Milestone remains 19 November 2026 23:59 BJT; calculate remaining time again.

@@ -3,15 +3,17 @@
 Can feedback about decisions at a shared guided local search state help a
 frozen code LLM discover better TSP penalty rules?
 
-**Stage 2 is implemented and measured.** A 64-instance, 4,608-branch pilot
-expanded to 256 train +64 project-heldout validation instances and 23,040
-production branches including that pilot. Actual graph Transformer/MLP
-training, six optimizer/RNG restores, graph symmetry checks and selected-action
-solver replay passed. About 97% of labels are zero. Transformer mean validation
-benefit is +0.003910 percentage points with substantial limitations. Frozen-7B
-discovery A/B, SFT/GRPO and final evaluation have not run. Read the
-[stage2 results](docs/STAGE2_RESULTS.md), [next entry](docs/STAGE3_ENTRY.md),
-and working [report draft](docs/MILESTONE_DRAFT.md).
+**Stages 2 and 3 are implemented and measured.** The frozen-7B study generated
+64 outputs across two paired discovery seeds. B (endpoint plus Transformer
+state feedback) selected conventional GLS in both seeds; A selected it in
+one seed and a better rule in the other. This is a preliminary negative
+learned-feedback result. About 97% of action labels/probe comparisons are
+zero; the provisional model threshold also flags many true ties. SFT/GRPO
+and final evaluation remain unrun. Read the [stage3 results](docs/STAGE3_RESULTS.md),
+[stage2 evidence](docs/STAGE2_RESULTS.md), [next entry](docs/STAGE4_ENTRY.md),
+and editable [report draft](docs/MILESTONE_DRAFT.md). Local stage2/3 results
+await public release in the report stage; public release status must be
+verified separately from this working source.
 
 ## Actual preliminary results
 
@@ -204,7 +206,8 @@ reuse. Real TSP50/100 training-instance replay records are in
 code/results/logs/checkpoints and prepared data, and writes a SHA256 sidecar.
 Keep an independently verified local copy. Raw archives/weights are excluded.
 
-Next: frozen-7B controlled discovery A/B. See docs/STAGE3_ENTRY.md.
+Next: English report, reproducibility and public milestone freeze.
+See docs/STAGE4_ENTRY.md.
 
 ## Reproduce stage 2
 
@@ -224,3 +227,69 @@ exclusions are in results/stage2/resource_accounting.json. Timings and gzip
 container hashes can vary; compare labels by original instance/state/action/
 seed. Checkpoints and snapshots are retained in the verified backup, with
 checkpoint hashes in training summaries. CPU label work does not load 7B.
+
+## Stage 3 results and reproduction
+
+The independent development pool has 32 original instances (16 per size),
+three common solver seeds. Gap-to-reference (%):
+
+| Frozen program | TSP50 | TSP100 | Combined |
+| --- | ---: | ---: | ---: |
+| Conventional GLS | 1.9893 | 3.3592 | 2.6743 |
+| A / seed401 | 1.9893 | 3.3592 | 2.6743 |
+| B / seed401 | 1.9893 | 3.3592 | 2.6743 |
+| A / seed402 | 1.5776 | 3.0656 | 2.3216 |
+| B / seed402 | 1.9893 | 3.3592 | 2.6743 |
+
+Program selection used a disjoint program_select pool before freezing each
+run. There are only two independent discovery repeats; do not select the
+favorable seed or count the three solver seeds as discovery repeats. The
+154-branch real action probe is a separate diagnostic; its labels never enter
+prompts. No direct-branch-feedback discovery arm was run.
+
+On the existing prepared machine, use **new paths** (do not rerun stage2):
+
+```bash
+source scripts/env.sh
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+bash scripts/run_stage3_prepare.sh "$TSP_ROOT/artifacts/stage3-replay/prepare"
+bash scripts/run_stage3.sh "$TSP_ROOT/artifacts/stage3-replay/prepare" \
+  "$TSP_ROOT/artifacts/stage3-replay/discovery"
+python scripts/stage3_analyze.py --prepare "$TSP_ROOT/artifacts/stage3-replay/prepare" \
+  --study "$TSP_ROOT/artifacts/stage3-replay/discovery" \
+  --output "$TSP_ROOT/artifacts/stage3-replay/analysis"
+```
+
+Preparation requires saved `results/stage2/train/states.jsonl.gz`, all three
+Transformer `best.pt` files, the full local Qwen snapshot and its original
+download manifest. It checks the old encoder from Git commit `a284c877`
+(retain full source history), data/weight/checkpoint hashes, live encoding,
+pool isolation, restricted program syntax, all-edge bank inference and a
+small real probe. It took 35.22s on the recorded server. `run_stage3.sh`
+generates candidates, selects on program_select, freezes all four lineages,
+and only then evaluates program_dev_eval. It took 206.48s, with 64 outputs,
+47 valid /17 invalid. Generation used 74,535 input /3,074 output tokens;
+CUDA peak allocated/reserved was 14.54 /15.15 GiB. Same environment and
+generation seeds do not guarantee identical sampled tokens across different
+GPU/library implementations.
+
+To regenerate tables/figures **without** model loading or any new discovery:
+
+```bash
+python scripts/stage3_analyze.py --prepare results/stage3/prepare-v1 \
+  --study results/stage3/discovery-v1 --output /tmp/stage3-figures-replay
+python scripts/stage3_verify.py --root "$TSP_ROOT" \
+  --prepare results/stage3/prepare-v1 --study results/stage3/discovery-v1 \
+  --output /tmp/stage3-verification-replay
+```
+
+The verifier recomputes all 1,600 measured tours, checks program hashes,
+prompt boundaries and paired seeds, then independently reruns the two distinct
+frozen programs on two dev instances (12 extra routes). The recorded audit
+passed with zero cost error and exact replay. Ten solver tests also passed.
+Full prompts/responses/token IDs, failures, lineage, source snapshots, raw
+GPU samples, route outcomes, CSVs and PNG/PDF/SVG figures are in
+`results/stage3/`. The execution backup contains saved stage2 checkpoints;
+public checkpoint distribution/availability still needs a precise verified
+entry at the report/publication stage. We do not claim the weights are
+already available from a new public download URL.

@@ -10,3 +10,7 @@
 splits/manifest.csv -text
 # Experiment provenance hashes cover the original config bytes.
 configs/stage2*.json -text
+# Stage3 immutable provenance covers exact raw JSONL/CSV/source/figure bytes.
+results/stage3/** -text
+results/stage3/**/*.svg -diff
+configs/stage3_protocol.json -text
