@@ -73,8 +73,8 @@ revision. `configs/qwen_weight_hashes.json` contains the author's four LFS
 SHA256 hashes, checked on completion of the model download.
 
 - [Joshi et al., CP 2021](https://github.com/chaitjo/learning-tsp):
-  `tsp-data.tar.gz`, approximately 5.84 GB compressed. Its author train/val
-  supply development data; author test is reserved for final evaluation.
+  `tsp-data.tar.gz`, approximately 5.84 GB compressed. Author train supplies
+  disjoint project training/validation pools; author test is final-only.
 - [INViT, ICML 2024](https://github.com/Kasumigaoka-Utaha/INViT):
   `INViT_data.zip`, approximately 163 MB. Reserved for final OOD evaluation.
 - [Qwen2.5-Coder-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct):
@@ -140,6 +140,54 @@ The same preparation command can read the full author archive later; selected
 source-row hashes must match `splits/bootstrap_reserved_rows.csv`. Keep these
 rows in training/development pools when building the full instance split.
 This bootstrap supports engineering checks, not final performance conclusions.
+
+## Received author data and validation policy
+
+On 2026-11-17 a user-supplied seven-volume 7z archive was merged without
+modifying its source volumes. It contains 11 extracted author text files
+(12,755,124,869 bytes), rather than the original `tsp-data.tar.gz`. The merged
+7z is 5,739,945,309 bytes with SHA256
+`ea6ed955a48028627653c6674fb5038b4073db64e7a2805ff1c88ab6399a64d3`.
+This identifies the repack and does not establish the original gzip's hash.
+`configs/joshi_received_files.json` records exact per-file hashes and counts.
+The independent original download prefix matches the complete TSP50 test file
+by bytes and the first 8 MiB of TSP50 train; test data is only hashed for
+integrity. All 512 bootstrap source-row hashes match.
+
+No separate `*_val` file exists in this received payload. Before any solver
+or learning experiment, `configs/data_split_policy.json` fixes disjoint
+original train-file line ranges, separately for TSP50 and TSP100: value train
+1–2048, discovery 2049–2112, value validation 100001–100256, program selection
+100257–100320, and program development evaluation 100321–100384. These are
+**project validation held out from author train**, never “author val”. The
+512 bootstrap rows stay in value train. Final author test/INViT/TSPLIB remain
+reserved. Stage 1 must still create the complete per-instance manifest and
+check final-source overlap using hashes before experiments.
+
+`scripts/audit_author_directory.py` validates file hashes, source-prefix
+agreement, all 4,992 selected source rows, disjoint coordinate sets, and
+bootstrap reservations. It creates two 384-row project-validation views.
+With `--extract` on Linux it verifies the received 7z hash, checks member paths,
+extracts via `7z` (including member CRC checks), and compares every extracted
+file against the recorded manifest. Ubuntu needs `p7zip-full` for that option.
+The original author's gzip can also be used after extracting it with tar;
+the auditor consumes the full gzip stream for its CRC and checks the same
+per-file hashes. That original-gzip route has not been replayed end to end
+here because Google Drive quota prevents completing the original download.
+
+Directory audit, as run locally (set paths to the files you actually have):
+
+```bash
+python scripts/audit_author_directory.py \
+  --directory /path/to/received_author_payload --project-root "$TSP_ROOT" \
+  --archive /path/to/tsp-data.received.7z \
+  --archive-prefix /path/to/tsp-data.tar.gz.prefix
+```
+
+The server's full gate requires completed archive integrity and received-data
+audit records. Until its transfer and extraction finish, only the previously
+verified bootstrap gate is ready. No solver, baseline, labels or learning
+results are claimed by these data checks.
 
 ## Logs and backups
 
