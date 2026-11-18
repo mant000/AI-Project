@@ -15,6 +15,7 @@
   "checkpoint_selection": "minimum family-validation response NLL among epoch0/1/2, earlier wins ties; no program_dev or teacher holdout selection",
   "resume_verification": "real populated optimizer/RNG next-step comparison on actual corpus; verification updates rolled back and cost separately counted",
   "heldout_policy": "family-heldout NLL and generation diagnostics only after common SFT checkpoint frozen; no further prompt/hyperparameter updates from these metrics",
+  "heldout_generation": {"unique_parent_prompts": 8, "order": "example_id lexical, first unique parents", "seed": 633, "max_new_tokens": 192, "temperature": 0.8, "top_p": 0.95, "top_k": 50},
   "source_disclosure": "executed grammar-derived local improvements, not claimed as LLM-generated successes or globally optimal programs",
   "final_evaluation": false
 }
