@@ -41,6 +41,10 @@ def content():
     assert s['status']==m['status']==strict['status']=='passed'
     assert read(folder/'references/completed.json')['status']=='completed'
     proof=read(CODE/'results/milestone-reproduction-v1/release_verification.json');assert proof['status']=='passed'
+    fresh=read(CODE/'results/milestone-reproduction-v1/analysis/study_summary.json')
+    for field in ('arm_mean_gap_percent','baseline_mean_gap_percent','contrasts','lineages'):
+        assert fresh[field]==s[field],('report differs from fresh-clone recomputation',field)
+    assert read(CODE/'results/milestone-reproduction-v1/analysis/mechanism_summary.json')==m
     effects=s['contrasts'];costs=s['costs'];strictcosts=strict['costs']
     lineages=s['lineages'];valid=sum(r['valid'] for r in lineages);validstrict=sum(r['valid'] for r in strict['lineages'])
     armstats={a:{k:sum(r[k] for r in lineages if r['arm']==a) for k in ['valid','unique_programs','unique_endpoint_route_vectors','directional_feedback_prompts','feedback_states_nonzero','feedback_states_total']} for a in ('A','P','F')}
@@ -54,6 +58,10 @@ def content():
     discoverycpu=sum(x['parent_cpu_seconds']+x['waited_child_cpu_seconds'] for c in [strictcosts,costs] for x in c['attempts'])
     peak=max(x['cuda_peak_allocated_bytes'] for c in [strictcosts,costs] for x in c['attempts'])/1024**3
     f=effects['F-A'];fp=effects['F-P'];success=f['predeclared_success']
+    timing=read(folder/'timing/completed.json')['summary']
+    example=next(x['selected_program'] for x in read(folder/'discovery/frozen_programs.json')['programs'] if x['arm']=='F' and x['discovery_seed']==1204)
+    native_time=[timing['native_gls'][str(n)]['mean_wall_seconds'] for n in (50,100)]
+    example_time=[timing[example['program_sha256']][str(n)]['mean_wall_seconds'] for n in (50,100)]
     outcome=('met' if success else 'did not meet')
     pages=[[
       h('Learning TSP Heuristic Programs from Search-State Values'),
@@ -63,9 +71,9 @@ def content():
       p('Can search-state feedback help a frozen code language model discover better TSP heuristics? Endpoint route length provides a trustworthy selection signal, but gives little detail about a rule\'s decisions. Our original proposal learned values of individual penalty actions and supplied parent/child value differences to the generator. The milestone tests a more basic prerequisite: whether the measured intervention describes the object being modified, namely a repeatedly applied rule.'),
       p('We contribute a matched-work rule-fragment intervention, an audited bank spanning 128 original instances, three trajectories and four search phases, and a controlled downstream discovery comparison. We separate feedback informativeness from useful program discovery. The work follows the minimum frozen-generator core requested in the proposal assessment; a new learned predictor or generator adaptation is not required to establish this comparison.'),
       h('2. Search engine and program interface'),
-      p('We use Euclidean TSP50/100 data from the author training release [3]. Guided local search (GLS) [1] alternates best-improvement 2-opt with one edge-penalty increment. The fixed work cap is 200 sweep equivalents: 235,000 and 970,000 evaluated 2-opt deltas for the two sizes. Best-tour quality always uses original continuous distances. Gap is 100(L/Lref − 1); supplied references are not certified continuous optima, so negative gaps are retained.'),
+      p('We use Euclidean TSP50/100 data from the author training release [3]. Our single-edge GLS implementation follows the penalty idea in [1], alternating best-improvement 2-opt and an edge-penalty increment. Its cap is 200 sweep equivalents: 235,000/970,000 evaluated 2-opt deltas. Quality uses original continuous distances. Gap is 100(L/Lref − 1); supplied references are not certified continuous optima, so negative gaps are retained.'),
       p('The model generates a single arithmetic priority h(d,p,mean_d,max_d,lam,progress,stagnation,best_ratio) for current-tour edges. The maximum-priority edge receives the penalty; conventional GLS uses d/(1+p). The solver, initialization, lambda rule and numerical language stay fixed. The 96-node AST permits only bounded numeric constants, arithmetic and whitelisted numerical functions. Features use the current state only, with no future branch labels or reference-tour information.'),
-      p(f'A strict full-function precursor had frequent bare-return responses ({validstrict}/384 valid). Before inspecting either new dev result, we documented one uniform transport revision: prefill the exact function header and return prefix, then sample one expression line (128-token cap). Both complete batches and costs remain public; they are neither pooled nor chosen by utility. No further rescue or outcome-based expansion was performed.'),
+      p(f'A strict full-function precursor had frequent bare-return responses ({validstrict}/384 valid). Before inspecting either new dev result, we documented one uniform transport revision: prefill the function header and return prefix, then sample one expression line (128-token cap). Both batches remain public and unpooled. The precursor F−A was −0.0718 points [−0.2007,+0.0374], also inconclusive. No further rescue or outcome-based expansion was performed.'),
       p('This is executable heuristic search, related to EoH [2], rather than a replication of its thought/code evolution. Deployment runs the selected arithmetic program without an LLM or neural critic. Only actual discovery and program-selection route quality can promote a program.'),
     ],[
       h('3. Matched interventions and data separation'),
@@ -89,11 +97,12 @@ def content():
       p(f'The expression-continuation study has {valid}/384 valid outputs. A/P/F produce sums of {armstats["A"]["unique_programs"]}/{armstats["P"]["unique_programs"]}/{armstats["F"]["unique_programs"]} unique programs and {armstats["A"]["unique_endpoint_route_vectors"]}/{armstats["P"]["unique_endpoint_route_vectors"]}/{armstats["F"]["unique_endpoint_route_vectors"]} distinct endpoint route vectors within their four lineages. These are within-lineage sums, not global unique counts. P/F receive a nonzero state comparison in {armstats["P"]["directional_feedback_prompts"]}/{armstats["F"]["directional_feedback_prompts"]} of 128 prompts. A richer diagnostic rule family therefore need not imply rich feedback along the generated search trajectories.'),
       p('Three F lineages retain standard GLS; one selects 0.4d/(1+p)+0.6d·mean_d/max_d, an interpretable mixture that softens penalty suppression. Its dev improvement does not establish an independently repeated discovery. One F−A advantage instead avoids a dev regression of an A-selected program. The next experiment must control the common proposal pool as well as feedback.'),
       p(f'On one rented RTX3090 24GB with 14 vCPUs/60GB RAM, the nested 192-state pilot took 53 s and the additional 1,344 states took 216 s. Mechanism preparation/measurement totaled {mechanism_wall:.0f} wall s and {mechanism_cpu:.0f} parent+waited-child CPU s, without counting the pilot twice. Strict/expression discovery took {strictwall:.0f}/{exprwall:.0f} wall s, {discoverycpu:.0f} combined CPU s; synchronized generation occupied {strictcosts["generation_seconds"]:.0f}/{costs["generation_seconds"]:.0f} s. Peak Torch allocation was {peak:.2f} GiB. Input/output tokens were {strictcosts["input_tokens"]:,}/{strictcosts["output_tokens"]:,} and {costs["input_tokens"]:,}/{costs["output_tokens"]:,}. Labels, CPU feedback, references, failures and reproduction costs have a separate ledger; matching output budgets does not equal matching compute.'),
+      p(f'On 16 prespecified originals with three serial repeats (576 solves across methods), native GLS takes {native_time[0]:.3f}/{native_time[1]:.3f} s for TSP50/100; the illustrated F rule takes {example_time[0]:.3f}/{example_time[1]:.3f} s. These fixed-work service times exclude offline discovery and do not establish an anytime advantage.'),
       p('Earlier Transformer/MLP trials, grammar-derived SFT and three-seed terminal/state GRPO are preserved with all 28 inference exports. Historical SFT showed a dev improvement under its own protocol; it does not establish state-feedback effectiveness. The present result is directly measured feedback, not a Transformer success. A bank fixed to three trajectories and 12 diagnostic rules also cannot establish arbitrary-policy or out-of-distribution validity.'),
       h('7. Reproduction and route to final'),
       p('The public release includes the 256 inputs, snapshots, all prompts/replies, failures, program hashes/lineages and raw routes. CPU-only commands independently reprice endpoints/branches, recompute selection and feedback, reconstruct all bank states and replay selected dev solvers. Verification uses an anonymous fresh clone and a separate Python environment on the same server; it is not a new physical machine. Full GPU regeneration has a pinned-model entry and a new output root. Report facts map to exact commands in docs/MILESTONE_REPRODUCTION.md.'),
       p('Next, isolate information use from changing proposal trajectories: freeze a common, behavior-diverse candidate pool, compare fragment-based screening with endpoint-only screening under measured CPU budgets, and evaluate selection regret on new originals. A policy-conditioned critic is considered only if this oracle screening is useful and predictive holdouts pass; old edge-value weights do not represent this target. The dated roadmap specifies pilot gates, resource caps and a freeze before independent final testing. Final data remain unevaluated at milestone.'),
-      p('Code and grading release: https://github.com/mant000/AI-Project ; tag milestone-2026-11-19. The exact commit and verification logs are recorded in SUBMISSION.md and the release metadata. No Canvas submission is claimed.'),
+      p('Code and grading release: https://github.com/mant000/AI-Project ; tag milestone-2026-11-19. SUBMISSION.md links the grading tag, verified computational commit and reproduction logs. No Canvas submission is claimed.'),
     ],[
       h('References'),
       p('[1] C. Voudouris and E. Tsang. Guided local search and its application to the traveling salesman problem. European Journal of Operational Research, 113(2):469–499, 1999. https://doi.org/10.1016/S0377-2217(98)00099-X'),
@@ -148,7 +157,7 @@ def build(pages,out,fontdir):
                 caption=Paragraph(html.escape(block['caption']),style);_,hh=caption.wrap(cw,height)
                 assert y-hh>=margin+15,(page_index+1,'caption overflow');caption.drawOn(c,margin,y-hh);y-=hh+5
                 doc.add_picture(str(path),width=Cm(16));doc.add_paragraph(block['caption'])
-        c.setFont('TNR',12);c.drawRightString(width-margin,margin+1,str(page_index+1));c.showPage()
+        c.setFont('TNR',12);c.drawRightString(width-margin,margin+5,str(page_index+1));c.showPage()
         usage.append(dict(page=page_index+1,remaining_points=y-(margin+15)))
     c.save();doc.save(out/'milestone.docx')
     return usage
@@ -172,6 +181,7 @@ def qa(out,usage):
                 body_pages=4,reference_pages=1,paragraph_line_spacing='single (PDF leading13.2pt; DOCX line_spacing1.0)',
                 pdf_fonts=sorted(fonts),pdf_text_sizes=sorted(sizes),page_layout=usage,pages=pages,
                 pdf_sha256=sha(out/'milestone.pdf'),docx_sha256=sha(out/'milestone.docx'),
+                report_facts_match_fresh_clone_recomputation=True,
                 visual_review='rendered all five pages; manual visual inspection recorded separately')
     (out/'format_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 

@@ -1,0 +1,263 @@
+{
+  "operations": {
+    "mechanism_pilot": {
+      "wall_seconds": 52.9533817730844,
+      "parent_cpu_seconds": 23.793102853999997,
+      "waited_child_cpu_seconds": 301.29952399999996,
+      "new_physical_branches": 7104
+    },
+    "mechanism_full": {
+      "wall_seconds": 216.1763050109148,
+      "parent_cpu_seconds": 17.079870464,
+      "waited_child_cpu_seconds": 2137.336097,
+      "new_physical_branches": 49728
+    },
+    "strict": {
+      "wall_seconds": 1180.603157415986,
+      "parent_cpu_seconds": 1035.098483798,
+      "waited_child_cpu_seconds": 941.010368,
+      "generation_synchronized_wall_seconds": 1012.3602100163698,
+      "input_tokens": 382146,
+      "output_tokens": 14987,
+      "outputs": 384,
+      "unique_endpoint_solves": 9120,
+      "physical_feedback_branches": 2944,
+      "cpu_feedback_worker_seconds": 164.11308335600006,
+      "cuda_peak_allocated_bytes": 8874413568,
+      "cuda_peak_reserved_bytes": 10072621056,
+      "sampled_device_peak_memory_mib": 9947.0,
+      "sampled_device_utilization_mean_percent": 66.22251308900523,
+      "sampled_gpu_energy_wh": 87.92662081785659,
+      "energy_scope": "3-second device-level sampling, approximate and includes idle/overhead; not kernel-only energy"
+    },
+    "expression": {
+      "wall_seconds": 1148.794254783541,
+      "parent_cpu_seconds": 937.4882106709999,
+      "waited_child_cpu_seconds": 1398.732307,
+      "generation_synchronized_wall_seconds": 910.5655597932637,
+      "input_tokens": 456294,
+      "output_tokens": 11606,
+      "outputs": 384,
+      "unique_endpoint_solves": 11040,
+      "physical_feedback_branches": 7168,
+      "cpu_feedback_worker_seconds": 394.7830332589999,
+      "cuda_peak_allocated_bytes": 8874413568,
+      "cuda_peak_reserved_bytes": 10011803648,
+      "sampled_device_peak_memory_mib": 9889.0,
+      "sampled_device_utilization_mean_percent": 65.35579514824798,
+      "sampled_gpu_energy_wh": 85.96038404257928,
+      "energy_scope": "3-second device-level sampling, approximate and includes idle/overhead; not kernel-only energy"
+    },
+    "references": {
+      "status": "completed",
+      "at_utc": "2026-11-18T22:52:40.058603+00:00",
+      "wall_seconds": 540.2109114862978,
+      "waited_child_cpu_seconds": 175.616861,
+      "cuda_peak_allocated_bytes": 22813184,
+      "final_opened": false,
+      "quality_comparison_not_equal_compute": true,
+      "methods": {
+        "LEHD_RRC0": {
+          "mean_gap_percent": 0.5682090459218433,
+          "wall_seconds": 70.50848081707954,
+          "routes": 320
+        },
+        "LEHD_RRC10": {
+          "mean_gap_percent": 0.09061785546942272,
+          "wall_seconds": 448.4557375088334,
+          "routes": 320
+        },
+        "LKH": {
+          "mean_gap_percent": -0.027498022630207185,
+          "wall_seconds": 8.370129004120827,
+          "routes": 320
+        },
+        "centered": {
+          "mean_gap_percent": 2.168294312563496,
+          "wall_seconds": 2.58685539662838,
+          "routes": 320
+        },
+        "phase_centered": {
+          "mean_gap_percent": 2.171445356711122,
+          "wall_seconds": 2.390846934169531,
+          "routes": 320
+        },
+        "soft_penalty": {
+          "mean_gap_percent": 2.153836127968316,
+          "wall_seconds": 2.392283257097006,
+          "routes": 320
+        },
+        "standard": {
+          "mean_gap_percent": 2.3890594321584526,
+          "wall_seconds": 2.7977292835712433,
+          "routes": 320
+        }
+      }
+    },
+    "isolated_timing": {
+      "status": "completed",
+      "at_utc": "2026-11-18T22:53:16.754626+00:00",
+      "summary": {
+        "nn": {
+          "50": {
+            "mean_wall_seconds": 0.0009786863811314106,
+            "median_wall_seconds": 0.0009794384241104126
+          },
+          "100": {
+            "mean_wall_seconds": 0.0031654594155649343,
+            "median_wall_seconds": 0.00293879397213459
+          }
+        },
+        "two_opt": {
+          "50": {
+            "mean_wall_seconds": 0.0018685913334290187,
+            "median_wall_seconds": 0.001955069601535797
+          },
+          "100": {
+            "mean_wall_seconds": 0.007442678480098645,
+            "median_wall_seconds": 0.007512809708714485
+          }
+        },
+        "native_gls": {
+          "50": {
+            "mean_wall_seconds": 0.038848288667698704,
+            "median_wall_seconds": 0.0381047073751688
+          },
+          "100": {
+            "mean_wall_seconds": 0.0829455132285754,
+            "median_wall_seconds": 0.07970705442130566
+          }
+        },
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21": {
+          "50": {
+            "mean_wall_seconds": 0.042739645267526306,
+            "median_wall_seconds": 0.042193202301859856
+          },
+          "100": {
+            "mean_wall_seconds": 0.0852773121247689,
+            "median_wall_seconds": 0.08458292298018932
+          }
+        },
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27": {
+          "50": {
+            "mean_wall_seconds": 0.04226262075826526,
+            "median_wall_seconds": 0.042574817314743996
+          },
+          "100": {
+            "mean_wall_seconds": 0.08381781696031491,
+            "median_wall_seconds": 0.08367270976305008
+          }
+        },
+        "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b": {
+          "50": {
+            "mean_wall_seconds": 0.041215356439352036,
+            "median_wall_seconds": 0.04158347472548485
+          },
+          "100": {
+            "mean_wall_seconds": 0.08372828022887309,
+            "median_wall_seconds": 0.08365898579359055
+          }
+        },
+        "b556d1b8a1d2a9d17c52a6948c5e5e262428ab2aea991944f22db056b70dec48": {
+          "50": {
+            "mean_wall_seconds": 0.04239485956107577,
+            "median_wall_seconds": 0.0419791042804718
+          },
+          "100": {
+            "mean_wall_seconds": 0.08518579819550116,
+            "median_wall_seconds": 0.08554593101143837
+          }
+        },
+        "fa24ecf002cf720334a166a145169ab46b49b1ea65c55239f029da971505681c": {
+          "50": {
+            "mean_wall_seconds": 0.04542399554823836,
+            "median_wall_seconds": 0.04553856700658798
+          },
+          "100": {
+            "mean_wall_seconds": 0.0874318682278196,
+            "median_wall_seconds": 0.08764029666781425
+          }
+        },
+        "47c026ac0e079fd02801703c1e5ba7a305c10fb0403278a4385aa74aa7ebbdb2": {
+          "50": {
+            "mean_wall_seconds": 0.043819004825005926,
+            "median_wall_seconds": 0.04420771449804306
+          },
+          "100": {
+            "mean_wall_seconds": 0.09502528794109821,
+            "median_wall_seconds": 0.08793480321764946
+          }
+        },
+        "af9c671c67be238fd3a4d1f076e574bcfc4c60c138c7fe3ecdd81b1f0b9f54c4": {
+          "50": {
+            "mean_wall_seconds": 0.05296832866345843,
+            "median_wall_seconds": 0.04862594977021217
+          },
+          "100": {
+            "mean_wall_seconds": 0.10128195444121957,
+            "median_wall_seconds": 0.09280047379434109
+          }
+        },
+        "ca424326109f101bdaa630d95acfbba40ed3d3aeaef39b5182f289a1c1273fb7": {
+          "50": {
+            "mean_wall_seconds": 0.04408844498296579,
+            "median_wall_seconds": 0.044146858155727386
+          },
+          "100": {
+            "mean_wall_seconds": 0.0876908164160947,
+            "median_wall_seconds": 0.08692502044141293
+          }
+        },
+        "1787bb9f0ab3ff8ea1c17467ab469aebd7ad517d2b8ce6aaca22e73ebf95843c": {
+          "50": {
+            "mean_wall_seconds": 0.041309028708686434,
+            "median_wall_seconds": 0.04216298088431358
+          },
+          "100": {
+            "mean_wall_seconds": 0.08622938673943281,
+            "median_wall_seconds": 0.08599203824996948
+          }
+        }
+      },
+      "unique_originals": 16,
+      "repetitions": 3,
+      "solves": 576,
+      "wall_seconds": 32.07179367542267,
+      "waited_child_cpu_seconds": 0.0,
+      "scope": "CPU GLS arithmetic/native/NN/2opt; author LEHD runs were serial in references, LKH parallel service times not promoted as isolated"
+    },
+    "cpu_replay": {
+      "status": "passed",
+      "scope": "new CPU environment on the same rented physical server; no Torch/model/GPU",
+      "bank_states_reconstructed_exact": 1536,
+      "unique_selected_programs_including_standard": 6,
+      "complete_dev_routes_replayed_exact": 2560,
+      "all_64_dev_instances": true,
+      "solver_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "wall_seconds": 37.404125697910786,
+      "actual_feedback_branches_independently_replayed": 6,
+      "parent_cpu_seconds": 24.336487746,
+      "waited_child_cpu_seconds": 135.990716,
+      "inputs_sha256": "d6f696d3eac0dfd7032d44abf5e50018475b79d675337ce349c5f15cf98c1b2d",
+      "study_freeze_sha256": "c25ac6afb088a8d67e5a84d41ae48092bd036c3dd769ed1a5dfd1d252c0ed227",
+      "python_version": "3.10.8 (main, Nov 24 2022, 14:13:03) [GCC 11.2.0]",
+      "source_sha256": "f253f1c22fd9f6158d9a7bdbb10c54b9410ecc2fb1f3f8f215223cddc1c81d77"
+    },
+    "record_audit": {
+      "status": "passed",
+      "wall_seconds": 14.368450749665499,
+      "source_sha256": "65e92dd35a2ae7d12bd556bbad3776595cc2818e84a925f21fda9cca6032e4e1",
+      "scope": "raw record repricing, parent/selection/freeze/feedback checks and bootstrap; no model inference or new solver executions"
+    }
+  },
+  "accounting": "Pilot/full new branches summed once. Whole process waited-child CPU is authoritative. Inner concurrent subprocess child deltas overlap and are never added to it. CPU feedback subtotals are included in process totals.",
+  "hardware": "RTX3090 24GB; Xeon6330 14-vCPU quota; 60GiB RAM",
+  "billing": "existing monthly rental; no fabricated per-run monetary price; device/host seconds and approximate sampled GPU energy reported",
+  "historical_costs": "Original stage-specific resource records retained under results/stage2, core, teacher-v2, training, main, solver-controls; they are separate protocols, not part of the new-study subtotal."
+}
