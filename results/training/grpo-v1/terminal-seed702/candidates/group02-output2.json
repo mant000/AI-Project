@@ -1,0 +1,639 @@
+{
+  "candidate_id": "group02-output2",
+  "group_index": 2,
+  "output_index": 2,
+  "at_utc": "2026-11-18T08:46:02.217472+00:00",
+  "valid": true,
+  "parent_sha256": "0e92d367ce906dc1f4889a63b74940fa72d028fb3ff31c6fbec54eb767c662d7",
+  "terminal_reward": -1.0,
+  "expression": "(max_d + 0.25) / (1 + p)",
+  "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (max_d + 0.25) / (1 + p)\n",
+  "program_sha256": "1e35c4a532c326879acac10986f6653f2cfb4e96df966602f77db667fe9aca86",
+  "mean_discovery_gap_percent": 3.6270748672903945,
+  "evaluation_reused": false,
+  "measured_improvement_gap_pp": -1.0290463787717807,
+  "same_endpoint_routes_as_parent": false,
+  "value_feedback": {
+    "source": "Transformer ensemble predictions",
+    "bank_sha256": "36196dbecccb2455d91c5573b9b9a55a954de06edbebd33b0675604ee0f77f74",
+    "states": 32,
+    "same_action_fraction": 0.03125,
+    "mean_child_minus_parent_pp": -0.013462304157049706,
+    "indicated_preference_counts": {
+      "none": 18,
+      "parent": 10,
+      "child": 4
+    },
+    "states_detail": [
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2089:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          23,
+          27
+        ],
+        "child_edge": [
+          1,
+          38
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.0013535413891077042,
+        "child_minus_parent_pp": 0.0013535413891077042,
+        "optimization_variation_std_pp": 0.004119685648494105,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2089:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          10,
+          41
+        ],
+        "child_edge": [
+          32,
+          38
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.0025500853856404624,
+        "child_minus_parent_pp": -0.0025500853856404624,
+        "optimization_variation_std_pp": 0.010178113245184401,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2089:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          17,
+          48
+        ],
+        "child_edge": [
+          34,
+          47
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.014998707920312881,
+        "child_value_pp": 0.0005349442362785339,
+        "child_minus_parent_pp": -0.014463763684034348,
+        "optimization_variation_std_pp": 0.0032910897092093424,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2089:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          2,
+          13
+        ],
+        "child_edge": [
+          7,
+          28
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.00837070494890213,
+        "child_minus_parent_pp": 0.00837070494890213,
+        "optimization_variation_std_pp": 0.0032491286986129123,
+        "indicated_preference": "child"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2090:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          1,
+          32
+        ],
+        "child_edge": [
+          30,
+          31
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.004234896972775459,
+        "child_minus_parent_pp": 0.004234896972775459,
+        "optimization_variation_std_pp": 0.0023315730683276864,
+        "indicated_preference": "child"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2090:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          1,
+          32
+        ],
+        "child_edge": [
+          30,
+          31
+        ],
+        "same_action": false,
+        "parent_value_pp": -0.0011406826476256053,
+        "child_value_pp": 0.0026993993669748306,
+        "child_minus_parent_pp": 0.0038400820146004357,
+        "optimization_variation_std_pp": 0.00022583009490401585,
+        "indicated_preference": "child"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2090:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          1,
+          32
+        ],
+        "child_edge": [
+          30,
+          31
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.006367087364196777,
+        "child_minus_parent_pp": 0.006367087364196777,
+        "optimization_variation_std_pp": 0.0009537410829176274,
+        "indicated_preference": "child"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2090:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          9,
+          36
+        ],
+        "child_edge": [
+          32,
+          34
+        ],
+        "same_action": false,
+        "parent_value_pp": -0.007943620284398397,
+        "child_value_pp": -0.009793340849379698,
+        "child_minus_parent_pp": -0.0018497205649813016,
+        "optimization_variation_std_pp": 0.028080974409472284,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2091:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          26,
+          28
+        ],
+        "child_edge": [
+          17,
+          35
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.001287394513686498,
+        "child_minus_parent_pp": -0.001287394513686498,
+        "optimization_variation_std_pp": 0.004491112648098368,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2091:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          8,
+          21
+        ],
+        "child_edge": [
+          17,
+          24
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.0019107616196076076,
+        "child_minus_parent_pp": -0.0019107616196076076,
+        "optimization_variation_std_pp": 0.00920881157892792,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2091:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          1,
+          46
+        ],
+        "child_edge": [
+          17,
+          24
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.011037743339935938,
+        "child_value_pp": -0.009569370498259863,
+        "child_minus_parent_pp": -0.0206071138381958,
+        "optimization_variation_std_pp": 0.0308718906033213,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2091:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          30,
+          48
+        ],
+        "child_edge": [
+          28,
+          49
+        ],
+        "same_action": false,
+        "parent_value_pp": -0.001293280782798926,
+        "child_value_pp": -0.11638521340986092,
+        "child_minus_parent_pp": -0.11509193262706201,
+        "optimization_variation_std_pp": 0.14844957912804502,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2092:event0",
+        "nodes": 50,
+        "penalty_events": 0,
+        "parent_edge": [
+          8,
+          34
+        ],
+        "child_edge": [
+          7,
+          9
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.0007903488973776499,
+        "child_minus_parent_pp": 0.0007903488973776499,
+        "optimization_variation_std_pp": 0.00929030482441117,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2092:event8",
+        "nodes": 50,
+        "penalty_events": 8,
+        "parent_edge": [
+          8,
+          34
+        ],
+        "child_edge": [
+          25,
+          42
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.0011152221510807674,
+        "child_minus_parent_pp": 0.0011152221510807674,
+        "optimization_variation_std_pp": 0.0016079702115455133,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2092:event32",
+        "nodes": 50,
+        "penalty_events": 32,
+        "parent_edge": [
+          9,
+          34
+        ],
+        "child_edge": [
+          5,
+          33
+        ],
+        "same_action": false,
+        "parent_value_pp": -0.012213941663503647,
+        "child_value_pp": -0.004057621583342552,
+        "child_minus_parent_pp": 0.008156320080161095,
+        "optimization_variation_std_pp": 0.012400933382058719,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp50_train_concorde.txt:2092:event96",
+        "nodes": 50,
+        "penalty_events": 96,
+        "parent_edge": [
+          31,
+          49
+        ],
+        "child_edge": [
+          42,
+          44
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.0009799705197413762,
+        "child_minus_parent_pp": -0.0009799705197413762,
+        "optimization_variation_std_pp": 0.02008954976056749,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2089:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          8,
+          57
+        ],
+        "child_edge": [
+          8,
+          23
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.004421907166639964,
+        "child_minus_parent_pp": 0.004421907166639964,
+        "optimization_variation_std_pp": 0.006819185007884621,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2089:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          23,
+          80
+        ],
+        "child_edge": [
+          23,
+          80
+        ],
+        "same_action": true,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.0,
+        "child_minus_parent_pp": 0.0,
+        "optimization_variation_std_pp": 0.0,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2089:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          56,
+          64
+        ],
+        "child_edge": [
+          43,
+          80
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.00573358250161012,
+        "child_minus_parent_pp": -0.00573358250161012,
+        "optimization_variation_std_pp": 0.014912050682021108,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2089:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          39,
+          58
+        ],
+        "child_edge": [
+          29,
+          86
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.04471870822211107,
+        "child_minus_parent_pp": -0.04471870822211107,
+        "optimization_variation_std_pp": 0.024604881868400465,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2090:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          48,
+          72
+        ],
+        "child_edge": [
+          68,
+          81
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.007535329709450404,
+        "child_minus_parent_pp": 0.007535329709450404,
+        "optimization_variation_std_pp": 0.012226654970515945,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2090:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          48,
+          72
+        ],
+        "child_edge": [
+          36,
+          68
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": 0.001139005646109581,
+        "child_minus_parent_pp": 0.001139005646109581,
+        "optimization_variation_std_pp": 0.006936274975372449,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2090:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          48,
+          72
+        ],
+        "child_edge": [
+          68,
+          81
+        ],
+        "same_action": false,
+        "parent_value_pp": -0.0013459970553716023,
+        "child_value_pp": -0.005890923241774241,
+        "child_minus_parent_pp": -0.0045449261864026385,
+        "optimization_variation_std_pp": 0.007251235890799331,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2090:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          22,
+          77
+        ],
+        "child_edge": [
+          0,
+          3
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.019099199523528416,
+        "child_minus_parent_pp": -0.019099199523528416,
+        "optimization_variation_std_pp": 0.021205037523891357,
+        "indicated_preference": "none"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2091:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          51,
+          57
+        ],
+        "child_edge": [
+          3,
+          14
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.06506605446338654,
+        "child_minus_parent_pp": -0.06506605446338654,
+        "optimization_variation_std_pp": 0.03852365117644262,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2091:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          45,
+          97
+        ],
+        "child_edge": [
+          3,
+          14
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.02990478773911794,
+        "child_minus_parent_pp": -0.02990478773911794,
+        "optimization_variation_std_pp": 0.010524685852628134,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2091:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          51,
+          62
+        ],
+        "child_edge": [
+          65,
+          84
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.02668319394191106,
+        "child_minus_parent_pp": -0.02668319394191106,
+        "optimization_variation_std_pp": 0.02021745016855232,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2091:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          4,
+          69
+        ],
+        "child_edge": [
+          24,
+          60
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.020743153989315033,
+        "child_value_pp": -0.016012586653232574,
+        "child_minus_parent_pp": -0.03675574064254761,
+        "optimization_variation_std_pp": 0.033075022800772944,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2092:event0",
+        "nodes": 100,
+        "penalty_events": 0,
+        "parent_edge": [
+          4,
+          89
+        ],
+        "child_edge": [
+          69,
+          82
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.014771529783805212,
+        "child_minus_parent_pp": -0.014771529783805212,
+        "optimization_variation_std_pp": 0.014764729290941768,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2092:event8",
+        "nodes": 100,
+        "penalty_events": 8,
+        "parent_edge": [
+          62,
+          77
+        ],
+        "child_edge": [
+          69,
+          82
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.0,
+        "child_value_pp": -0.016666455815235775,
+        "child_minus_parent_pp": -0.016666455815235775,
+        "optimization_variation_std_pp": 0.013692243783729538,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2092:event32",
+        "nodes": 100,
+        "penalty_events": 32,
+        "parent_edge": [
+          44,
+          89
+        ],
+        "child_edge": [
+          13,
+          82
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.006556448837121327,
+        "child_value_pp": -0.013101032624642054,
+        "child_minus_parent_pp": -0.019657481461763382,
+        "optimization_variation_std_pp": 0.007998943423121447,
+        "indicated_preference": "parent"
+      },
+      {
+        "bank_id": "joshi:tsp100_train_concorde.txt:2092:event96",
+        "nodes": 100,
+        "penalty_events": 96,
+        "parent_edge": [
+          27,
+          31
+        ],
+        "child_edge": [
+          63,
+          97
+        ],
+        "same_action": false,
+        "parent_value_pp": 0.003675925855835279,
+        "child_value_pp": -0.032099850475788116,
+        "child_minus_parent_pp": -0.0357757763316234,
+        "optimization_variation_std_pp": 0.015616067983113512,
+        "indicated_preference": "parent"
+      }
+    ],
+    "warning": "Model predictions are provisional. Across-model std measures optimization variation, not calibrated uncertainty. Values assess a single action followed by conventional GLS, not the whole generated rule."
+  }
+}

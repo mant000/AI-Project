@@ -1,0 +1,14 @@
+/root/miniconda3/lib/python3.10/site-packages/torch/__init__.py:614: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:451.)
+  _C._set_default_tensor_type(t)
+/root/miniconda3/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Traceback (most recent call last):
+  File "/root/autodl-tmp/tsp-state-value/code/scripts/baseline_fixture.py", line 36, in <module>
+    if __name__=='__main__':main()
+  File "/root/autodl-tmp/tsp-state-value/code/scripts/baseline_fixture.py", line 20, in main
+    first=model.solve(xy,31,10);second=model.solve(xy,31,10,placeholder=np.arange(6)[::-1].copy())
+  File "/root/autodl-tmp/tsp-state-value/code/scripts/external_reference.py", line 83, in solve
+    validate_tour(route,n);cost=length(route,distances(original,distance_mode))
+  File "/root/autodl-tmp/tsp-state-value/code/src/tsp_value/data.py", line 44, in distances
+    raise ValueError(convention)
+ValueError: euclidean

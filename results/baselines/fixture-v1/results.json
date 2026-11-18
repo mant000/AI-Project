@@ -1,0 +1,116 @@
+{
+  "lehd_rrc10": {
+    "best_tour": [
+      2,
+      1,
+      5,
+      0,
+      4,
+      3
+    ],
+    "original_length": 3.313259424193317,
+    "seed": 31,
+    "rrc_budget": 10,
+    "wall_seconds": 0.07335655763745308,
+    "process_cpu_seconds": 0.07333746900000016,
+    "device": "cpu",
+    "model_input_reference_tour": false,
+    "placeholder_route_only_for_author_logging": true,
+    "search": "author greedy plus original continuous-distance RRC",
+    "tsplib_global_minmax_normalization": false,
+    "final_quality_distance_mode": "continuous_euclidean",
+    "author_internal_placeholder_logs_not_quality": "Get first complete solution!\nTSP6 current_best_length tensor(-14.3089) %\n"
+  },
+  "lehd_greedy": {
+    "best_tour": [
+      0,
+      3,
+      2,
+      5,
+      1,
+      4
+    ],
+    "original_length": 3.5014209839569688,
+    "seed": 31,
+    "rrc_budget": 0,
+    "wall_seconds": 0.011832285672426224,
+    "process_cpu_seconds": 0.01183333200000014,
+    "device": "cpu",
+    "model_input_reference_tour": false,
+    "placeholder_route_only_for_author_logging": true,
+    "search": "author greedy plus original continuous-distance RRC",
+    "tsplib_global_minmax_normalization": false,
+    "final_quality_distance_mode": "continuous_euclidean",
+    "author_internal_placeholder_logs_not_quality": "Get first complete solution!\nTSP6 current_best_length tensor(-9.4425) %\n"
+  },
+  "lkh": {
+    "best_tour": [
+      0,
+      1,
+      5,
+      2,
+      3,
+      4
+    ],
+    "original_length": 3.2377944972276715,
+    "seed": 31,
+    "lkh_seed": 32,
+    "max_trials": 1000,
+    "integer_input_scale": 1000000,
+    "integer_input_route_cost": 3237796,
+    "original_distance_mode": "continuous_euclidean",
+    "input_quantization_route_error_bound": 3e-06,
+    "wall_seconds": 0.0041664838790893555,
+    "parent_cpu_seconds": 0.0014009569999999805,
+    "child_cpu_seconds": 0.003094,
+    "stdout": "PARAMETER_FILE = /root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-dcpd2nea/run.par\nReading PROBLEM_FILE: \"/root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-dcpd2nea/problem.tsp\" ... done\nASCENT_CANDIDATES = 5\nBACKBONE_TRIALS = 0\nBACKTRACKING = NO\n# BWTSP =\n# CANDIDATE_FILE =\nCANDIDATE_SET_TYPE = ALPHA\n# DEPOT =\n# EDGE_FILE =\nEXCESS = 0.166667\nEXTERNAL_SALESMEN = 0\nEXTRA_CANDIDATES = 0 \nEXTRA_CANDIDATE_SET_TYPE = QUADRANT\nGAIN23 = YES\nGAIN_CRITERION = YES\nINITIAL_PERIOD = 100\nINITIAL_STEP_SIZE = 1\nINITIAL_TOUR_ALGORITHM = WALK\n# INITIAL_TOUR_FILE = \nINITIAL_TOUR_FRACTION = 1.000\n# INPUT_TOUR_FILE = \nKICK_TYPE = 0\nKICKS = 1\n# MAX_BREADTH =\nMAKESPAN = NO\nMAX_CANDIDATES = 5 \nMAX_SWAPS = 6\nMAX_TRIALS = 1000\n# MERGE_TOUR_FILE =\nMOVE_TYPE = 5 \n# MTSP_MIN_SIZE =\n# MTSP_MAX_SIZE =\n# MTSP_OBJECTIVE =\n# MTSP_SOLUTION_FILE = \n# NONSEQUENTIAL_MOVE_TYPE = 5\n# OPTIMUM =\nOUTPUT_TOUR_FILE = /root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-dcpd2nea/route.tour\nPATCHING_A = 1 \nPATCHING_C = 0 \n# PI_FILE = \nPOPMUSIC_INITIAL_TOUR = NO\nPOPMUSIC_MAX_NEIGHBORS = 5\nPOPMUSIC_SAMPLE_SIZE = 6\nPOPMUSIC_SOLUTIONS = 50\nPOPMUSIC_TRIALS = 1\n# POPULATION_SIZE = 0\nPRECISION = 100\nPROBLEM_FILE = /root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-dcpd2nea/problem.tsp\nRECOMBINATION = IPT\nRESTRICTED_SEARCH = YES\nRUNS = 1\nSALESMEN = 1\nSCALE = 1\nSEED = 32\nSTOP_AT_OPTIMUM = YES\nSUBGRADIENT = YES\n# SUBPROBLEM_SIZE =\n# SUBPROBLEM_TOUR_FILE = \nSUBSEQUENT_MOVE_TYPE = 5 \nSUBSEQUENT_PATCHING = YES\n# TIME_LIMIT =\n# TOUR_FILE = \nTRACE_LEVEL = 1\nVEHICLES = 1\n\nLower bound = 3237796.0, Ascent time = 0.00 sec.\nCand.min = 5, Cand.avg = 5.0, Cand.max = 5\nPreprocessing time = 0.00 sec.\nWriting OUTPUT_TOUR_FILE: \"/root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-dcpd2nea/route.tour\" ... done\nSuccesses/Runs = 1/0 \nCost.min = 3237796, Cost.avg = 3237796.00, Cost.max = 3237796\nGap.min = 0.0000%, Gap.avg = 0.0000%, Gap.max = 0.0000%\nTrials.min = 0, Trials.avg = 0.0, Trials.max = 0\nTime.min = 0.00 sec., Time.avg = 0.00 sec., Time.max = 0.00 sec.\n\n",
+    "stderr": "",
+    "source_mirror_commit": "9a51de3161f2746e969f7a2e33220f637da64e54"
+  },
+  "lehd_rounded": {
+    "best_tour": [
+      2,
+      3,
+      4,
+      0,
+      1,
+      5
+    ],
+    "original_length": 324.0,
+    "seed": 31,
+    "rrc_budget": 10,
+    "wall_seconds": 0.07489331439137459,
+    "process_cpu_seconds": 0.0748072999999998,
+    "device": "cpu",
+    "model_input_reference_tour": false,
+    "placeholder_route_only_for_author_logging": true,
+    "search": "author greedy plus original continuous-distance RRC",
+    "tsplib_global_minmax_normalization": true,
+    "final_quality_distance_mode": "tsplib_euc_2d",
+    "author_internal_placeholder_logs_not_quality": "Get first complete solution!\nTSP6 current_best_length tensor(-16.2606) %\n"
+  },
+  "lkh_rounded": {
+    "best_tour": [
+      0,
+      1,
+      5,
+      2,
+      3,
+      4
+    ],
+    "original_length": 324.0,
+    "seed": 31,
+    "lkh_seed": 32,
+    "max_trials": 1000,
+    "integer_input_scale": 1,
+    "integer_input_route_cost": 324,
+    "original_distance_mode": "tsplib_euc_2d",
+    "input_quantization_route_error_bound": 0.0,
+    "wall_seconds": 0.0026470981538295746,
+    "parent_cpu_seconds": 0.0012720689999996537,
+    "child_cpu_seconds": 0.0016259999999999994,
+    "stdout": "PARAMETER_FILE = /root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-5lb6ibnw/run.par\nReading PROBLEM_FILE: \"/root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-5lb6ibnw/problem.tsp\" ... done\nASCENT_CANDIDATES = 5\nBACKBONE_TRIALS = 0\nBACKTRACKING = NO\n# BWTSP =\n# CANDIDATE_FILE =\nCANDIDATE_SET_TYPE = ALPHA\n# DEPOT =\n# EDGE_FILE =\nEXCESS = 0.166667\nEXTERNAL_SALESMEN = 0\nEXTRA_CANDIDATES = 0 \nEXTRA_CANDIDATE_SET_TYPE = QUADRANT\nGAIN23 = YES\nGAIN_CRITERION = YES\nINITIAL_PERIOD = 100\nINITIAL_STEP_SIZE = 1\nINITIAL_TOUR_ALGORITHM = WALK\n# INITIAL_TOUR_FILE = \nINITIAL_TOUR_FRACTION = 1.000\n# INPUT_TOUR_FILE = \nKICK_TYPE = 0\nKICKS = 1\n# MAX_BREADTH =\nMAKESPAN = NO\nMAX_CANDIDATES = 5 \nMAX_SWAPS = 6\nMAX_TRIALS = 1000\n# MERGE_TOUR_FILE =\nMOVE_TYPE = 5 \n# MTSP_MIN_SIZE =\n# MTSP_MAX_SIZE =\n# MTSP_OBJECTIVE =\n# MTSP_SOLUTION_FILE = \n# NONSEQUENTIAL_MOVE_TYPE = 5\n# OPTIMUM =\nOUTPUT_TOUR_FILE = /root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-5lb6ibnw/route.tour\nPATCHING_A = 1 \nPATCHING_C = 0 \n# PI_FILE = \nPOPMUSIC_INITIAL_TOUR = NO\nPOPMUSIC_MAX_NEIGHBORS = 5\nPOPMUSIC_SAMPLE_SIZE = 6\nPOPMUSIC_SOLUTIONS = 50\nPOPMUSIC_TRIALS = 1\n# POPULATION_SIZE = 0\nPRECISION = 100\nPROBLEM_FILE = /root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-5lb6ibnw/problem.tsp\nRECOMBINATION = IPT\nRESTRICTED_SEARCH = YES\nRUNS = 1\nSALESMEN = 1\nSCALE = 1\nSEED = 32\nSTOP_AT_OPTIMUM = YES\nSUBGRADIENT = YES\n# SUBPROBLEM_SIZE =\n# SUBPROBLEM_TOUR_FILE = \nSUBSEQUENT_MOVE_TYPE = 5 \nSUBSEQUENT_PATCHING = YES\n# TIME_LIMIT =\n# TOUR_FILE = \nTRACE_LEVEL = 1\nVEHICLES = 1\n\nLower bound = 324.0, Ascent time = 0.00 sec.\nCand.min = 5, Cand.avg = 5.0, Cand.max = 5\nPreprocessing time = 0.00 sec.\nWriting OUTPUT_TOUR_FILE: \"/root/autodl-tmp/tsp-state-value/tmp/tsp-lkh-5lb6ibnw/route.tour\" ... done\nSuccesses/Runs = 1/0 \nCost.min = 324, Cost.avg = 324.00, Cost.max = 324\nGap.min = 0.0000%, Gap.avg = 0.0000%, Gap.max = 0.0000%\nTrials.min = 0, Trials.avg = 0.0, Trials.max = 0\nTime.min = 0.00 sec., Time.avg = 0.00 sec., Time.max = 0.00 sec.\n\n",
+    "stderr": "",
+    "source_mirror_commit": "9a51de3161f2746e969f7a2e33220f637da64e54"
+  }
+}

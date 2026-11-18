@@ -1,0 +1,29 @@
+{
+  "experiment_id": "external-reference-preparation-v1",
+  "lehd": {
+    "repository": "https://github.com/CIAM-Group/NCO_code",
+    "commit": "274df3c4975384592b60fe7f79fbb2441ce11c15",
+    "prefix": "single_objective/LEHD/",
+    "files": ["README.md", "TSP/TSPModel.py", "TSP/TSPEnv.py", "TSP/TSPTester.py", "TSP/TSPEnv_inTSPlib.py", "TSP/TSPTester_inTSPlib.py", "TSP/test.py", "TSP/test_inTSPlib.py"],
+    "checkpoint": "TSP/result/20230509_153705_train/checkpoint-150.pt",
+    "checkpoint_bytes": 17144261,
+    "scope": "author pretrained TSP checkpoint; no downloaded baseline datasets; non-commercial research use and attribution retained",
+    "model_parameters": {"mode": "test", "embedding_dim": 128, "sqrt_embedding_dim": 11.313708498984761, "decoder_layer_num": 6, "qkv_dim": 16, "head_num": 8, "ff_hidden_dim": 512},
+    "reference_inference": "author greedy construction and RRC budget10; controlled wrapper must reproduce author path on a non-final fixture before final use; no teacher reference tour in model input"
+  },
+  "lkh": {
+    "official_download_attempt": "https://webhotel4.ruc.dk/~keld/research/LKH-3/LKH-3.0.13.tgz",
+    "mirror_repository": "https://github.com/cerebis/LKH3",
+    "mirror_commit": "9a51de3161f2746e969f7a2e33220f637da64e54",
+    "mirror_version": "3.0.6, research-use source mirror; not represented as latest official version",
+    "mirror_selection_reason": "author server inaccessible from inspected entry points; freeze an uncustomized source mirror before any performance evaluation",
+    "extract": "Makefile, README.txt and SRC only; do not read bundled example datasets",
+    "compile": ["make", "-j2", "CC=gcc -fcommon"],
+    "compiler_compatibility": "-fcommon restores legacy tentative-global linkage on modern GCC, no search code changes",
+    "baseline_parameters": {"RUNS": 1, "MAX_TRIALS": 1000, "TRACE_LEVEL": 1},
+    "continuous_distance_input": "rounded full explicit distance matrix at scale1e6; final quality recomputed on original continuous distances, integer approximation disclosed; TSPLIB EUC_2D input exact rounded integers"
+  },
+  "environment": "reuse existing torch/numpy and compiler; no reinstall or environment upgrades",
+  "timing": "preparation/functional fixture checks only while main is active; formal wall-time evaluations after all training/discovery load ends",
+  "final_evaluation": false
+}

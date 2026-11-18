@@ -1,0 +1,66 @@
+{
+  "at_utc": "2026-11-18T08:59:04.852344+00:00",
+  "parents": [
+    {
+      "expression": "d / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+      "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+    },
+    {
+      "expression": "(d / mean_d - 0.5) / (1 + p) ** 2",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d / mean_d - 0.5) / (1 + p) ** 2\n",
+      "program_sha256": "001bd75229d4d7c3d59f2286a66eb74db15e3a0ff34fc39cad1790efa23f34c3"
+    },
+    {
+      "expression": "d / (1 + p + 0.1 * max_d / mean_d)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p + 0.1 * max_d / mean_d)\n",
+      "program_sha256": "0e92d367ce906dc1f4889a63b74940fa72d028fb3ff31c6fbec54eb767c662d7"
+    },
+    {
+      "expression": "(d - 4 * lam * p) / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - 4 * lam * p) / (1 + p)\n",
+      "program_sha256": "204a372f70155b35ea619a77d0eaf0cc2f80997dcee15967fea593ce08379cd0"
+    },
+    {
+      "expression": "log1p(2 * d / mean_d) / (1 + p) ** 1.5",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return log1p(2 * d / mean_d) / (1 + p) ** 1.5\n",
+      "program_sha256": "04b38cc2183b90921e2829c2675a9659e5d58c5aed4bb0f4849bc659cc35a87c"
+    },
+    {
+      "expression": "d / (1 + p) + 0.5 * mean_d * p / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p) + 0.5 * mean_d * p / (1 + p)\n",
+      "program_sha256": "006b1037e0ac74973428f3b4fec91215b01e6acbfd4247c4a34606bb6d61b9e7"
+    },
+    {
+      "expression": "(d / mean_d) ** 3 / (1 + p) ** 2",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d / mean_d) ** 3 / (1 + p) ** 2\n",
+      "program_sha256": "0cb50e3ced70a34476a8206fabe87f42f2d0b518916ef41a7fea6f3c7badf863"
+    },
+    {
+      "expression": "d / (1 + p + 0.5 * (progress + stagnation))",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p + 0.5 * (progress + stagnation))\n",
+      "program_sha256": "02f1e9ef0b461c181b7393cbb91f6214d370edd66a14c9db9c9960f76a6ff87c"
+    },
+    {
+      "expression": "d / (1 + p + 0.5 * stagnation)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p + 0.5 * stagnation)\n",
+      "program_sha256": "08a5d410ade44e516fc01bebabe773de8349a55901c48bc30726c61725ec9ebe"
+    },
+    {
+      "expression": "(d / mean_d - 1.5) / (1 + p) ** 0.5",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d / mean_d - 1.5) / (1 + p) ** 0.5\n",
+      "program_sha256": "20235df5c27cfa8e9da4e3b8b9d9b7648be49a08b616fd334fe14125ed3a996d"
+    },
+    {
+      "expression": "d / (1 + p + 1 * max_d / mean_d)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p + 1 * max_d / mean_d)\n",
+      "program_sha256": "4fb4cf7fd8f48d4ab27c67b9476bb944c1cd3b49211a076747d3a29c133e927c"
+    },
+    {
+      "expression": "(d - 1 * lam * p) / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - 1 * lam * p) / (1 + p)\n",
+      "program_sha256": "3afb9d0877f67cfec2b57005debf322b4c90812a5eec2a902a21d093df49523f"
+    }
+  ],
+  "outcomes_used_for_parent_selection": false
+}

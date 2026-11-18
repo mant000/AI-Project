@@ -1,0 +1,76 @@
+{
+  "at_utc": "2026-11-18T09:03:57.560533+00:00",
+  "protocol": {
+    "experiment_id": "paired-history-feature-ablation-v1",
+    "purpose": "Controlled retraining on the same saved R2 train/validation labels, before fresh heldout outcomes; not a rerun or expansion of stage2",
+    "data": "results/teacher-v2/data",
+    "train_and_validation": "reuse exact R2 dense train128 and validation64 states; no new training labels or hyperparameter changes",
+    "arms": [
+      "full",
+      "no_history"
+    ],
+    "history_removal": "encode a copied observable state with penalties/counters/work zero, best tour=current tour, best length=current length; retain current configuration and frozen GLS lambda; reference edge remains the same specified conventional action, all edges scored",
+    "scope": "removes penalty memory, incumbent route and dynamic counters; does not remove the current tour or the fixed solver parameter lambda; not claimed as a completely state-independent geometry model",
+    "device": "CPU, one thread per run, both arms retrained to avoid training-backend confounding; no GPU context",
+    "models": [
+      "transformer"
+    ],
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "architecture": {
+      "hidden": 128,
+      "layers": 4,
+      "heads": 8,
+      "dropout": 0.1
+    },
+    "batch_size": 8,
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001
+    },
+    "epochs": {
+      "max": 40,
+      "min": 10,
+      "patience": 8
+    },
+    "loss": "unchanged unweighted MSE pp + 0.1 non-tied same-state logistic ranking",
+    "checkpoint_selection": "minimum original R2 validation regret; earlier checkpoint wins ties, reference action wins score ties; never select an optimization seed",
+    "fresh_heldout": {
+      "pool": "value_val",
+      "offset_per_size": 48,
+      "instances_per_size": 16
+    },
+    "fresh_heldout_policy": "generate fresh heldout branches only after all six checkpoints frozen; no method/prompt/reward/threshold changes from these outcomes",
+    "state_events": [
+      0,
+      8,
+      32,
+      96
+    ],
+    "trajectory_seed": 17,
+    "continuation_seed": 71,
+    "horizon_by_nodes": {
+      "50": 58750,
+      "100": 970000
+    },
+    "workers": 8,
+    "ensemble": "equal three-seed mean in each arm; no favorable seed choice",
+    "transfer_references": "frozen R2 dense Transformer and previously fixed stage2 three-seed Transformer, scored only after ablation checkpoints frozen",
+    "interpretation": "Separate controlled feature study; does not replace or tune the teacher used by the already frozen GRPO/main protocols. New heldout is not final.",
+    "final_evaluation": false
+  },
+  "protocol_sha256": "a373af413a5a7e244bbbcfef374d294ced787720d7fb4888e10ddd63636003a7",
+  "source_sha256": {
+    "scripts/history_ablation.py": "34b21ad634a2c462c9bf82663829811ed8db1376ac820764df813d592d12a5b0",
+    "src/tsp_value/history_features.py": "e1ca2a364b35b7748c3f668a71b6c4b44535114f696bf098ceb0d2a350098ee8",
+    "src/tsp_value/value_model.py": "aaa09d8799d26908212dd8cacdb5d7f7af97fa45a2d8721172211198eef56f16",
+    "scripts/core_teacher_train.py": "db8d2db4e5b85be5505a609cdd1014d48acd75c6b7e8e83c10e1772007a43672",
+    "scripts/core_teacher_data.py": "e5473161aa542302dab6d9e1dfd065852e8f45dddc4f879d0b33563254196331",
+    "scripts/stage2_labels.py": "7cbb6a5f35b0e309ef6b0ee696a175a5e8b8f2486afbef3f327177cddb5ac2e2",
+    "src/tsp_value/solver.py": "1a9040bea446dca89df2a5562afcec752d9df73cbcf522bd3641afea85c7000f"
+  }
+}
