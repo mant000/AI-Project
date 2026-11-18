@@ -1,0 +1,39 @@
+{
+  "frozen_at_utc": "2026-11-18T03:42:31.836910+00:00",
+  "config": {
+    "experiment_id": "core-mechanism-v1",
+    "pool": "value_train",
+    "per_size_offset": 256,
+    "instances_per_size": 8,
+    "trajectory_seed": 17,
+    "penalty_events": [
+      0,
+      8,
+      32,
+      96
+    ],
+    "candidate_sampling": "eight uniform distinct nonreference current edges, stable instance/event hash; no outcome filtering",
+    "candidates": 8,
+    "continuation_seed": 71,
+    "horizon_sweeps": [
+      1,
+      5,
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "workers": 8,
+    "threads": 1,
+    "purpose": "Distinguish best-so-far masking, temporal washout, current-tour reconvergence, and actual exact-priority tie frequency. New train instances only. One continued branch per action supplies all horizons, never count horizons as extra branches.",
+    "validation_or_final_access": false
+  },
+  "config_sha256": "bae60317e0f20fbdbdff0c56cd3578e7ade1c4c4bcb7b22185d0eb39ee6fed0c",
+  "normalized_data_sha256": "43be012d1ec09a869b5071b10def2f90a1d55a1784f5ca819ddbdafb3fbab32f",
+  "source_sha256": {
+    "scripts/core_mechanism.py": "2d5609ca9799dd5d84109a070c56f155f0a5b6f017365b70e1a6c4d1a71c724a",
+    "src/tsp_value/solver.py": "1a9040bea446dca89df2a5562afcec752d9df73cbcf522bd3641afea85c7000f",
+    "scripts/stage2_labels.py": "7cbb6a5f35b0e309ef6b0ee696a175a5e8b8f2486afbef3f327177cddb5ac2e2"
+  }
+}

@@ -17,6 +17,14 @@ verified separately from this working source.
 
 ## Actual preliminary results
 
+Research continuation: the four-seed, 288-output endpoint/predicted/measured
+feedback comparison is complete. Both auxiliary-feedback arms tie endpoint
+feedback in three discovery repetitions and are worse in one; this is a
+negative result for both current feedback variants. All 7,744 endpoint tours
+and 5,536 feedback rows passed independent audits. Read
+[core R1 evidence](docs/CORE_R1_RESULTS.md). The next work is a bounded teacher
+control and executed-corpus stage before parameter training; final stays closed.
+
 32 project value-validation instances (16 per size), three common solver
 seeds, 288 runs, zero errors. Validation is held out from **author train**;
 there is no independent author validation file in the received data.
