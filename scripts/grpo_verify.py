@@ -5,6 +5,7 @@ from pathlib import Path
 import time
 import numpy as np
 import torch
+from safetensors.torch import load_file
 from stage3_common import CODE, read, write, digest, stamp, worker
 from training_study import TrainingStudy, group_rewards
 from controlled_grpo import fixed_parents
@@ -20,6 +21,11 @@ def audit(root, directory, cfg):
     assert meta['protocol'] == cfg and read(directory/'completed.json')['status'] == 'completed'
     for name, expected in meta['source_sha256'].items(): assert digest(CODE/name) == expected
     frozen = read(directory/'adapter_frozen.json'); assert digest(Path(frozen['adapter_path'])/'adapter_model.safetensors') == frozen['adapter_sha256']
+    initial = read(CODE/'results/training/sft-v1/checkpoint_frozen.json')
+    before = load_file(str(Path(initial['selected_adapter'])/'adapter_model.safetensors'))
+    after = load_file(str(Path(frozen['adapter_path'])/'adapter_model.safetensors'))
+    assert before.keys() == after.keys()
+    parameter_change = max(float((after[k]-before[k]).abs().max()) for k in before)
     assert read(directory/'fixed_parents.json')['parents'] == fixed_parents()
     study = TrainingStudy(root, directory, CODE/'results/training/grpo-prepare-v1')
     rows = {r['instance_id']: r for r in study.pools['discovery']}
@@ -68,11 +74,13 @@ def audit(root, directory, cfg):
         assert len(events) == logical+2
         assert all(abs(r['mean_ratio']-1) < .01 for r in updates), 'On-policy initial ratio mismatch'
     summary = read(directory/'completed.json'); assert summary['logical_updates'] == logical
+    if logical: assert parameter_change > 0., 'No actual adapter parameter update'
     assert len(all_candidates) == 48 and summary['frozen_reference_max_parameter_error'] == 0.
     result = dict(status='passed', at_utc=stamp(), arm=arm, seed=seed, routes_recomputed=checked,
         max_route_cost_error=max_error, feedback_rows_recomputed=feedback_rows, logical_updates=logical,
         zero_variance_groups=12-logical, nonzero_total_rewards=nonzero, nonzero_valid_terminal_rewards=nonzero_terminal,
         exact_prompt_and_pairing_and_reward_checks=48, reference_adapter_unchanged=True, final_opened=False)
+    result['adapter_max_parameter_change_from_common_sft'] = parameter_change
     write(directory/'verification.json', result)
     return result, all_candidates
 
@@ -128,17 +136,39 @@ def branch_diagnostic(root, cfg, candidates):
     write(out/'branch_diagnostic_summary.json', summary); return summary
 
 
+def check_initial_pairing(rootout, seeds):
+    checked = 0
+    for seed in seeds:
+        terminal = read(rootout/f'terminal-seed{seed}/group00.json')
+        state = read(rootout/f'state-seed{seed}/group00.json')
+        for a, b, la, lb in zip(terminal['raw'], state['raw'], terminal['old_logps'], state['old_logps']):
+            for key in ('messages', 'input_token_ids', 'output_token_ids', 'sampling_seed'): assert a[key] == b[key], key
+            assert np.max(np.abs(np.asarray(la)-np.asarray(lb))) <= 1e-6
+            checked += 1
+    return dict(first_group_output_pairs_exact=checked, common_sft_and_rng_pairing_verified=True)
+
+
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--root', type=Path, required=True); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('--root', type=Path, required=True)
+    ap.add_argument('--audit-run', help='Audit one completed run, without opening measured branches or claiming full-study verification')
+    ap.add_argument('--pairing-seed', type=int, help='Check completed first groups of one seed without measured branch access')
+    a = ap.parse_args()
     torch.set_num_threads(1); cfg = read(CODE/'configs/grpo_v1.json'); rootout = CODE/'results/training/grpo-v1'
+    if a.pairing_seed:
+        assert a.pairing_seed in cfg['optimization_seeds']
+        print(json.dumps(check_initial_pairing(rootout, [a.pairing_seed]), indent=2)); return
+    if a.audit_run:
+        assert a.audit_run in [f'{arm}-seed{seed}' for seed in cfg['optimization_seeds'] for arm in cfg['arms']]
+        summary, _ = audit(a.root, rootout/a.audit_run, cfg); print(json.dumps(summary, indent=2)); return
     dirs = [rootout/f'{arm}-seed{seed}' for seed in cfg['optimization_seeds'] for arm in cfg['arms']]
     assert all((p/'adapter_frozen.json').exists() and (p/'completed.json').exists() for p in dirs)
     summaries = []; candidates = []
     for p in dirs:
         summary, cc = audit(a.root, p, cfg); summaries.append(summary); candidates.extend(cc)
     diagnostics = branch_diagnostic(a.root, cfg, candidates)
+    pairing = check_initial_pairing(rootout, cfg['optimization_seeds'])
     write(rootout/'verification.json', dict(status='passed', at_utc=stamp(), runs=summaries,
-        measured_branch_reference=diagnostics, all_optimization_seeds_retained=True, final_opened=False))
+        measured_branch_reference=diagnostics, initial_pairing=pairing, all_optimization_seeds_retained=True, final_opened=False))
     print(json.dumps(dict(runs=summaries, diagnostics=diagnostics), indent=2))
 
 
