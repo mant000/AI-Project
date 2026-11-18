@@ -1,0 +1,132 @@
+{
+  "at_utc": "2026-11-18T05:58:53.051281+00:00",
+  "teacher_holdout": [
+    {
+      "method": "dense-mlp",
+      "selected_benefit_pp": 0.0,
+      "top1_regret_pp": 0.1848057986353524,
+      "pair_accuracy": 0.5982056783589496
+    },
+    {
+      "method": "dense-gnn",
+      "selected_benefit_pp": -0.007763954112306237,
+      "top1_regret_pp": 0.19256975228199735,
+      "pair_accuracy": 0.5907632578071641
+    },
+    {
+      "method": "dense-transformer",
+      "selected_benefit_pp": -0.0019690932240337133,
+      "top1_regret_pp": 0.18677489139372483,
+      "pair_accuracy": 0.6168137320533885
+    },
+    {
+      "method": "stage2-mlp",
+      "selected_benefit_pp": -0.007253529038280249,
+      "top1_regret_pp": 0.19205932720797136,
+      "pair_accuracy": 0.5876956105586549
+    },
+    {
+      "method": "stage2-transformer",
+      "selected_benefit_pp": 0.0023542174994872767,
+      "top1_regret_pp": 0.1824515811749734,
+      "pair_accuracy": 0.5878063510685505
+    },
+    {
+      "method": "reference",
+      "selected_benefit_pp": 0.0,
+      "top1_regret_pp": 0.1848057986353524,
+      "pair_accuracy": 0.502292205012427
+    }
+  ],
+  "corpus": {
+    "train": {
+      "examples": 307,
+      "families": 8,
+      "distinct_targets": 89,
+      "distinct_target_behaviors": 77,
+      "eligible_targets_before_cross_split_filter": 89,
+      "targets_removed_for_prior_split_overlap": 0
+    },
+    "validation": {
+      "examples": 14,
+      "families": 1,
+      "distinct_targets": 5,
+      "distinct_target_behaviors": 5,
+      "eligible_targets_before_cross_split_filter": 24,
+      "targets_removed_for_prior_split_overlap": 19
+    },
+    "heldout": {
+      "examples": 40,
+      "families": 2,
+      "distinct_targets": 13,
+      "distinct_target_behaviors": 9,
+      "eligible_targets_before_cross_split_filter": 18,
+      "targets_removed_for_prior_split_overlap": 5
+    }
+  },
+  "all_nine_resume_checks_exact": true,
+  "corpus_verification": {
+    "status": "passed",
+    "at_utc": "2026-11-18T05:48:08.913399+00:00",
+    "routes_recomputed": 9216,
+    "max_route_cost_error": 0.0,
+    "strict_improvement_pairs_checked": 361,
+    "coverage": {
+      "train": {
+        "examples": 307,
+        "targets": 89,
+        "target_behaviors": 77,
+        "families": 8
+      },
+      "validation": {
+        "examples": 14,
+        "targets": 5,
+        "target_behaviors": 5,
+        "families": 1
+      },
+      "heldout": {
+        "examples": 40,
+        "targets": 13,
+        "target_behaviors": 9,
+        "families": 2
+      }
+    },
+    "family_and_target_hash_and_target_behavior_splits_disjoint": true,
+    "target_not_in_prompt": true,
+    "only_discovery_instances_used": true,
+    "normalized_data_sha256": "43be012d1ec09a869b5071b10def2f90a1d55a1784f5ca819ddbdafb3fbab32f",
+    "final_opened": false,
+    "limitations": "Behavior isolation is for target route vectors; only one validation family survives deduplication. Same discovery instances underlie all family splits.",
+    "wall_seconds": 1.3552986271679401
+  },
+  "qlora_infrastructure_pilot": {
+    "status": "passed",
+    "completed_at_utc": "2026-11-18T05:27:59.605145+00:00",
+    "scope": "synthetic infrastructure only; do not use this adapter as research initialization",
+    "trainable_parameters": 2523136,
+    "only_lora_parameters_updated": true,
+    "prompt_tokens": 59,
+    "response_tokens": 32,
+    "first_update_loss": 0.4405761659145355,
+    "first_update_grad_norm": 0.3260454535484314,
+    "uninterrupted_next_loss": 0.427886039018631,
+    "resumed_next_loss": 0.427886039018631,
+    "restore_max_parameter_error": 0.0,
+    "fresh_base_adapter_reload_max_logit_error": 0.0,
+    "populated_optimizer_states": 112,
+    "research_candidate_generations": 0,
+    "logical_training_updates": 2,
+    "physical_backward_steps_including_replay": 3,
+    "smoke_generation_tokens": 8,
+    "model_load_wall_seconds": 7.2032973654568195,
+    "wall_seconds": 17.598816480487585,
+    "process_cpu_seconds": 17.638370762,
+    "cuda_peak_allocated_bytes": 11130259968,
+    "cuda_peak_reserved_bytes": 12306087936,
+    "peak_rss_kib": 5994340,
+    "adapter_after_step2_sha256": "8c7ac6eb26658f39f9df381fbb10991987354be475584e3ca61495c477d398ab",
+    "final_opened": false
+  },
+  "final_opened": false,
+  "research_sft_grpo_not_yet_run": true
+}

@@ -1,0 +1,253 @@
+{
+  "at_utc": "2026-11-18T05:22:43.152631+00:00",
+  "protocol": {
+    "experiment_id": "core-executed-corpus-v1",
+    "source": "predeclared arithmetic grammar enumerations, separately labeled from actual LLM outputs",
+    "discovery_offset_per_size": 24,
+    "discovery_instances_per_size": 16,
+    "solver_seeds": [
+      0,
+      1
+    ],
+    "delta_budget_by_nodes": {
+      "50": 235000,
+      "100": 970000
+    },
+    "families": [
+      {
+        "id": "power",
+        "split": "train",
+        "template": "(d / mean_d) ** {a} / (1 + p) ** {g}",
+        "parameters": {
+          "a": [
+            0.5,
+            1,
+            1.5,
+            2,
+            3
+          ],
+          "g": [
+            0.5,
+            1,
+            1.5,
+            2
+          ]
+        }
+      },
+      {
+        "id": "center",
+        "split": "train",
+        "template": "(d / mean_d - {b}) / (1 + p) ** {g}",
+        "parameters": {
+          "b": [
+            0.25,
+            0.5,
+            0.75,
+            1,
+            1.25,
+            1.5
+          ],
+          "g": [
+            0.5,
+            1,
+            1.5,
+            2
+          ]
+        }
+      },
+      {
+        "id": "geometry_shift",
+        "split": "train",
+        "template": "d / (1 + p + {c} * max_d / mean_d)",
+        "parameters": {
+          "c": [
+            0.01,
+            0.05,
+            0.1,
+            0.25,
+            0.5,
+            1,
+            2,
+            4
+          ]
+        }
+      },
+      {
+        "id": "stagnation_shift",
+        "split": "train",
+        "template": "d / (1 + p + {c} * stagnation)",
+        "parameters": {
+          "c": [
+            0.01,
+            0.05,
+            0.1,
+            0.25,
+            0.5,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "id": "progress_shift",
+        "split": "train",
+        "template": "d / (1 + p + {c} * (progress + stagnation))",
+        "parameters": {
+          "c": [
+            0.01,
+            0.05,
+            0.1,
+            0.25,
+            0.5,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "id": "penalty_mix",
+        "split": "train",
+        "template": "d / (1 + p) + {b} * mean_d * p / (1 + p)",
+        "parameters": {
+          "b": [
+            -1,
+            -0.5,
+            -0.1,
+            0.1,
+            0.5,
+            1
+          ]
+        }
+      },
+      {
+        "id": "lambda_bias",
+        "split": "train",
+        "template": "(d - {b} * lam * p) / (1 + p)",
+        "parameters": {
+          "b": [
+            0.25,
+            0.5,
+            1,
+            2,
+            4
+          ]
+        }
+      },
+      {
+        "id": "log_geometry",
+        "split": "train",
+        "template": "log1p({a} * d / mean_d) / (1 + p) ** {g}",
+        "parameters": {
+          "a": [
+            0.25,
+            0.5,
+            1,
+            2,
+            4
+          ],
+          "g": [
+            0.5,
+            1,
+            1.5,
+            2
+          ]
+        }
+      },
+      {
+        "id": "clipped_center",
+        "split": "validation",
+        "template": "maximum(d / mean_d - {b}, 0.001) / (1 + p) ** {g}",
+        "parameters": {
+          "b": [
+            0.25,
+            0.5,
+            0.75,
+            1,
+            1.25
+          ],
+          "g": [
+            0.5,
+            1,
+            1.5,
+            2
+          ]
+        }
+      },
+      {
+        "id": "exponential_penalty",
+        "split": "validation",
+        "template": "d * exp(-{b} * p)",
+        "parameters": {
+          "b": [
+            0.05,
+            0.1,
+            0.25,
+            0.5,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "id": "dynamic_blend",
+        "split": "heldout",
+        "template": "(1 - clip(progress / {c}, 0, 1)) * d / (1 + p) + clip(progress / {c}, 0, 1) * (d - mean_d) / (1 + p) ** {g}",
+        "parameters": {
+          "c": [
+            2,
+            4,
+            8,
+            12
+          ],
+          "g": [
+            0.5,
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "id": "incumbent_ratio",
+        "split": "heldout",
+        "template": "d / (1 + p) + {b} * mean_d * (1 - best_ratio) * p",
+        "parameters": {
+          "b": [
+            -4,
+            -2,
+            -1,
+            -0.5,
+            0.5,
+            1,
+            2,
+            4
+          ]
+        }
+      }
+    ],
+    "pairs": "within-family actual strict endpoint improvement over a different parent, distinct endpoint cycle vectors; target is not required to beat standard GLS; retain this limitation",
+    "target_source_hash_dedup": "no target source hash shared across split families; initial standard rule only an evaluation reference",
+    "behavior_overlap": "report and remove validation/heldout target route vectors already present in earlier train/validation target vectors; record resulting coverage, never fabricate missing examples",
+    "maximum_pairs_per_target": 4,
+    "maximum_pairs": {
+      "train": 1024,
+      "validation": 256,
+      "heldout": 256
+    },
+    "pair_order_seed": 621,
+    "prompt": "common numeric priority interface, parent code and its true discovery endpoint metrics only; no target child code or target outcome in the input",
+    "llm_calls_for_grammar_generation": 0,
+    "workers": 8,
+    "threads": 1,
+    "worker_wall_timeout_seconds": 180,
+    "worker_cpu_limit_seconds": 160,
+    "worker_address_space_gib": 2,
+    "final_evaluation": false,
+    "teacher_heldout_or_program_dev_in_prompt": false
+  },
+  "protocol_sha256": "385bd5f85a07f9cafff3191b5a8d3a86aef30c64c44079a1722cbdc217578a67",
+  "source_sha256": {
+    "scripts/core_corpus.py": "4644b46dac005650b7622fa1ef9f176a382db4eddc84ebb0d3df7b702d329645",
+    "src/tsp_value/programs.py": "cbfcd3d291aed9a502e275f99cbbae14d5e38eb910cc662c66165f0bb05a3cfc",
+    "scripts/stage3_worker.py": "42f5dd96e24dcea6070ee4c3fcd32e6e089eb6c2382da6dd46cc50608be16249"
+  }
+}
