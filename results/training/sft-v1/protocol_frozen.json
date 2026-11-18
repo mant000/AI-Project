@@ -1,0 +1,56 @@
+{
+  "at_utc": "2026-11-18T08:09:55.120062+00:00",
+  "protocol": {
+    "experiment_id": "common-qlora-sft-v1",
+    "corpus": "results/corpus-v1",
+    "base_revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+    "precision": "NF4 double quantization, BF16 computation; same quantized base in downstream frozen and updated controls",
+    "seed": 631,
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.0,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ]
+    },
+    "max_sequence_tokens": 1536,
+    "microbatch": 1,
+    "gradient_accumulation": 4,
+    "epochs": 2,
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0,
+      "gradient_clip": 1.0
+    },
+    "scheduler": "constant",
+    "loss": "response-only causal token cross entropy, prompt labels masked; no silent response truncation",
+    "checkpoint_selection": "minimum family-validation response NLL among epoch0/1/2, earlier wins ties; no program_dev or teacher holdout selection",
+    "resume_verification": "real populated optimizer/RNG next-step comparison on actual corpus; verification updates rolled back and cost separately counted",
+    "heldout_policy": "family-heldout NLL and generation diagnostics only after common SFT checkpoint frozen; no further prompt/hyperparameter updates from these metrics",
+    "heldout_generation": {
+      "unique_parent_prompts": 8,
+      "order": "example_id lexical, first unique parents",
+      "seed": 633,
+      "max_new_tokens": 192,
+      "temperature": 0.8,
+      "top_p": 0.95,
+      "top_k": 50
+    },
+    "source_disclosure": "executed grammar-derived local improvements, not claimed as LLM-generated successes or globally optimal programs",
+    "final_evaluation": false
+  },
+  "protocol_sha256": "6a6a76dd06a6bc688be408e1c726e2f1db9b5f409c47ad0e56fa4d30e71789fe",
+  "corpus_sha256": {
+    "train": "029d64e312b88b0fdb9c536963fcb787f0cbaeb2d8916cbeabf9edb5bc8f3195",
+    "validation": "7d7175f3785105b5f586980415114aa92babdd184480d38fdc7b5bcc541b6b18",
+    "heldout": "4d3b193a488606668beb86826fa9c7af7a22ef766890d4f6221b8f8305b55449"
+  },
+  "source_sha256": {
+    "scripts/common_sft.py": "5e2565807c2bee3ba53d8d6e87651810bd546ce1e1fdaec5b2da252ae463465b",
+    "scripts/qlora_pilot.py": "4d489b5ec618373456b6c87f985c676773c03c29cda302dd4e9dea4173906f18",
+    "scripts/stage3_common.py": "d3a70226acf2f04d889cb19220c4742e203cfbdb57129736d7d6f30cecf7754e"
+  }
+}
