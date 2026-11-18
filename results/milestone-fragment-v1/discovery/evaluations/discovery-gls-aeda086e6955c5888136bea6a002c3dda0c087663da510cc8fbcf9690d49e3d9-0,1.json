@@ -1,0 +1,115 @@
+{
+  "ok": false,
+  "results": [],
+  "program_sha256": "aeda086e6955c5888136bea6a002c3dda0c087663da510cc8fbcf9690d49e3d9",
+  "pool": "discovery",
+  "seeds": [
+    0,
+    1
+  ],
+  "method": "gls",
+  "at_utc": "2026-11-18T22:15:00.893582+00:00",
+  "wall_seconds": 0.18374166265130043,
+  "overlapping_child_cpu_deltas_not_additive": 5.389419999999973,
+  "cpu_scope": "Concurrent subprocess child deltas overlap; authoritative total waited-child CPU is process_resources.json; worker internal cpu sum below",
+  "worker_internal_cpu_seconds": 0.08028653000000001,
+  "subprocess_records": [
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.004129331558942795,
+      "cpu_seconds": 0.0007379710000000039,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.15501566231250763,
+      "child_cpu_seconds": 0.1458069999999907
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.0039536841213703156,
+      "cpu_seconds": 0.003409494000000013,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.16307921335101128,
+      "child_cpu_seconds": 0.2911239999999964
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.03326627239584923,
+      "cpu_seconds": 0.03304006999999999,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.180975042283535,
+      "child_cpu_seconds": 1.226756999999992
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.003965500742197037,
+      "cpu_seconds": 0.0032482269999999924,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.1651095412671566,
+      "child_cpu_seconds": 0.5906229999999937
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.010643914341926575,
+      "cpu_seconds": 0.010234321000000005,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.17150325700640678,
+      "child_cpu_seconds": 0.8963530000000048
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.010237254202365875,
+      "cpu_seconds": 0.010084239000000009,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.1583060286939144,
+      "child_cpu_seconds": 0.4436059999999884
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.012234754860401154,
+      "cpu_seconds": 0.010290316999999993,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.16132640466094017,
+      "child_cpu_seconds": 0.7435940000000016
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in power\n",
+      "results": [],
+      "wall_seconds": 0.011399533599615097,
+      "cpu_seconds": 0.009241891000000002,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.16164131090044975,
+      "child_cpu_seconds": 1.051556000000005
+    }
+  ],
+  "error": "One or more isolated endpoint partitions failed"
+}

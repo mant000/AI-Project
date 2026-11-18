@@ -1,0 +1,14 @@
+{
+  "candidate_id": "A-seed1203-candidate010",
+  "arm": "A",
+  "discovery_seed": 1203,
+  "index": 10,
+  "parent_sha256": "7f43466ba3bb33012f2e7e087339769a1a326f37e0b41da805a9088ab671ce63",
+  "valid": false,
+  "at_utc": "2026-11-18T22:15:00.709322+00:00",
+  "expression": "((d - 0.05 * max_d) / (1 + p)) ** 0.98",
+  "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return ((d - 0.05 * max_d) / (1 + p)) ** 0.98\n",
+  "program_sha256": "aeda086e6955c5888136bea6a002c3dda0c087663da510cc8fbcf9690d49e3d9",
+  "duplicate_program": false,
+  "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/fragment_discover.py\", line 171, in main\n    result,reused=study.endpoint(p,'discovery',cfg['endpoint_solver_seeds']);assert result['ok'],result.get('error')\nAssertionError: One or more isolated endpoint partitions failed\n"
+}

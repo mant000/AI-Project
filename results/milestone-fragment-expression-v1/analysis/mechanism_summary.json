@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "routes_repriced": 56832,
+  "states": 1536,
+  "overall": {
+    "single": {
+      "comparisons": 15360,
+      "nonzero": 82,
+      "nonzero_fraction": 0.005338541666666667,
+      "spearman": 0.06258262740842228,
+      "informative_target": 5788,
+      "tie_aware_agreement": 0.5036281962681409
+    },
+    "fragment": {
+      "comparisons": 15360,
+      "nonzero": 1538,
+      "nonzero_fraction": 0.10013020833333333,
+      "spearman": 0.2852758127809709,
+      "informative_target": 5788,
+      "tie_aware_agreement": 0.5725639253628196
+    },
+    "persistent": {
+      "comparisons": 15360,
+      "nonzero": 5788,
+      "nonzero_fraction": 0.3768229166666667,
+      "spearman": 0.9999999999999999,
+      "informative_target": 5788,
+      "tie_aware_agreement": 1.0
+    }
+  },
+  "paired_instance_bootstrap": {
+    "nonzero_fraction": {
+      "mean_instance_paired_difference": 0.09479166666666666,
+      "ci95_low": 0.07786295572916667,
+      "ci95_high": 0.11263183593749998,
+      "original_instances": 128
+    },
+    "tie_aware_agreement_on_informative_target": {
+      "mean_instance_paired_difference": 0.07100899319668295,
+      "ci95_low": 0.05592721809747839,
+      "ci95_high": 0.08669370481013054,
+      "original_instances": 102
+    },
+    "non_abstaining_target_coverage": {
+      "mean_instance_paired_difference": 0.20439666022336034,
+      "ci95_low": 0.17258172652872633,
+      "ci95_high": 0.23812309983411092,
+      "original_instances": 102
+    }
+  },
+  "bootstrap_source": "all metrics and resamples independently recomputed from raw branches, no solver calls"
+}

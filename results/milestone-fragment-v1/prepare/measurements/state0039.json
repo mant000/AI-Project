@@ -1,0 +1,3521 @@
+{
+  "bank_id": "joshi:tsp50_train_concorde.txt:580:policy0:phase3",
+  "instance_id": "joshi:tsp50_train_concorde.txt:580",
+  "nodes": 50,
+  "policy_index": 0,
+  "phase_index": 3,
+  "baseline": {
+    "mode": "persistent",
+    "best_length": 5.783313513493102,
+    "best_tour": [
+      37,
+      6,
+      15,
+      45,
+      26,
+      42,
+      49,
+      21,
+      1,
+      14,
+      23,
+      16,
+      30,
+      8,
+      31,
+      25,
+      43,
+      7,
+      22,
+      17,
+      35,
+      12,
+      18,
+      33,
+      46,
+      2,
+      39,
+      10,
+      11,
+      9,
+      32,
+      34,
+      19,
+      48,
+      3,
+      47,
+      24,
+      20,
+      28,
+      27,
+      13,
+      0,
+      38,
+      40,
+      5,
+      44,
+      4,
+      41,
+      29,
+      36
+    ],
+    "remaining_work": 70500,
+    "controlled_delta_work": 70500,
+    "controlled_decisions": 36,
+    "first_edge": [
+      14,
+      23
+    ],
+    "controlled_action_sha256": "bc31d3d95fa342d8bd6ce89101286c37d4fac8b1fdd8d65ef99869392f66ac01",
+    "controlled_first_edges": [
+      [
+        14,
+        23
+      ],
+      [
+        23,
+        30
+      ],
+      [
+        26,
+        45
+      ],
+      [
+        15,
+        45
+      ],
+      [
+        1,
+        49
+      ],
+      [
+        5,
+        40
+      ],
+      [
+        10,
+        39
+      ],
+      [
+        15,
+        26
+      ]
+    ],
+    "total_work": 235000,
+    "wall_seconds": 0.014142096042633057,
+    "worker_cpu_seconds": 0.014136708000000109
+  },
+  "programs": [
+    {
+      "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+      "expression": "d / (1 + p)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            14,
+            23
+          ],
+          "controlled_action_sha256": "c2c13184fece15a00bf12cf35f4a2a67f207cb95e22ca6be2d098c1a5e77cb60",
+          "controlled_first_edges": [
+            [
+              14,
+              23
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013693328946828842,
+          "worker_cpu_seconds": 0.013687631999999894,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 10,
+          "first_edge": [
+            14,
+            23
+          ],
+          "controlled_action_sha256": "c93a5e3ea4f4517e4af99b4e01e2d8c51d99ba162296b69d372af3084ab0d260",
+          "controlled_first_edges": [
+            [
+              14,
+              23
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              15,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              15,
+              26
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014109872281551361,
+          "worker_cpu_seconds": 0.014104109000000253,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 36,
+          "first_edge": [
+            14,
+            23
+          ],
+          "controlled_action_sha256": "bc31d3d95fa342d8bd6ce89101286c37d4fac8b1fdd8d65ef99869392f66ac01",
+          "controlled_first_edges": [
+            [
+              14,
+              23
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              15,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              15,
+              26
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.0149979367852211,
+          "worker_cpu_seconds": 0.014991953000000002,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+      "expression": "d / (1 + 0.25 * p)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014119431376457214,
+          "worker_cpu_seconds": 0.01411369299999965,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "fd7581fb34c7d8003a50aa5e8480dec036f6621ef18c3f1c28cf539e40ad9946",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              16,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014244094491004944,
+          "worker_cpu_seconds": 0.014238420999999946,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 31,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "1460dd5adeee7a0affe13e0c65be7c8f48e7ccab839021f764a6e4bd283261b9",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              16,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014622729271650314,
+          "worker_cpu_seconds": 0.014616844999999934,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "e43987b65c2d0486a8ef6bbfafd30a40e4701433b900108058b4a2ab71a17c25",
+      "expression": "d / (1 + sqrt(p))",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013865407556295395,
+          "worker_cpu_seconds": 0.013859688000000148,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "e6f1d155761059e785cf636111927a8a62acc686243c0e6924e9c26776424425",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013729751110076904,
+          "worker_cpu_seconds": 0.013723957999999925,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 32,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "d75e6249327333cd2478ca9b8f95c1de66f2f157f63513113803781e60147311",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014213569462299347,
+          "worker_cpu_seconds": 0.014207777999999838,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b",
+      "expression": "(d - mean_d) / (1 + p)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01347234845161438,
+          "worker_cpu_seconds": 0.013466924999999907,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "2568962a508113564a81f556f76b03fe9ef2207443ed99308bf6a439099cf2b3",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014084551483392715,
+          "worker_cpu_seconds": 0.014078785999999788,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 30,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "e28a71fb2211dc16ddffc2db7683c6abf530659b74d0ac13bd4b974cd7bcfd2a",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01400725543498993,
+          "worker_cpu_seconds": 0.014001594000000228,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "bdc27374007c5896bdb49875ea90b52c28592814f33538bb1a31087ea04c621c",
+      "expression": "d / (1 + p) ** 0.5",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013593636453151703,
+          "worker_cpu_seconds": 0.013587998000000212,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 9,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "a3b1b09f214c1d76d335944ea4c9290c6dbb40cb8ccbf8c647a3b90235699bb6",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013644497841596603,
+          "worker_cpu_seconds": 0.013638822000000328,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 32,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "3a78c1bab9301d86f8d78df631ff3c269fd2ac4e5b62710c1668fb94cbb1f14a",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014483008533716202,
+          "worker_cpu_seconds": 0.014477049999999991,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "3eef9241f4121823abcae48e876aba24ca589a418b8fb044f298dc2a6d7224cf",
+      "expression": "d / (1 + p) ** 2",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            15,
+            45
+          ],
+          "controlled_action_sha256": "650418c9bc147849b6e24cc8bde489f971ae36be78309312963909e00abd2040",
+          "controlled_first_edges": [
+            [
+              15,
+              45
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013652138411998749,
+          "worker_cpu_seconds": 0.01364655800000003,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 12,
+          "first_edge": [
+            15,
+            45
+          ],
+          "controlled_action_sha256": "47e651bfbdbcceda00a57b4ece4b3e079453b730c0fe6294a84dc6a80e7411ed",
+          "controlled_first_edges": [
+            [
+              15,
+              45
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              20,
+              28
+            ],
+            [
+              20,
+              27
+            ],
+            [
+              12,
+              35
+            ],
+            [
+              7,
+              22
+            ],
+            [
+              19,
+              48
+            ],
+            [
+              36,
+              37
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01402091234922409,
+          "worker_cpu_seconds": 0.014015243000000233,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 42,
+          "first_edge": [
+            15,
+            45
+          ],
+          "controlled_action_sha256": "caf8a506829ed85bd62311dc2b9cc45c4bcb9607003f36fd36f536d8f54190b1",
+          "controlled_first_edges": [
+            [
+              15,
+              45
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              20,
+              28
+            ],
+            [
+              20,
+              27
+            ],
+            [
+              12,
+              35
+            ],
+            [
+              7,
+              22
+            ],
+            [
+              19,
+              48
+            ],
+            [
+              36,
+              37
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.016148999333381653,
+          "worker_cpu_seconds": 0.016133388000000082,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "f6f8fc0d9725d1c01275118a569513fa98d36c5ae92a6610cc2c4c2e119ae69a",
+      "expression": "d / (1 + p + progress / 10)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014155730605125427,
+          "worker_cpu_seconds": 0.014149799999999768,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "6c0db9514c9e6c0fc3380e76295a73e3890c379dfbcd81acb70d1aeb9bc7b9eb",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              14,
+              23
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014468841254711151,
+          "worker_cpu_seconds": 0.014462842000000364,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 37,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "fedbba1ba34e68c2497029d207c01c6a6a7cc7375b5cf964335067eee95b0a52",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              14,
+              23
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01478656381368637,
+          "worker_cpu_seconds": 0.014780672999999744,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "b776a1985acd75c8df1fac7cfd1535c55868c11bf5b2c8d87ad0347e803851b1",
+      "expression": "(d - 0.25 * mean_d) / (1 + p)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014048732817173004,
+          "worker_cpu_seconds": 0.014043151000000087,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f85686ce2dc11bfc93cde0aed3bc973a7bdb1791e487c4c4bf9e5bc26d3137b6",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              14,
+              23
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014917444437742233,
+          "worker_cpu_seconds": 0.014911118000000556,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 36,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "a6653b1b9262fda0ef8666cf633f4070fc3608bc6561c4457e60d8d3c4a90d04",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              14,
+              23
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.0154842808842659,
+          "worker_cpu_seconds": 0.015477991000000024,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "3ffba234d036036c89a0c439754ef49e3a342c9c30406849d9290239d7ce6ce3",
+      "expression": "d / (1 + p + stagnation / 10)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014211319386959076,
+          "worker_cpu_seconds": 0.014124788000000166,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f85686ce2dc11bfc93cde0aed3bc973a7bdb1791e487c4c4bf9e5bc26d3137b6",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              14,
+              23
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01404864713549614,
+          "worker_cpu_seconds": 0.013928953999999827,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 37,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "658f315e5a1fbce62c5e50aff98b9f9df00c8f8f79797b4f2c2b98d7ca771528",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              15,
+              26
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              14,
+              23
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.015221308916807175,
+          "worker_cpu_seconds": 0.015091641999999794,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "929dd97585c6e60baaea156687c3aeca960a869bd40d53c808cd9717136ce762",
+      "expression": "2 * (d / (1 + p))",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            14,
+            23
+          ],
+          "controlled_action_sha256": "c2c13184fece15a00bf12cf35f4a2a67f207cb95e22ca6be2d098c1a5e77cb60",
+          "controlled_first_edges": [
+            [
+              14,
+              23
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013503111898899078,
+          "worker_cpu_seconds": 0.013388090000000297,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 10,
+          "first_edge": [
+            14,
+            23
+          ],
+          "controlled_action_sha256": "c93a5e3ea4f4517e4af99b4e01e2d8c51d99ba162296b69d372af3084ab0d260",
+          "controlled_first_edges": [
+            [
+              14,
+              23
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              15,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              15,
+              26
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014313563704490662,
+          "worker_cpu_seconds": 0.014191787000000566,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 36,
+          "first_edge": [
+            14,
+            23
+          ],
+          "controlled_action_sha256": "bc31d3d95fa342d8bd6ce89101286c37d4fac8b1fdd8d65ef99869392f66ac01",
+          "controlled_first_edges": [
+            [
+              14,
+              23
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              15,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              15,
+              26
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.015376847237348557,
+          "worker_cpu_seconds": 0.015245741999999396,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "aac2dbb42f3f82b294bb2a706bb7655eef70cf6a47ec498280041a62dbdc6489",
+      "expression": "d / (1 + p) + 0.1 * abs(d - mean_d)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014075540006160736,
+          "worker_cpu_seconds": 0.013955589000000046,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "ee631bfa92e9ea2fa694a340064ce873ecd2c137b04f46a75fb26fe8a387147a",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              15,
+              26
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01401359960436821,
+          "worker_cpu_seconds": 0.01389421999999918,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 34,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "38d771764f14ced5b4c4d0089664de412e48fe24c925917aaef9029b9745fc36",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              26,
+              45
+            ],
+            [
+              1,
+              49
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              15,
+              26
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014409802854061127,
+          "worker_cpu_seconds": 0.014287005999999991,
+          "benefit_pp": 0.0
+        }
+      ]
+    },
+    {
+      "program_sha256": "b556d1b8a1d2a9d17c52a6948c5e5e262428ab2aea991944f22db056b70dec48",
+      "expression": "(d - mean_d * clip(progress / 4, 0, 1)) / (1 + p)",
+      "variants": [
+        {
+          "mode": "single",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 0,
+          "controlled_decisions": 1,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "f4c18e0695c0e850e3517450442cb60655905fd09ef930dba908073dac49c879",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.013815261423587799,
+          "worker_cpu_seconds": 0.01369783999999985,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "fragment",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 17625,
+          "controlled_decisions": 8,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "2568962a508113564a81f556f76b03fe9ef2207443ed99308bf6a439099cf2b3",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.01420629397034645,
+          "worker_cpu_seconds": 0.014085381000000119,
+          "benefit_pp": 0.0
+        },
+        {
+          "mode": "persistent",
+          "best_length": 5.783313513493102,
+          "best_tour": [
+            37,
+            6,
+            15,
+            45,
+            26,
+            42,
+            49,
+            21,
+            1,
+            14,
+            23,
+            16,
+            30,
+            8,
+            31,
+            25,
+            43,
+            7,
+            22,
+            17,
+            35,
+            12,
+            18,
+            33,
+            46,
+            2,
+            39,
+            10,
+            11,
+            9,
+            32,
+            34,
+            19,
+            48,
+            3,
+            47,
+            24,
+            20,
+            28,
+            27,
+            13,
+            0,
+            38,
+            40,
+            5,
+            44,
+            4,
+            41,
+            29,
+            36
+          ],
+          "remaining_work": 70500,
+          "controlled_delta_work": 70500,
+          "controlled_decisions": 30,
+          "first_edge": [
+            10,
+            39
+          ],
+          "controlled_action_sha256": "e28a71fb2211dc16ddffc2db7683c6abf530659b74d0ac13bd4b974cd7bcfd2a",
+          "controlled_first_edges": [
+            [
+              10,
+              39
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              10,
+              39
+            ],
+            [
+              25,
+              43
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              23,
+              30
+            ]
+          ],
+          "total_work": 235000,
+          "wall_seconds": 0.014244083315134048,
+          "worker_cpu_seconds": 0.014122615999999866,
+          "benefit_pp": 0.0
+        }
+      ]
+    }
+  ],
+  "branches_executed": 37,
+  "wall_seconds": 0.528535470366478,
+  "worker_cpu_seconds": 0.5269070909999996
+}

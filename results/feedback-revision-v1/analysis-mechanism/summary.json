@@ -1,0 +1,50 @@
+{
+  "at_utc": "2026-11-18T18:12:51.332387+00:00",
+  "scope": "mechanism checks only; no frozen-model utility conclusions",
+  "hypotheses": {
+    "old": "Fixed-bank parent/child single-action values improve whole-rule discovery/adaptation",
+    "revised": "Measured alternatives expose jointly missed opportunities; remaining-budget labels improve target correspondence"
+  },
+  "blind_spot_test": {
+    "status": "passed_for_measured_case_interface",
+    "natural_states": 128,
+    "original_instances": 32,
+    "informative_states": 66,
+    "positive_alternative_states": 37,
+    "old_parent_self_direction_states": 0,
+    "revised_direction_states": 66,
+    "revised_positive_alternative_visible_states": 37,
+    "caveat": "Pass means information is represented accurately and visibly, not that the LLM uses it or whole-rule quality improves."
+  },
+  "local_global_test": {
+    "status": "not_passed_by_current_revision",
+    "horizon_alignment": "implemented and route-verified; necessary budget correction, not full target equivalence",
+    "same_initial_seed17_control": {
+      "states": 31,
+      "changed_states": 11,
+      "changed_action_values": 70,
+      "old_nonzero_actions": 65,
+      "aligned_nonzero_actions": 38,
+      "old_positive_actions": 15,
+      "aligned_positive_actions": 14,
+      "programs": 67,
+      "same_seed17_original_instances": 8,
+      "old_all_zero_programs": 66,
+      "aligned_all_zero_programs": 66,
+      "old_zero_local_but_nonzero_full_pairs": 17,
+      "aligned_zero_local_but_nonzero_full_pairs": 17,
+      "old_descriptive_spearman": 0.29599482073838174,
+      "aligned_descriptive_spearman": -0.29599482073838174
+    },
+    "scalar_reference_identity": "regret(h,s)=max_a q(s,a)-q(s,a_h); regret(h1,s)-regret(h2,s)=q(s,a_h2)-q(s,a_h1)",
+    "mean_identity_max_abs_error": 0.0,
+    "pairwise_identity_max_abs_error": 9.107298248878237e-18,
+    "interpretation": "Under fixed common states/labels/weights, changing the scalar reference to the best action cannot create distinctions between rules with equal local values. Rich cases add behavioral information, but do not establish whole-rule credit."
+  },
+  "next_decision": "Milestone may report partial mechanism repair and unresolved target correspondence; no justification yet for scaling training solely from nonzero case values.",
+  "parameter_training_started": false,
+  "final_opened": false,
+  "additional_solver_runs": 0,
+  "additional_llm_calls": 0,
+  "script_sha256": "225f514229f2dab0c8e40ff175b5f58c933a4a63eb14c1615620df0348db1a95"
+}

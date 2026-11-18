@@ -1,0 +1,263 @@
+{
+  "at_utc": "2026-11-18T22:23:40.803474+00:00",
+  "programs": [
+    {
+      "arm": "A",
+      "discovery_seed": 1201,
+      "selected_program": {
+        "expression": "d / (1 + p + 0.1 * stagnation + 0.05 * (max_d - mean_d) / max_d)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p + 0.1 * stagnation + 0.05 * (max_d - mean_d) / max_d)\n",
+        "program_sha256": "1808a0752f2429cc66ef994229639fa1d5076942cdc4dcba7db718dc8f0e2dda"
+      },
+      "elite_hashes": [
+        "1808a0752f2429cc66ef994229639fa1d5076942cdc4dcba7db718dc8f0e2dda",
+        "2970bc36db29ac83c148b9366e1493a70883dceaf31fd82e6e2b1cc70dff3bf9",
+        "df3bab6f3cacb6168160e2523864d5785b0216ebf17efa46abca17ebd96e084e",
+        "51be12d43899e6bba9dcee780d25d77e72e8aab35eeaf90741c0bd331c11c22c"
+      ],
+      "program_select_gaps": [
+        2.475073811554463,
+        2.475073811554463,
+        2.49159569446844,
+        2.4809572985046415
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "P",
+      "discovery_seed": 1201,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "a0a823d42156421b7af140f5e6f052d88de1f5d757daebf367255b1fbec3760e",
+        "e9ff58430a7b67f863bc0145b95731e196fa76ba3e2247df86a82024751d9e90"
+      ],
+      "program_select_gaps": [
+        2.5820739042102914,
+        2.5820739042102914,
+        2.587311781716941
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "F",
+      "discovery_seed": 1201,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "b3c7cfbec402d991cc75e6f9d8627c12e666509eef1e7bee8f6fd2d1d25658ba",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "ebfe005f2c587017c99f6b9c9f52c5cee88c736ccab407876404e0d7fe4a46ab",
+        "ab731768cf6a8b5a581e148cd415599b949edc628a5fe909c576661ef22298cc"
+      ],
+      "program_select_gaps": [
+        2.5980158071737596,
+        2.5820739042102914,
+        2.5820739042102914,
+        2.5820739042102914
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "A",
+      "discovery_seed": 1202,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "71f3142e5647b612fe6ba11264b40d85b7ba70ded692f57f04c6f20dfd7a38b7",
+        "d5245bb5db809371ad2c139e49f05691003ce208d0e54e36edd942520d088878",
+        "0b7071760b422f8d9484c98705b2d8674b2b38b99b064bdb0c35f4a98a895cf6",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_gaps": [
+        2.636172108150313,
+        2.636172108150313,
+        2.636172108150313,
+        2.5820739042102914
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "P",
+      "discovery_seed": 1202,
+      "selected_program": {
+        "expression": "((1 + p) * d + (max_d - mean_d)) / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return ((1 + p) * d + (max_d - mean_d)) / (1 + p)\n",
+        "program_sha256": "02b6715486e28138649311401ff5d1756e00d5364d74a518f4371158698a5bb7"
+      },
+      "elite_hashes": [
+        "02b6715486e28138649311401ff5d1756e00d5364d74a518f4371158698a5bb7",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "b4906c908acfd87b7327b68f842364a2afa4909864d73d29e8f79ab7bd42d912",
+        "beba633be3f4e3c4508ab293ff69c83844f461760159d20b9372f0c154154498"
+      ],
+      "program_select_gaps": [
+        2.5408718885345327,
+        2.5820739042102914,
+        2.5820739042102914,
+        2.851019847249198
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "F",
+      "discovery_seed": 1202,
+      "selected_program": {
+        "expression": "(d - mean_d) / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - mean_d) / (1 + p)\n",
+        "program_sha256": "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b"
+      },
+      "elite_hashes": [
+        "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "171cab7133c4c43d552fa639faeb59605270126b52366a30a3d0d349bc542fc9"
+      ],
+      "program_select_gaps": [
+        2.3082608031913705,
+        2.5820739042102914,
+        3.210241230984829
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "A",
+      "discovery_seed": 1203,
+      "selected_program": {
+        "expression": "(d - 0.15 * max_d - 0.05 * (max_d - mean_d)) / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - 0.15 * max_d - 0.05 * (max_d - mean_d)) / (1 + p)\n",
+        "program_sha256": "1f1c4ae0d33dfff511719de12fad5102570632af9b52c056c7bf1eb3c0a9bf46"
+      },
+      "elite_hashes": [
+        "413fd9e328bd37046c31071614fee6e1402203b0b6873e779ab8c6db9396f549",
+        "192c64db1c842c9961ca6c0a30341746e2f7b04d478435504c38c5e8b9f9728c",
+        "cfbb58a39c4ee4207ed906f43c66f6e951091cbeb7c8c83613275fcfb72ec64d",
+        "1f1c4ae0d33dfff511719de12fad5102570632af9b52c056c7bf1eb3c0a9bf46"
+      ],
+      "program_select_gaps": [
+        2.38305832655649,
+        2.383308133033642,
+        2.4048870790046144,
+        2.378953070500142
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "P",
+      "discovery_seed": 1203,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "d9f9a56d5443c408fa5cb93e1ac5083c0c9711944bf55c089186c39bce553ac3",
+        "daaf4a94d3e9386af5b8bfeef2ec93ce1a134e62fc59e117362f2de537f30bf4",
+        "da1277b3e1a4861e74e28bf465e25fc4642d86cd2c8c70ff16763d1377303813"
+      ],
+      "program_select_gaps": [
+        2.5820739042102914,
+        2.5820739042102914,
+        2.7874116823847674,
+        2.8360380222239527
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "F",
+      "discovery_seed": 1203,
+      "selected_program": {
+        "expression": "(d - mean_d) / (max_d - mean_d) / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - mean_d) / (max_d - mean_d) / (1 + p)\n",
+        "program_sha256": "c5909b2c44f8c98fe1f9c4f224ad5aad02d7d7dae5879d748991e87e5d1ce387"
+      },
+      "elite_hashes": [
+        "c5909b2c44f8c98fe1f9c4f224ad5aad02d7d7dae5879d748991e87e5d1ce387",
+        "bc774292be3b1a8ca1f1e7696c011c04d92c1a7c399e97569a699a19266b1743",
+        "64eebfaa8533bb64292b48ed25393a465b4f4d8345c15e86bd4d310524effed1",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_gaps": [
+        2.3082608031913705,
+        2.3082608031913705,
+        2.349588642518556,
+        2.5820739042102914
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "A",
+      "discovery_seed": 1204,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "13097405534aa42523ad69e5ee87ccb76ec77519f4a3698f000b1f1d5ffcd4a0",
+        "ae047b082c3ec7e3b607a188ed3a3078b61daf2e263c30ee4eb7e656ce63ab68",
+        "718360f14c218ac45d0d293ecfe6d09a2df6a1ef7ea094d1572ca562f41c41c6"
+      ],
+      "program_select_gaps": [
+        2.5820739042102914,
+        2.5996294847866745,
+        2.640581518403966,
+        2.932563237423016
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "P",
+      "discovery_seed": 1204,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "eb4786667d621452879c186aeddd5a0c6847536312992076750511b7d57f7049"
+      ],
+      "program_select_gaps": [
+        2.5820739042102914,
+        2.5820739042102914
+      ],
+      "outputs": 32
+    },
+    {
+      "arm": "F",
+      "discovery_seed": 1204,
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "elite_hashes": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "76fe9184ea727c645555554f655e440b641a8da5337db0825b9523e910f8f9ba",
+        "a6929490665dff182b898a95f26920c52a50049777147a22533f06f799758519",
+        "be64b1f87737d4e6d0e17b1398c571949fbd92d448fa008b43dd4bb05b6170e2"
+      ],
+      "program_select_gaps": [
+        2.5820739042102914,
+        2.5820739042102914,
+        2.5820739042102914,
+        2.5820739042102914
+      ],
+      "outputs": 32
+    }
+  ],
+  "all_frozen_before_dev": true,
+  "config_sha256": "e789ff6992b2b91c3395fa4f050a39d2f0fca37ae397b08a30912b279529d89a"
+}

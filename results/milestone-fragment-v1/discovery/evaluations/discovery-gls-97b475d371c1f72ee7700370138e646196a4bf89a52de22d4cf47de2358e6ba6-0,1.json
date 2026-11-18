@@ -1,0 +1,115 @@
+{
+  "ok": false,
+  "results": [],
+  "program_sha256": "97b475d371c1f72ee7700370138e646196a4bf89a52de22d4cf47de2358e6ba6",
+  "pool": "discovery",
+  "seeds": [
+    0,
+    1
+  ],
+  "method": "gls",
+  "at_utc": "2026-11-18T22:16:35.555266+00:00",
+  "wall_seconds": 0.17841877043247223,
+  "overlapping_child_cpu_deltas_not_additive": 5.020044000000013,
+  "cpu_scope": "Concurrent subprocess child deltas overlap; authoritative total waited-child CPU is process_resources.json; worker internal cpu sum below",
+  "worker_internal_cpu_seconds": 0.04316516199999999,
+  "subprocess_records": [
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.003374047577381134,
+      "cpu_seconds": 0.0026585880000000034,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.13052347674965858,
+      "child_cpu_seconds": 0.1214119999999923
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.004128031432628632,
+      "cpu_seconds": 0.0012756119999999954,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.15900595858693123,
+      "child_cpu_seconds": 0.5471380000000181
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.003910176455974579,
+      "cpu_seconds": 0.003164165999999996,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.15539026260375977,
+      "child_cpu_seconds": 0.3991959999999892
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.004033055156469345,
+      "cpu_seconds": 0.002683615999999986,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.1584005430340767,
+      "child_cpu_seconds": 0.6935310000000356
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.010975323617458344,
+      "cpu_seconds": 0.007385283999999992,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.16817743703722954,
+      "child_cpu_seconds": 0.8495729999999924
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.010469481348991394,
+      "cpu_seconds": 0.009577166000000012,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.16423628106713295,
+      "child_cpu_seconds": 1.0024620000000084
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.009633593261241913,
+      "cpu_seconds": 0.006579354999999995,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.1360737904906273,
+      "child_cpu_seconds": 0.24951599999999985
+    },
+    {
+      "ok": false,
+      "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nTypeError: minimum() takes from 2 to 3 positional arguments but 1 were given\n",
+      "results": [],
+      "wall_seconds": 0.011633455753326416,
+      "cpu_seconds": 0.009841375000000013,
+      "peak_rss_kib": 5506240,
+      "returncode": 0,
+      "stderr": "",
+      "subprocess_wall_seconds": 0.1611684188246727,
+      "child_cpu_seconds": 1.157215999999977
+    }
+  ],
+  "error": "One or more isolated endpoint partitions failed"
+}

@@ -1,0 +1,145 @@
+{
+  "experiment_id": "milestone-policy-fragment-v1",
+  "question": "Does a bounded persistent rule intervention better describe a rule change than one penalty followed by standard continuation?",
+  "parameter_training": false,
+  "final_evaluation": false,
+  "source_rows_per_size": [
+    577,
+    704
+  ],
+  "roles": {
+    "bank": [
+      577,
+      640
+    ],
+    "discovery": [
+      641,
+      656
+    ],
+    "program_select": [
+      657,
+      672
+    ],
+    "program_dev_eval": [
+      673,
+      704
+    ]
+  },
+  "role_note": "Previously unexecuted subset of nominal value_train, reserved before any new outcomes; actual prior training/discovery IDs must be disjoint; original manifest retained unchanged",
+  "workers": 10,
+  "threads": 1,
+  "trajectory_seed": 17,
+  "continuation_seed": 71,
+  "delta_budget_by_nodes": {
+    "50": 235000,
+    "100": 970000
+  },
+  "state_work_fractions": [
+    0.1,
+    0.3,
+    0.5,
+    0.7
+  ],
+  "trajectory_expressions": [
+    "d/(1+p)",
+    "(d-mean_d)/(1+p)",
+    "d/(1+0.25*p)"
+  ],
+  "fragment_fraction_of_remaining": 0.25,
+  "diagnostic_rules": [
+    "d/(1+p)",
+    "d/(1+0.25*p)",
+    "d/(1+sqrt(p))",
+    "(d-mean_d)/(1+p)",
+    "d/(1+p)**0.5",
+    "d/(1+p)**2",
+    "d/(1+p+progress/10)",
+    "(d-0.25*mean_d)/(1+p)",
+    "d/(1+p+stagnation/10)",
+    "2*(d/(1+p))",
+    "d/(1+p)+0.1*abs(d-mean_d)",
+    "(d-mean_d*clip(progress/4,0,1))/(1+p)"
+  ],
+  "modes": [
+    "single",
+    "fragment",
+    "persistent"
+  ],
+  "diagnostic_definition": "same saved state/RNG/remaining full200-sweep cap; single applies rule once then standard; fragment uses rule for25% remaining deltas then standard; persistent uses rule throughout remaining; all scored on original distance and normalized by saved best tour",
+  "diagnostic_reference": "conventional continuation reused once per state; source state fixed before branch outcomes; persistent is an empirical conditional diagnostic target, never shown in discovery feedback",
+  "pilot_bank_instances_per_size": 8,
+  "full_bank_instances_per_size": 64,
+  "feedback_bank": "one state per each of128 bank originals, deterministic balanced trajectory/phase cycle; no signal-based filtering",
+  "mechanism_metrics": [
+    "coverage and exact zero rates",
+    "same-first-action subgroup with nonzero persistent target",
+    "Spearman to persistent benefits and signed non-tie agreement; instance-cluster bootstrap",
+    "per-source-policy/phase/size summaries",
+    "constant-positive-rescaling behavior control"
+  ],
+  "signal_gate": "Do not tune fragment fraction from pilot outcomes. Pilot controls runtime/engineering only. If all full diagnostic comparisons tied, do not launch feedback utility; retain mechanism result and deliver.",
+  "arms": [
+    "A",
+    "P",
+    "F"
+  ],
+  "arm_meaning": {
+    "A": "true endpoint feedback only",
+    "P": "same endpoints plus measured previous-parent/child single-penalty comparison",
+    "F": "same endpoints plus measured previous-parent/child25%-remaining rule-fragment comparison"
+  },
+  "generator": "original pinned Qwen2.5-Coder-7B-Instruct NF4, frozen; no SFT/GRPO adaptation for this causal comparison",
+  "qwen_revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+  "discovery_seeds": [
+    1201,
+    1202,
+    1203,
+    1204
+  ],
+  "candidates_per_arm_per_seed": 32,
+  "total_outputs": 384,
+  "generation": {
+    "do_sample": true,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 50,
+    "max_new_tokens": 384
+  },
+  "max_context_tokens": 4096,
+  "endpoint_solver_seeds": [
+    0,
+    1
+  ],
+  "program_select_solver_seeds": [
+    0,
+    1,
+    2
+  ],
+  "program_dev_eval_solver_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "elite_count": 4,
+  "feedback_case_count": 2,
+  "case_schedule": "deterministic same seed/index across arms; not ranked by measured value; all128 states contribute mean and counts",
+  "primary_contrast": "F-A independent dev gap percentage points; lower is better; all4 discovery repetitions retained",
+  "secondary_contrast": "F-P isolates persistent intervention compared with budget-aligned single action, subject to evolving algorithm paths",
+  "selection": "strict real discovery mean improvement for parent; top4 unique discovery elites selected by real program_select mean; freeze all12 programs before dev",
+  "success": "F-A mean improvement at least0.05 gap pp and paired instance/discovery bootstrap upper95% below0; F-P separately reported; otherwise preliminary or negative, no expansion after outcomes",
+  "budgets": {
+    "mechanism_wall_max_seconds": 3600,
+    "discovery_wall_max_seconds": 7200,
+    "nested_generation_projection_check_after_outputs": 12,
+    "latest_new_generation_start_bjt": "2026-11-19T11:00:00+08:00",
+    "report_target_bjt": "2026-11-19T19:00:00+08:00",
+    "publish_target_bjt": "2026-11-19T22:00:00+08:00"
+  },
+  "worker_address_space_gib": 2,
+  "worker_cpu_limit_seconds": 160,
+  "worker_wall_timeout_seconds": 180,
+  "failed_or_duplicate_output_consumes_budget": true,
+  "interrupted_91_outputs": "historical separate incomplete study; never resumed or pooled"
+}

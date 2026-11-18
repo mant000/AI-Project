@@ -1,0 +1,96 @@
+{
+  "scope": "retrospective saved-data audit; no solver/model/LLM calls; no new data or final access",
+  "created_at_utc": "2026-11-18T16:59:53.092327+00:00",
+  "measured_value_epsilon_pp": 1e-07,
+  "bank_original_instances": 8,
+  "bank_states": 32,
+  "all_edge_measured_positive_states": 7,
+  "all_edge_measured_nonzero_states": 12,
+  "all_edge_measured_positive_actions": 15,
+  "all_edge_best_action_mean_pp": 0.18619177739646148,
+  "groups": {
+    "old_grammar": {
+      "programs": 144,
+      "program_state_decisions": 4608,
+      "positive_decisions": 0,
+      "negative_decisions": 43,
+      "nonzero_decisions": 43,
+      "positive_states_reachable": 0,
+      "states_with_any_nonzero_reachable": 1,
+      "per_state_best_rule_mean_pp": 0.0,
+      "max_single_rule_mean_pp": 0.0,
+      "distinct_action_vectors": 48
+    },
+    "r1_generated": {
+      "programs": 67,
+      "program_state_decisions": 2144,
+      "positive_decisions": 0,
+      "negative_decisions": 1,
+      "nonzero_decisions": 1,
+      "positive_states_reachable": 0,
+      "states_with_any_nonzero_reachable": 1,
+      "per_state_best_rule_mean_pp": 0.0,
+      "max_single_rule_mean_pp": 0.0,
+      "distinct_action_vectors": 9
+    }
+  },
+  "saved_r1_decision_matches": 1088,
+  "integrity_checks": {
+    "saved_branch_routes_revalued": 2400,
+    "matched_endpoint_routes_revalued": 1072,
+    "max_route_cost_error": 0.0,
+    "matched_endpoint_work_caps_checked": true
+  },
+  "arithmetic_expressibility": {
+    "positive_action_cases": 15,
+    "positive_actions_with_longer_same_penalty_competitor": 14,
+    "state_specific_hindsight_witnesses_selecting_target": 15,
+    "interpretation": "Label-informed constants target each observed edge separately. This proves per-case expressibility only, not a shared generalizable rule, discovery success or deployment benefit."
+  },
+  "same_instance_endpoint_link": {
+    "programs": 67,
+    "original_instances": 8,
+    "program_instance_pairs": 536,
+    "endpoint_solver_seeds": [
+      0,
+      1
+    ],
+    "bank_trajectory_seed": 17,
+    "nonzero_local_program_instance_pairs": 1,
+    "programs_with_all_zero_local": 66,
+    "zero_local_but_nonzero_full_rule_pairs": 44,
+    "zero_local_but_nonzero_full_rule_original_instances": 6,
+    "zero_local_but_nonzero_full_rule_programs": 14,
+    "mean_local_program_value_range_pp": [
+      -0.002013074979043613,
+      0.0
+    ],
+    "mean_full_rule_program_benefit_range_gap_pp": [
+      -0.20998649173819828,
+      0.17289987236306786
+    ],
+    "descriptive_spearman": -0.24200502797758885
+  },
+  "limitations": [
+    "Eight original instances; states/programs/pairs are not independent samples.",
+    "Retrospective, reused discovery data; no generalization or causal attribution claim.",
+    "Local branch horizon is not aligned to whole-rule remaining budget.",
+    "Bank trajectory seed17 differs from stored endpoint seeds0/1.",
+    "Per-state best action/rule uses hindsight labels; not a deployable policy or a full-route gain.",
+    "Grammar coverage concerns a fixed finite 144-program set, not all allowed arithmetic expressions.",
+    "State-specific existence witnesses are constructed after observing positive labels and are not generalization evidence.",
+    "Grammar endpoint results from other original instances are not pooled into matched analysis."
+  ],
+  "resources": {
+    "wall_seconds": 0.8851307000149973,
+    "process_cpu_seconds": 0.859375,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "numpy": "2.4.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "new_solver_runs": 0,
+    "new_branches": 0,
+    "llm_calls": 0,
+    "gpu_used": false,
+    "final_opened": false
+  }
+}
