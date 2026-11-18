@@ -1,0 +1,49 @@
+{
+  "at_utc": "2026-11-18T22:43:39.847729+00:00",
+  "protocol": {
+    "protocol": "milestone-reference-v1",
+    "recorded_before_new_dev_inspection": true,
+    "pool": "same 64 milestone program_dev_eval originals",
+    "solver_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "manual_rules": {
+      "standard": "d/(1+p)",
+      "soft_penalty": "d/(1+0.25*p)",
+      "centered": "(d-mean_d)/(1+p)",
+      "phase_centered": "(d-mean_d*clip(progress/4,0,1))/(1+p)"
+    },
+    "manual_rule_selection": "all four reported; no best manual selected using dev",
+    "lkh": {
+      "max_trials": 1000,
+      "runs": 1,
+      "source": "previously pinned unmodified LKH3.0.6 mirror",
+      "continuous_distance_scale": 1000000
+    },
+    "lehd": {
+      "rrc_budgets": [
+        0,
+        10
+      ],
+      "checkpoint": "previously pinned author checkpoint",
+      "device": "cuda",
+      "reference_tour_as_model_input": false
+    },
+    "runtime_scope": "quality runs may use parallel CPUs; separate isolated service-time sample after all generation, no claim of equal time across algorithms",
+    "timing": {
+      "instances_per_size": 8,
+      "solver_seed": 0,
+      "repetitions": 3,
+      "selection": "first eight in each frozen dev size, without looking at outcomes"
+    },
+    "no_final": true,
+    "no_method_changes_after_results": true
+  },
+  "config_sha256": "ee58c9bd6b2ea0cbd24091ec5cd4b30875176b153b3aeabafb236c55bfa79e9f",
+  "source_sha256": "ea29d106f5b3e1080154174d5bc042286be67409f67ebd2e692ed9edb93fa3ba",
+  "inputs_sha256": "bf02900b92809adf8bc17cac2208c1fec87cd63146f5e4717c04cf51594387bd"
+}

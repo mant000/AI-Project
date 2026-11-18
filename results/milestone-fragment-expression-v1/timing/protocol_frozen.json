@@ -1,0 +1,110 @@
+{
+  "at_utc": "2026-11-18T22:52:44.682379+00:00",
+  "source_sha256": "ec5ade973aa2b5ec6594115cc2090beca4c91d94512ce14e260c2c44f2f27010",
+  "reference_config_sha256": "ee58c9bd6b2ea0cbd24091ec5cd4b30875176b153b3aeabafb236c55bfa79e9f",
+  "items": [
+    "joshi:tsp50_train_concorde.txt:673",
+    "joshi:tsp50_train_concorde.txt:674",
+    "joshi:tsp50_train_concorde.txt:675",
+    "joshi:tsp50_train_concorde.txt:676",
+    "joshi:tsp50_train_concorde.txt:677",
+    "joshi:tsp50_train_concorde.txt:678",
+    "joshi:tsp50_train_concorde.txt:679",
+    "joshi:tsp50_train_concorde.txt:680",
+    "joshi:tsp100_train_concorde.txt:673",
+    "joshi:tsp100_train_concorde.txt:674",
+    "joshi:tsp100_train_concorde.txt:675",
+    "joshi:tsp100_train_concorde.txt:676",
+    "joshi:tsp100_train_concorde.txt:677",
+    "joshi:tsp100_train_concorde.txt:678",
+    "joshi:tsp100_train_concorde.txt:679",
+    "joshi:tsp100_train_concorde.txt:680"
+  ],
+  "programs": {
+    "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21": {
+      "expression": "d / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+      "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+    },
+    "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27": {
+      "expression": "d / (1 + 0.25 * p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.25 * p)\n",
+      "program_sha256": "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27"
+    },
+    "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b": {
+      "expression": "(d - mean_d) / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - mean_d) / (1 + p)\n",
+      "program_sha256": "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b"
+    },
+    "b556d1b8a1d2a9d17c52a6948c5e5e262428ab2aea991944f22db056b70dec48": {
+      "expression": "(d - mean_d * clip(progress / 4, 0, 1)) / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d - mean_d * clip(progress / 4, 0, 1)) / (1 + p)\n",
+      "program_sha256": "b556d1b8a1d2a9d17c52a6948c5e5e262428ab2aea991944f22db056b70dec48"
+    },
+    "fa24ecf002cf720334a166a145169ab46b49b1ea65c55239f029da971505681c": {
+      "expression": "0.9 * d / (1 + p) + 0.05 * (mean_d - d) / (1 + p) + 0.05 * (max_d - d) / (1 + p)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return 0.9 * d / (1 + p) + 0.05 * (mean_d - d) / (1 + p) + 0.05 * (max_d - d) / (1 + p)\n",
+      "program_sha256": "fa24ecf002cf720334a166a145169ab46b49b1ea65c55239f029da971505681c"
+    },
+    "47c026ac0e079fd02801703c1e5ba7a305c10fb0403278a4385aa74aa7ebbdb2": {
+      "expression": "0.6 * d / (1 + p) + 0.4 * d / (1 + p) ** 2 - 0.1 * d / (1 + p) ** 3",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return 0.6 * d / (1 + p) + 0.4 * d / (1 + p) ** 2 - 0.1 * d / (1 + p) ** 3\n",
+      "program_sha256": "47c026ac0e079fd02801703c1e5ba7a305c10fb0403278a4385aa74aa7ebbdb2"
+    },
+    "af9c671c67be238fd3a4d1f076e574bcfc4c60c138c7fe3ecdd81b1f0b9f54c4": {
+      "expression": "0.8 * d / (1 + p) + 0.2 * ((max_d - d) / (1 + p)) ** 2",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return 0.8 * d / (1 + p) + 0.2 * ((max_d - d) / (1 + p)) ** 2\n",
+      "program_sha256": "af9c671c67be238fd3a4d1f076e574bcfc4c60c138c7fe3ecdd81b1f0b9f54c4"
+    },
+    "ca424326109f101bdaa630d95acfbba40ed3d3aeaef39b5182f289a1c1273fb7": {
+      "expression": "0.25 * d / (1 + p) + 0.75 * d / (1 + p * 2)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return 0.25 * d / (1 + p) + 0.75 * d / (1 + p * 2)\n",
+      "program_sha256": "ca424326109f101bdaa630d95acfbba40ed3d3aeaef39b5182f289a1c1273fb7"
+    },
+    "1787bb9f0ab3ff8ea1c17467ab469aebd7ad517d2b8ce6aaca22e73ebf95843c": {
+      "expression": "0.4 * d / (1 + p) + 0.6 * d / (max_d / mean_d)",
+      "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return 0.4 * d / (1 + p) + 0.6 * d / (max_d / mean_d)\n",
+      "program_sha256": "1787bb9f0ab3ff8ea1c17467ab469aebd7ad517d2b8ce6aaca22e73ebf95843c"
+    }
+  },
+  "aliases": {
+    "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21": [
+      "standard",
+      "P/1201",
+      "F/1201",
+      "A/1202",
+      "F/1202",
+      "A/1203",
+      "F/1203",
+      "A/1204"
+    ],
+    "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27": [
+      "soft_penalty"
+    ],
+    "3e79c9ea6c8882a465ae75bb014bd354f60806554dbc4fd6041537733b09594b": [
+      "centered"
+    ],
+    "b556d1b8a1d2a9d17c52a6948c5e5e262428ab2aea991944f22db056b70dec48": [
+      "phase_centered"
+    ],
+    "fa24ecf002cf720334a166a145169ab46b49b1ea65c55239f029da971505681c": [
+      "A/1201"
+    ],
+    "47c026ac0e079fd02801703c1e5ba7a305c10fb0403278a4385aa74aa7ebbdb2": [
+      "P/1202"
+    ],
+    "af9c671c67be238fd3a4d1f076e574bcfc4c60c138c7fe3ecdd81b1f0b9f54c4": [
+      "P/1203"
+    ],
+    "ca424326109f101bdaa630d95acfbba40ed3d3aeaef39b5182f289a1c1273fb7": [
+      "P/1204"
+    ],
+    "1787bb9f0ab3ff8ea1c17467ab469aebd7ad517d2b8ce6aaca22e73ebf95843c": [
+      "F/1204"
+    ]
+  },
+  "repetitions": 3,
+  "seed": 0,
+  "concurrency": 1,
+  "scope": "fixed-work service time, startup/compile excluded; explicit model load and warmup retained separately"
+}
