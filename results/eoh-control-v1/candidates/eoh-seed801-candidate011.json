@@ -1,0 +1,17 @@
+{
+  "candidate_id": "eoh-seed801-candidate011",
+  "at_utc": "2026-11-18T10:33:54.249597+00:00",
+  "discovery_seed": 801,
+  "index": 11,
+  "operator": "e2",
+  "parent_sha256": [
+    "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+    "0ae8acdebc2785883170dd7fb9698956ddfab9e961529b96741e89740d17065c"
+  ],
+  "valid": false,
+  "expression": "d * (1 - p) / ((1 + p) * log1p(progress))",
+  "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d * (1 - p) / ((1 + p) * log1p(progress))\n",
+  "program_sha256": "9fff019c46ed5e351db9fb2fe14121278adc01f7acba138b3a7c0af9ff0d044b",
+  "duplicate_program": true,
+  "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/eoh_control.py\", line 72, in main\n    if not ev['ok']:raise ValueError(ev.get('error','Endpoint failure'))\nValueError: Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: divide by zero encountered in divide\n\n"
+}

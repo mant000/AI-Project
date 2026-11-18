@@ -1,0 +1,18 @@
+{
+  "candidate_id": "eoh-seed802-candidate011",
+  "at_utc": "2026-11-18T10:36:00.266045+00:00",
+  "discovery_seed": 802,
+  "index": 11,
+  "operator": "e2",
+  "parent_sha256": [
+    "13ed57b3a767f0cee57bc594d0d43e0071e04801213f1f606668d7c9ee31484a",
+    "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+  ],
+  "valid": true,
+  "expression": "d / (1 + p) * (1 + 0.1 * (mean_d / max_d)) * (1 + 0.1 * (progress / stagnation)) * (1 + 0.1 * (1 - best_ratio))",
+  "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p) * (1 + 0.1 * (mean_d / max_d)) * (1 + 0.1 * (progress / stagnation)) * (1 + 0.1 * (1 - best_ratio))\n",
+  "program_sha256": "7f5877a29c0c9570bf5114fe8298c7da2a935e36a08f1d096d16d63e34acd4d1",
+  "duplicate_program": true,
+  "mean_discovery_gap_percent": 2.572605805272234,
+  "evaluation_reused": true
+}

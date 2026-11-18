@@ -1,0 +1,20 @@
+{
+  "ok": false,
+  "error": "Traceback (most recent call last):\n  File \"/root/autodl-tmp/tsp-state-value/code/scripts/stage3_worker.py\", line 51, in main\n    if method!='nn': run(s,budget,rule=rule if method=='gls' else None)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 111, in run\n    penalize(state, select_edge(state, rule))\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/solver.py\", line 72, in select_edge\n    scores = dist/(1+p) if rule is None else np.asarray(rule(dist.copy(), p.copy(), state), dtype=float)\n  File \"/root/autodl-tmp/tsp-state-value/code/src/tsp_value/programs.py\", line 58, in rule\n    answer=np.asarray(eval(code,{'__builtins__':{},**FUNCTIONS},values),dtype=float)\n  File \"<generated-priority>\", line 1, in <module>\nFloatingPointError: invalid value encountered in sqrt\n",
+  "results": [],
+  "wall_seconds": 0.005606513470411301,
+  "cpu_seconds": 0.0035256229999999916,
+  "peak_rss_kib": 5516836,
+  "returncode": 0,
+  "stderr": "",
+  "subprocess_wall_seconds": 0.15113979950547218,
+  "child_cpu_seconds": 0.14656300000000044,
+  "program_sha256": "27b0b3176bcb414e122492df2baa850a430ab5f5d610e30933bae2af5bd1cd7a",
+  "pool": "discovery",
+  "seeds": [
+    0,
+    1
+  ],
+  "method": "gls",
+  "at_utc": "2026-11-18T10:37:21.004590+00:00"
+}

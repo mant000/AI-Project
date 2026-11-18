@@ -1,0 +1,21 @@
+{
+  "candidate_id": "original-A-seed802-candidate014",
+  "generator": "original",
+  "arm": "A",
+  "discovery_seed": 802,
+  "index": 14,
+  "parent_sha256": "e2d804eef8db955a814852fa8d6bfc8d09ab949e252beb01ecbb21d9996d5e80",
+  "valid": true,
+  "at_utc": "2026-11-18T09:18:12.773543+00:00",
+  "expression": "d + p * (max_d - mean_d) ** 2 * (1 + progress) * (1 + stagnation) * (best_ratio - 1) / (1 + p)",
+  "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d + p * (max_d - mean_d) ** 2 * (1 + progress) * (1 + stagnation) * (best_ratio - 1) / (1 + p)\n",
+  "program_sha256": "d4d5d0430db7d8377052d1642755b17980933ace30070321439aa89a719c6327",
+  "duplicate_program": true,
+  "mean_discovery_gap_percent": 2.9999561233788063,
+  "gap_by_size": {
+    "50": 2.4410976335723378,
+    "100": 3.558814613185275
+  },
+  "evaluation_reused": true,
+  "same_endpoint_routes_as_parent": false
+}
