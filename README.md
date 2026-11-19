@@ -273,7 +273,7 @@ LKH 3.0.6 to the research-use
 with `RUNS=1`, `MAX_TRIALS=1000` and distance scale 1e6. Asset settings and hashes
 are in `configs/reference_assets.json` and `configs/reference_asset_hashes.json`.
 
-## Files
+## Repository layout
 
 | Location | Purpose |
 |---|---|
