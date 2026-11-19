@@ -1,4 +1,4 @@
-"""New original-instance allocation and nested pilot/full policy-fragment measurement on server CPUs."""
+"""Measure single-penalty, fragment and persistent outcomes from a rebuilt state bank."""
 import argparse
 from concurrent.futures import ProcessPoolExecutor,as_completed
 import copy

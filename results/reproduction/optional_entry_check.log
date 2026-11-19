@@ -1,0 +1,26 @@
+LKH smoke result keys ['best_tour', 'original_length', 'seed', 'lkh_seed', 'max_trials', 'integer_input_scale', 'integer_input_route_cost', 'original_distance_mode', 'input_quantization_route_error_bound', 'wall_seconds', 'parent_cpu_seconds', 'child_cpu_seconds', 'stdout', 'stderr', 'source_mirror_commit']
+/root/miniconda3/lib/python3.10/site-packages/torch/__init__.py:614: UserWarning: torch.set_default_tensor_type() is deprecated as of PyTorch 2.1, please use torch.set_default_dtype() and torch.set_default_device() as alternatives. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:451.)
+  _C._set_default_tensor_type(t)
+/root/miniconda3/lib/python3.10/site-packages/torch/_utils.py:831: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+LKH and LEHD fixture tours match published records exactly
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.59s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.54s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.41s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.00it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.18s/it]
+/root/autodl-tmp/tsp-state-value/envs/milestone/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:601: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.7` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/root/autodl-tmp/tsp-state-value/envs/milestone/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.8` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+/root/autodl-tmp/tsp-state-value/envs/milestone/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:623: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `20` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
+  warnings.warn(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+{
+  "status": "passed",
+  "scope": "existing author assets and frozen-model loading plus an eight-token synthetic code completion; no effectiveness experiment",
+  "reference_fixture_routes_exact": true,
+  "lkh_fixture_length": 6.003088279845813,
+  "lehd_fixture_length": 6.037520642392787,
+  "qwen_revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+  "qwen_trainable_parameters": 0,
+  "synthetic_response": "1 / (d + p) *",
+  "cuda_peak_allocated_bytes": 8907968000,
+  "wall_seconds": 9.062527354806662
+}

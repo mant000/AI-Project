@@ -1,4 +1,4 @@
-"""Rebuild the new study's state bank from the small released input subset.
+"""Reconstruct the state bank from the 256 released TSP inputs.
 
 This replaces only the large-source allocation step. The original allocation
 audit and input hash remain authoritative. Call measure_feedback.py afterwards

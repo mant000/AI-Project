@@ -240,24 +240,77 @@
         3,
         4
       ],
-      "wall_seconds": 37.404125697910786,
+      "wall_seconds": 61.1127322204411,
       "actual_feedback_branches_independently_replayed": 6,
-      "parent_cpu_seconds": 24.336487746,
-      "waited_child_cpu_seconds": 135.990716,
+      "parent_cpu_seconds": 26.82334939,
+      "waited_child_cpu_seconds": 138.43612199999998,
       "inputs_sha256": "d6f696d3eac0dfd7032d44abf5e50018475b79d675337ce349c5f15cf98c1b2d",
       "study_freeze_sha256": "c25ac6afb088a8d67e5a84d41ae48092bd036c3dd769ed1a5dfd1d252c0ed227",
       "python_version": "3.10.8 (main, Nov 24 2022, 14:13:03) [GCC 11.2.0]",
-      "source_sha256": "f253f1c22fd9f6158d9a7bdbb10c54b9410ecc2fb1f3f8f215223cddc1c81d77"
+      "source_sha256": "c28aed7d4a64a6d240fd85bb33e78e69bcdbe7fee0cb7a12c6f938881ea6bc7e"
     },
     "record_audit": {
       "status": "passed",
-      "wall_seconds": 14.368450749665499,
-      "source_sha256": "65e92dd35a2ae7d12bd556bbad3776595cc2818e84a925f21fda9cca6032e4e1",
+      "wall_seconds": 14.389401536434889,
+      "source_sha256": "436691cf97628a6008abf3cdd1f26075ad7f704bafd85543c7ba8396f7232651",
       "scope": "raw record repricing, parent/selection/freeze/feedback checks and bootstrap; no model inference or new solver executions"
+    },
+    "mechanism_reproduction": {
+      "status": "passed",
+      "source_commit": "89670828a2d1f1c8770f90a60226b4e940ac42e1",
+      "states": 1536,
+      "exact_branches": 56832,
+      "exact_fields": "All numerical fields, routes, actions, program hashes and budgets; only wall/CPU timing fields excluded",
+      "nested_pilot": {
+        "status": "completed",
+        "at_utc": "2026-11-19T05:29:10.025009+00:00",
+        "phase": "pilot",
+        "states": 192,
+        "states_reused_from_nested_pilot": 0,
+        "original_instances": 16,
+        "unique_branches_in_phase": 7104,
+        "new_branches": 7104,
+        "wall_seconds": 34.23825132474303,
+        "parent_cpu_seconds": 3.104116611,
+        "waited_child_cpu_seconds": 319.575238,
+        "projected_full_measurement_wall_seconds": 273.90601059794426,
+        "bank_sha256": "3609f861f1054cc2ab0c66b1675565ac9050db6a62052f2eaadb255dc5e52c08",
+        "final_opened": false,
+        "parameter_training": false
+      },
+      "additional_full": {
+        "status": "completed",
+        "at_utc": "2026-11-19T05:32:54.935149+00:00",
+        "phase": "full",
+        "states": 1536,
+        "states_reused_from_nested_pilot": 192,
+        "original_instances": 128,
+        "unique_branches_in_phase": 56832,
+        "new_branches": 49728,
+        "wall_seconds": 224.60831125453115,
+        "parent_cpu_seconds": 16.167191877,
+        "waited_child_cpu_seconds": 2223.961823,
+        "projected_full_measurement_wall_seconds": null,
+        "bank_sha256": "3609f861f1054cc2ab0c66b1675565ac9050db6a62052f2eaadb255dc5e52c08",
+        "final_opened": false,
+        "parameter_training": false
+      }
+    },
+    "optional_entry_check": {
+      "status": "passed",
+      "scope": "existing author assets and frozen-model loading plus an eight-token synthetic code completion; no effectiveness experiment",
+      "reference_fixture_routes_exact": true,
+      "lkh_fixture_length": 6.003088279845813,
+      "lehd_fixture_length": 6.037520642392787,
+      "qwen_revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+      "qwen_trainable_parameters": 0,
+      "synthetic_response": "1 / (d + p) *",
+      "cuda_peak_allocated_bytes": 8907968000,
+      "wall_seconds": 9.062527354806662
     }
   },
   "accounting": "Pilot/full new branches summed once. Whole process waited-child CPU is authoritative. Inner concurrent subprocess child deltas overlap and are never added to it. CPU feedback subtotals are included in process totals.",
   "hardware": "RTX3090 24GB; Xeon6330 14-vCPU quota; 60GiB RAM",
   "billing": "existing monthly rental; no fabricated per-run monetary price; device/host seconds and approximate sampled GPU energy reported",
-  "historical_costs": "Original stage-specific resource records retained under results/stage2, core, teacher-v2, training, main, solver-controls; they are separate protocols, not part of the new-study subtotal."
+  "historical_costs": "Earlier stages are retained at tag milestone-2026-11-19; they are separate protocols, excluded from this study subtotal."
 }

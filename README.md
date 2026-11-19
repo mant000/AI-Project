@@ -18,7 +18,8 @@ labels were zero, and the Transformer gave little validation benefit. That led
 to the question studied here: **is one action the right unit of feedback for a
 rule that is applied repeatedly?** The initial value-model experiments and
 subsequent training trials are preserved in the
-[original research snapshot](https://github.com/mant000/AI-Project/tree/milestone-2026-11-19).
+[original value-model results](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/STAGE2_RESULTS.md)
+and the [complete research snapshot](https://github.com/mant000/AI-Project/tree/milestone-2026-11-19).
 They motivated this experiment; they are not additional repetitions of it.
 
 At the same saved search state, I compare three interventions:
@@ -153,8 +154,8 @@ python scripts/check_results.py --analysis-proof outputs/analysis/analysis_verif
 
 This checks **2,240 reference routes and 576 timing routes**. Actual verification
 records are in [results/reproduction](results/reproduction). On the rented
-14-vCPU Xeon 6330, the original analysis took 14 s, replay 37 s with ten workers,
-and complete mechanism measurement 269 s. Fewer workers or a slower CPU will
+14-vCPU Xeon 6330, the revised commands took 14 s for analysis, 61 s for replay
+with four workers, and 259 s for complete mechanism measurement with ten workers. Fewer workers or a slower CPU will
 take longer. Elapsed times need not match across machines.
 
 ## 5. Regenerate candidates with the frozen 7B model
@@ -168,7 +169,7 @@ snapshot when available.
 ```bash
 python -m pip install -r requirements-gpu.txt
 export TSP_ROOT=/absolute/path/to/run-root
-mkdir -p "$TSP_ROOT/artifacts"
+mkdir -p "$TSP_ROOT/artifacts" "$TSP_ROOT/tmp"
 # Skip this download if the manifest already points to the verified snapshot.
 python scripts/download_model.py --root "$TSP_ROOT"
 python scripts/discover_rules.py --root "$TSP_ROOT" \
@@ -203,11 +204,17 @@ timing sample on 16 prespecified inputs with three repeats. LKH and LEHD use
 their own budgets; this is not an equal-compute comparison. Recorded reference
 and timing runs took 540 s and 32 s. Final data are not evaluated.
 
-To redraw figures and build the editable report:
+To redraw the figures with an available serif font:
 
 ```bash
 python scripts/plot_results.py --output outputs/figures
+```
+
+To rebuild the course PDF and editable Word file with the required font:
+
+```bash
 python -m pip install -r requirements-report.txt
+python scripts/plot_results.py --font-directory /path/to/TimesNewRoman --output report/figures
 python scripts/build_report.py --font-directory /path/to/TimesNewRoman
 ```
 

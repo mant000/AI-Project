@@ -1,7 +1,7 @@
-"""Audit reference tours, model exports and the complete new-study cost ledger.
+"""Reprice reference/timing tours and assemble the measured experiment cost ledger.
 
-Run after Tier1/Tier2 have actually succeeded. Clone/environment identity is
-recorded, never inferred from the presence of a directory called 'fresh'.
+Run after analyze_results.py and replay_solvers.py have succeeded.
+The output records the actual code revision and Python environment.
 """
 import argparse
 import importlib.metadata
