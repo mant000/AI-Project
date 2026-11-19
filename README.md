@@ -2,7 +2,7 @@
 
 Hongye XU (72655146) · CS5491 Artificial Intelligence · Individual project
 
-[Milestone report](report/milestone.pdf) · [Code revision 5c4a6e6](https://github.com/mant000/AI-Project/tree/5c4a6e6ef1f61d8f7c238a851d628a638c4b3abd)
+[milestone-2026-11-19-v5](https://github.com/mant000/AI-Project/tree/milestone-2026-11-19-v5)
 
 I study how feedback from a search state can help a language model discover
 travelling salesman problem (TSP) heuristics. The model proposes an edge-priority
@@ -130,7 +130,7 @@ Analysis and solver replay need no GPU or model weights. The 256 input instances
 are included. The commands below use a Linux shell and Python 3.10:
 
 ```bash
-git clone --depth 1 --branch milestone-2026-11-19-v4 https://github.com/mant000/AI-Project.git
+git clone --depth 1 --branch milestone-2026-11-19-v5 https://github.com/mant000/AI-Project.git
 cd AI-Project
 python3.10 -m venv .venv
 source .venv/bin/activate
@@ -288,7 +288,3 @@ are in `configs/reference_assets.json` and `configs/reference_asset_hashes.json`
 | `results/research_inputs.jsonl`, `results/research_records.json` | Earlier development inputs and record provenance |
 | `results/interface_check/` | Initial response-interface experiment |
 | `results/reproduction/` | Verification outputs and costs |
-| `report/` | English milestone PDF, editable Word file and figures |
-
-The research interpretation and the final-project plan, including CPU/GPU
-allocation and continue/stop criteria, are in Sections 6–7 of the report.
