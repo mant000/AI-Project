@@ -1,2 +1,0 @@
-def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):
-    return d / (1 + 0.5 * p) + 0.25 * mean_d * p / (1 + p)

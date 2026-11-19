@@ -4,48 +4,7 @@
 *.md text eol=lf
 *.json text eol=lf
 *.txt text eol=lf
-.gitignore text eol=lf
-.gitattributes text eol=lf
-# The audited manifest hash covers its exact csv.writer CRLF bytes.
-splits/manifest.csv -text
-# Experiment provenance hashes cover the original config bytes.
-configs/stage2*.json -text
-# Stage3 immutable provenance covers exact raw JSONL/CSV/source/figure bytes.
-results/stage3/** -text
-results/stage3/**/*.svg -diff
-configs/stage3_protocol.json -text
-results/core/** -text
-results/core/**/*.svg -diff
-configs/core*.json -text
-results/teacher-v2/** -text
-results/corpus-v1/** -text
-results/training/** -text
-results/main/** -text
-results/main/**/*.svg diff
-configs/grpo*.json -text
-configs/history*.json -text
-results/history-ablation-v1/** -text
-configs/external_baselines*.json -text
-configs/solver_controls*.json -text
-results/baselines/** -text
-results/eoh-control-v1/** -text
-results/solver-controls/** -text
-configs/main_control*.json -text
-docs/R3_REPETITION_AMENDMENT.json -text
-results/r2-analysis/** -text
-results/r2-analysis/**/*.svg -diff
-configs/sft*.json -text
-configs/dev_benchmark*.json -text
-configs/final_evaluation*.json -text
-results/final/** -text
-results/final/**/*.svg -diff
-trained_models/** -text
-configs/milestone_fragment*.json -text
-docs/MILESTONE_EXPRESSION_INTERFACE_AMENDMENT.json -text
-results/milestone-fragment*/** -text
-results/feedback-revision-v1/** -text
-results/feedback-information-audit-*/** -text
-configs/feedback_revision_v1.json -text
-configs/milestone_reference_v1.json -text
-results/milestone-reproduction-v1/** -text
-reports/milestone-2026-11-19/** -text
+results/** -text
+configs/** -text
+report/** -text
+docs/interface_change.json -text

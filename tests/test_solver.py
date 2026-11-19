@@ -8,8 +8,8 @@ import unittest
 from unittest.mock import patch
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src'))
-from tsp_value.data import distances, length, parse_author, validate_tour
-from tsp_value.solver import (create_state, clone, run, save_state, load_state,
+from tsp.data import distances, length, parse_author, validate_tour
+from tsp.solver import (create_state, clone, run, save_state, load_state,
                               penalize, select_edge, paired_continuation, paired_action_set)
 
 # Hand-written asymmetric six-city fixture, not an experimental instance.
@@ -132,7 +132,7 @@ class SolverCorrectness(unittest.TestCase):
         s=create_state(COORDS)
         run(s,10000,stop_at_decision=True)
         t=s['tour']
-        with patch('tsp_value.solver.run',wraps=run) as measured:
+        with patch('tsp.solver.run',wraps=run) as measured:
             result=paired_action_set(s,tuple(t[:2]),[tuple(t[1:3]),tuple(t[2:4])],[41,42],103)
         self.assertEqual(result['branches_executed'],6)
         self.assertEqual(result['reference_branches_executed'],2)

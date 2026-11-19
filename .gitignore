@@ -1,31 +1,10 @@
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-id_*
-*credential*
-*token*.txt
 __pycache__/
-.pytest_cache/
 *.pyc
 .venv/
-envs/
-cache/
-data/
-# Small, hashed derived pilot states are research evidence, not raw source data.
-!results/teacher-v2/data/
-!results/teacher-v2/data/**
-models/
-checkpoints/
-logs/
-artifacts/
-*.tar.gz
-*.zip
-*.safetensors
-*.pt
-*.pth
-# Own trained inference weights are small per-file, explicitly released with
-# source-checkpoint provenance; raw optimizer checkpoints stay outside Git.
-!trained_models/
-!trained_models/**
+.env
+.env.*
+*.pem
+*.key
+outputs/
+report/preview/
+report/format_verification.json
