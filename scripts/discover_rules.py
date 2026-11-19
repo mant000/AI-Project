@@ -133,11 +133,28 @@ class FragmentStudy:
 def main():
     global torch,SYSTEM,TASK
     ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,required=True);ap.add_argument('--output',type=Path,default=CODE/'results/discovery/run')
-    ap.add_argument('--prepare',type=Path,default=CODE/'results/mechanism/bank');a=ap.parse_args();out=a.output;out.mkdir(parents=True,exist_ok=True)
+    ap.add_argument('--prepare',type=Path,default=CODE/'results/mechanism/bank')
+    ap.add_argument('--config',type=Path,default=CODE/'configs/discovery.json')
+    ap.add_argument('--model-manifest',type=Path,help='Alternative model manifest from download_model.py')
+    ap.add_argument('--workers',type=int,help='CPU processes; defaults to the recorded protocol')
+    ap.add_argument('--compute-dtype',choices=['bfloat16','float16'],default='bfloat16')
+    a=ap.parse_args();out=a.output;out.mkdir(parents=True,exist_ok=True)
     lock=(out/'run.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);assert not (out/'completed.json').exists()
-    cfg=read(CODE/'configs/discovery.json');assert read(a.prepare.parent/'analysis/summary.json')['signal_gate_passed']
+    cfg=read(a.config)
+    manifest_path=a.model_manifest or a.root/'artifacts/model.json'
+    if not manifest_path.exists() and a.model_manifest is None:
+        manifest_path=a.root/'artifacts/qwen_download.json'
+    manifest=read(manifest_path)
+    if a.model_manifest:
+        cfg.pop('qwen_revision',None)
+        cfg['model_revision']=manifest['config']['revision']
+        cfg['generator']=manifest['config']['repository']+'; frozen NF4, no adapter'
+    assert manifest['config']['revision']==cfg.get('model_revision',cfg.get('qwen_revision'))
+    if a.workers is not None:
+        assert a.workers>0;cfg['workers']=a.workers
+    assert read(a.prepare.parent/'analysis/summary.json')['signal_gate_passed']
     source=[Path(__file__),*[CODE/f'scripts/{p}.py' for p in ('state_feedback','feedback_worker','experiment_io','prompts','solver_worker','qwen_model','gpu_monitor')],CODE/'src/tsp/solver.py',CODE/'src/tsp/programs.py']
-    provenance=dict(protocol=cfg,config_sha256=digest(CODE/'configs/discovery.json'),bank_sha256=digest(a.prepare/'states.jsonl.gz'),
+    provenance=dict(protocol=cfg,config_sha256=digest(a.config),model_manifest_sha256=digest(manifest_path),inference_compute_dtype=a.compute_dtype,bank_sha256=digest(a.prepare/'states.jsonl.gz'),
         source_sha256={p.relative_to(CODE).as_posix():digest(p) for p in source},parameter_training=False,final_opened=False)
     if (out/'protocol_frozen.json').exists():
         old=read(out/'protocol_frozen.json')
@@ -153,10 +170,9 @@ def main():
     from qwen_model import load_base
     from gpu_monitor import monitor_gpu
     from prompts import SYSTEM,TASK
-    torch.set_num_threads(1);torch.cuda.reset_peak_memory_stats();manifest=read(a.root/'artifacts/qwen_download.json')
-    assert manifest['config']['revision']==cfg['qwen_revision']
+    torch.set_num_threads(1);torch.cuda.reset_peak_memory_stats()
     load=time.perf_counter();study.tokenizer=AutoTokenizer.from_pretrained(manifest['snapshot_path'],local_files_only=True)
-    study.model=load_base(manifest['snapshot_path'],False).eval().requires_grad_(False);study.model.config.use_cache=True
+    study.model=load_base(manifest['snapshot_path'],False,a.compute_dtype).eval().requires_grad_(False);study.model.config.use_cache=True
     assert not any(p.requires_grad for p in study.model.parameters());load_seconds=time.perf_counter()-load
     stop,monitor=monitor_gpu(out,stamp(),begin);initial=canonical_program(INITIAL);study.save_program(initial)
     evaluation,_=study.endpoint(initial,'discovery',cfg['endpoint_solver_seeds']);assert evaluation['ok']

@@ -9,6 +9,7 @@ import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import platform
 import sys
 import time
 import numpy as np
@@ -76,10 +77,9 @@ def main():
           historical_costs='Earlier stages are retained at tag milestone-2026-11-19; they are separate protocols, excluded from this study subtotal.'))
     environment=dict(python=sys.version,prefix=sys.prefix,packages={k:importlib.metadata.version(k) for k in ['numpy','scipy','matplotlib']},
                      torch_installed=importlib.util.find_spec('torch') is not None)
-    assert not environment['torch_installed'],'release CPU audit must actually use the separate CPU environment'
     write(a.output/'environment.json',environment)
     proof=dict(status='passed',source_commit=git('rev-parse','HEAD'),origin=git('remote','get-url','origin'),
-          verification_environment='separate Python venv, same rented physical server',analysis=analysis,replay=replay,
+          verification_environment=dict(platform=platform.platform(),python_prefix=sys.prefix),analysis=analysis,replay=replay,
           reference_routes_repriced=reference_checks,timing_routes_repriced=len(timing),
           wall_seconds=time.perf_counter()-start,source_sha256=digest(Path(__file__)),
           not_claimed=['new physical machine','full stochastic GPU discovery regeneration','retraining all historical models'])

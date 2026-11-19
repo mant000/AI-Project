@@ -2,195 +2,213 @@
 
 Hongye XU (72655146) · CS5491 Artificial Intelligence · Individual project
 
-[Milestone report](report/milestone.pdf) · Version: **`milestone-2026-11-19-v2`**
+[Milestone report](report/milestone.pdf) · **`milestone-2026-11-19-v3`**
 
-I study whether feedback from an intermediate search state helps a frozen code
-language model discover better travelling salesman problem (TSP) heuristics.
-The model changes an edge-priority formula inside guided local search (GLS).
-Complete-tour quality determines which formulas survive. The selected formula
-runs on its own, without a language model or learned critic.
+I study how feedback from a search state can help a language model discover
+travelling salesman problem (TSP) heuristics. The model proposes an edge-priority
+formula inside guided local search (GLS). Actual complete-tour quality selects
+which formulas survive. A selected formula runs without a language model.
 
-## 1. From an edge action to a rule fragment
+## 1. How the project reached this question
 
-The original idea was to learn the value of a single edge-penalty action and use
-that prediction to guide program discovery. About 97% of the initial training
-labels were zero, and the Transformer gave little validation benefit. That led
-to the question studied here: **is one action the right unit of feedback for a
-rule that is applied repeatedly?** The initial value-model experiments and
-subsequent training trials are preserved in the
-[original value-model results](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/STAGE2_RESULTS.md)
-and the [complete research snapshot](https://github.com/mant000/AI-Project/tree/milestone-2026-11-19).
-They motivated this experiment; they are not additional repetitions of it.
+The original proposal combined action-value learning with LLM program discovery
+and generator adaptation. The route to the present experiment was not a direct
+jump from sparse labels to a new method:
 
-At the same saved search state, I compare three interventions:
+| Earlier work | What it established |
+|---|---|
+| [Action-value models](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/STAGE2_RESULTS.md) | About 97% of training labels were zero. Transformer validation gains were small; this identified a weak signal, not its sole cause. |
+| [Frozen-generator A/B/C comparison](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/CORE_R1_RESULTS.md) | A used endpoint feedback, B added predicted values, and C added measured single-action values. Neither added feedback improved the selected rules. A [prompt audit](results/history/abc_feedback_audit.json) found that all 96 C prompts conveyed tied parent/child values, despite some nonzero alternatives in the small bank. |
+| [SFT and GRPO controls](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/SOLVER_CONTROL_RESULTS.md) | Grammar-derived SFT improved development quality under that protocol. Additional state feedback and auxiliary GRPO rewards did not show a clear benefit. Better generator initialization therefore did not establish the value-feedback hypothesis. |
 
-| Intervention | Candidate rule controls | Rest of the search |
+These findings separated two issues: learning a useful prediction and measuring
+an intervention that actually distinguishes the proposed rules. The more direct
+motivation for this study was the gap between **changing one penalty decision**
+and **applying a modified rule repeatedly**, together with the lack of informative
+comparisons in the earlier C prompts. I test that gap directly before training
+another predictor. The earlier experiments remain in the linked historical
+version; their different pools and protocols are not pooled with this study.
+
+## 2. Rule fragments and program discovery
+
+At an identical saved state and remaining work budget, I compare:
+
+| Intervention | Candidate rule controls | Remaining continuation |
 |---|---|---|
 | Single penalty | One penalty decision | Standard GLS |
 | Rule fragment | 25% of remaining work | Standard GLS |
 | Persistent rule | All remaining work | No switch |
 
-Every branch has the same remaining total work budget and is scored by actual
-continuous Euclidean tour length. Persistent outcomes are a diagnostic target;
-they are never shown to the generator.
+Tour quality uses continuous Euclidean distances. Persistent outcomes are a
+diagnostic target and are never shown to the generator. The bank has **128
+instances × three trajectories × four phases = 1,536 states**. Twelve predefined
+rules produce 56,832 branches. For ten noncontrol rules, fragment feedback is
+nonzero in **10.01%** of comparisons, versus **0.53%** for one penalty; correlation
+with persistent outcomes rises from **0.063 to 0.285**.
 
-The bank has **128 instances × three trajectories × four phases = 1,536 states**.
-Twelve predefined rules produce 56,832 unique branches. For ten noncontrol
-rules, fragment feedback is nonzero in **10.01%** of comparisons, versus
-**0.53%** for one penalty. Correlation with persistent outcomes rises from
-**0.063 to 0.285**. This supports a longer intervention for describing a rule
-change. It does not yet establish better program discovery.
+The downstream comparison uses the same frozen NF4 Qwen2.5-Coder-7B-Instruct:
 
-Implementation: [state_feedback.py](scripts/state_feedback.py).
-Inputs, snapshots and branch tours: [results/mechanism/bank](results/mechanism/bank).
-Statistics: [results/mechanism/analysis](results/mechanism/analysis).
-
-## 2. Does that feedback help discover better rules?
-
-I compare the same frozen **Qwen2.5-Coder-7B-Instruct**, loaded in NF4, under
-three feedback conditions. No parameters are trained in this comparison.
-
-| Arm | Information supplied to the generator | Mean development gap (%) ↓ |
+| Arm | Feedback | Mean development gap (%) ↓ |
 |---|---|---:|
 | A | Complete-tour outcomes | 2.411957 |
 | P | A + measured parent/child single-penalty comparison | 2.464831 |
 | F | A + measured parent/child rule-fragment comparison | 2.342285 |
 | Standard GLS | Initial rule, `d/(1+p)` | 2.389059 |
 
-Each arm has four paired discovery seeds and 32 outputs per seed. Invalid and
-duplicate outputs consume budget: **384 outputs, 361 valid**. Candidate promotion
-uses 32 discovery instances. Four elites per lineage are reranked on 32 separate
-selection instances. All 12 selected programs freeze before evaluation on
-**64 new development instances × five solver seeds**. Bank, discovery, selection
-and development instances do not overlap. Final data have not been evaluated.
+Four paired discovery seeds generate 32 outputs per arm: **384 outputs, 361
+valid**. Invalid and duplicate outputs consume budget. Candidate promotion uses
+32 discovery instances; four elites per lineage are reranked on 32 selection
+instances. All 12 selected programs freeze before evaluation on **64 independent
+development instances × five solver seeds**. Bank, discovery, selection and
+development instances do not overlap.
 
-F−A is **−0.069672 gap percentage points**, paired 95% interval **[−0.173928, 0]**.
-Two discovery repetitions improve and two tie. This misses the declared success
-criterion: at least 0.05 points of improvement and an interval strictly below
-zero. Three F lineages retain standard GLS; one selects
-`0.4*d/(1+p) + 0.6*d*mean_d/max_d`. Manual rules and external solvers remain
-stronger. The evidence supports a more informative intervention, with an
-inconclusive downstream benefit.
+F−A is **−0.069672 gap percentage points**, with a paired 95% interval of
+**[−0.173928, 0]**. Two discovery repetitions improve and two tie. This misses
+the declared success criterion of at least 0.05 points of improvement with an
+interval strictly below zero. Three F lineages retain standard GLS; one selects
+`0.4*d/(1+p) + 0.6*d/(max_d/mean_d)`. The feedback is more informative, while its
+downstream benefit remains inconclusive. These are milestone development
+results; the final split remains reserved for the frozen final method.
 
-Implementation: [discover_rules.py](scripts/discover_rules.py), fixed
-[protocol](configs/discovery.json) and [prompts](scripts/prompts.py).
-[results/discovery/run](results/discovery/run) holds every prompt, response,
-candidate, failure, parent link, program hash, feedback branch and final choice.
-[results/discovery/analysis](results/discovery/analysis) holds the report statistics.
+The implementation is [state_feedback.py](scripts/state_feedback.py) and
+[discover_rules.py](scripts/discover_rules.py), with fixed
+[settings](configs/discovery.json) and [prompts](scripts/prompts.py).
+An initial full-function response interface often omitted the function header.
+Its complete batch and the subsequent expression-interface amendment are in
+[results/interface_check](results/interface_check) and
+[docs/interface_change.json](docs/interface_change.json). The batches are separate.
 
-An initial complete-function interface often produced bare returns. I changed
-the common interface to expression continuation before inspecting development
-outcomes. That complete initial batch is in
-[results/interface_check](results/interface_check), with the dated
-[interface change](docs/interface_change.json). The batches are not pooled.
+## 3. Environment and result analysis
 
-## 3. Recompute the reported numbers on a CPU
+The reported runs used the following rented machine and software. These are
+reference measurements, not a requirement to own the same GPU.
 
-Use **Linux and Python 3.10**. No GPU, Torch, model weights or additional dataset
-is needed. The 256 inputs are included. Run from the repository root and use
-new output directories.
+| Component | Recorded setup |
+|---|---|
+| Host | Linux, Xeon Gold 6330 with 14 vCPUs, 60GB RAM |
+| GPU | One RTX3090, 24GB; main discovery peak 8.26GiB Torch allocation, 9.38GiB reservation |
+| Python / numeric packages | Python 3.10.8; pinned packages in `requirements-cpu.txt` |
+| Model runtime | PyTorch 2.1.2+cu121, Transformers 4.45.2, bitsandbytes 0.44.1; `requirements-gpu.txt` |
+| Parallelism | Ten CPU workers for branch measurement; four in the replay example below |
+
+Analysis and solver replay need no GPU or model weights. The 256 input instances
+are included. The commands below use a Linux shell and Python 3.10:
 
 ```bash
-git clone --depth 1 --branch milestone-2026-11-19-v2 https://github.com/mant000/AI-Project.git
+git clone --depth 1 --branch milestone-2026-11-19-v3 https://github.com/mant000/AI-Project.git
 cd AI-Project
 python3.10 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-cpu.txt
-python -m pip check
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 python -m unittest discover -s tests
 python scripts/analyze_results.py --output outputs/analysis
 ```
 
-This recomputes Figure 1, the A/P/F rows of Table 1, Figure 2 and their intervals
-from raw routes. It checks parent promotion, selection, freeze order and feedback
-arithmetic. It reads the saved experiment; it does not generate new routes.
-Expect `status: passed` in `outputs/analysis/analysis_verification.json`.
+This recomputes the mechanism statistics, A/P/F means and paired intervals from
+raw routes, and checks parent updates, selection, freezing and feedback arithmetic.
+Expected: `status: passed` in `outputs/analysis/analysis_verification.json`.
 
-| File in `outputs/analysis/` | What to inspect |
+| Output in `outputs/analysis/` | Contents |
 |---|---|
 | `mechanism_summary.json` | Nonzero rates, correlations and paired intervals |
 | `study_summary.json` | Arm means, contrasts, validity and diversity |
 | `dev_instance_means.csv` | Per-instance results for each frozen lineage |
 
-To check the initial response interface as well:
+The initial response-interface batch can be analyzed separately:
 
 ```bash
 python scripts/analyze_results.py --study results/interface_check/run --output outputs/interface_analysis
 ```
 
-## 4. Rerun the numerical experiments on a CPU
+## 4. Rerun the solver and branch measurements
 
-Reconstruct every bank state and rerun the selected programs, NN and 2-opt:
+Reconstruct the bank and rerun all unique selected programs, NN and 2-opt:
 
 ```bash
 python scripts/replay_solvers.py --workers 4 --output outputs/replay
 ```
 
 Expected: **1,536 exact states, 2,560 exact route replays and six exact feedback
-branches**, in `outputs/replay/replay_verification.json`. Identical selected
-programs are solved once. This tests the actual solver, rather than saved
-summary arithmetic. Use fewer workers if needed.
+branches**, in `outputs/replay/replay_verification.json`.
 
-To repeat the entire 56,832-branch mechanism experiment:
+To repeat the complete mechanism experiment:
 
 ```bash
 python scripts/build_state_bank.py --output outputs/mechanism/bank
-python scripts/measure_feedback.py --root outputs --phase pilot --output outputs/mechanism/bank
-python scripts/measure_feedback.py --root outputs --phase full --output outputs/mechanism/bank
+python scripts/measure_feedback.py --root outputs --phase pilot --workers 10 --output outputs/mechanism/bank
+python scripts/measure_feedback.py --root outputs --phase full --workers 10 --output outputs/mechanism/bank
 python scripts/analyze_feedback.py --prepare outputs/mechanism/bank --output outputs/mechanism/analysis
 ```
 
-The full run reuses the nested pilot. Expected: 1,536 measured states, 56,832
-branches in total, exact standard/rescaling controls and the rates in Section 1.
-The input hash and rebuilt states are checked before measurement.
-
-Reprice the reference/timing routes and assemble the cost ledger:
+The full run reuses the nested pilot: 1,536 states and 56,832 branches in total.
+The input hash and rebuilt states are checked before measurement. Reference and
+timing routes can also be repriced:
 
 ```bash
 python scripts/check_results.py --analysis-proof outputs/analysis/analysis_verification.json \
   --replay-proof outputs/replay/replay_verification.json --output outputs/checks
 ```
 
-This checks **2,240 reference routes and 576 timing routes**. Actual verification
-records are in [results/reproduction](results/reproduction). On the rented
-14-vCPU Xeon 6330, the revised commands took 14 s for analysis, 61 s for replay
-with four workers, and 259 s for complete mechanism measurement with ten workers. Fewer workers or a slower CPU will
-take longer. Elapsed times need not match across machines.
+On the rented Xeon host, analysis took 14 s, replay with four workers took 61 s,
+and complete mechanism measurement with ten workers took 259 s. Worker counts
+can be changed with `--workers`; use the same count for a pilot and its full run.
+Timing varies with hardware. Use new output directories for repeated runs.
+[results/reproduction](results/reproduction) contains actual verification records.
 
-## 5. Regenerate candidates with the frozen 7B model
+## 5. Run program discovery
 
-This optional step repeats stochastic discovery. Use an RTX3090-class 24GB CUDA
-GPU, Python 3.10, ten CPU workers and about 25GB for the pinned model/cache.
-Install `requirements-gpu.txt` in a **separate environment**; keep the CPU
-verification environment unchanged. Reuse compatible packages and a complete
-snapshot when available.
+The reported generator is
+[Qwen2.5-Coder-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/tree/c03e6d358207e414f1eca0bb1891e29f1db0e242),
+revision `c03e6d358207e414f1eca0bb1891e29f1db0e242`, frozen with NF4 double
+quantization and BF16 computation. No adapter is loaded. I allowed about 25GB
+for the complete snapshot and cache. Model weights are downloaded from the
+author release and checked against its published hashes.
+
+The implementation uses CUDA, without restricting the GPU model. Another CUDA
+GPU, including a 4090, can be used with a compatible PyTorch/bitsandbytes build
+and sufficient memory. The observed memory above is a reference, not a tested
+minimum. The pinned requirements describe the original stack; a different GPU
+may need a different PyTorch/CUDA build. Upstream
+[bitsandbytes compatibility notes](https://huggingface.co/docs/bitsandbytes/v0.44.1/en/installation)
+cover the library requirements.
+
+After the mechanism run in Section 4:
 
 ```bash
 python -m pip install -r requirements-gpu.txt
-export TSP_ROOT=/absolute/path/to/run-root
+export TSP_ROOT="$PWD/outputs/runtime"
 mkdir -p "$TSP_ROOT/artifacts" "$TSP_ROOT/tmp"
-# Skip this download if the manifest already points to the verified snapshot.
 python scripts/download_model.py --root "$TSP_ROOT"
-python scripts/discover_rules.py --root "$TSP_ROOT" \
+python scripts/discover_rules.py --root "$TSP_ROOT" --workers 10 \
   --prepare outputs/mechanism/bank --output outputs/discovery/run
 python scripts/analyze_results.py --prepare outputs/mechanism/bank \
   --study outputs/discovery/run --output outputs/discovery/analysis
 ```
 
-Complete Section 4's mechanism run first. Discovery includes selection, freezing
-and development evaluation, with the report's four seeds and output budgets.
-The recorded run took about 19 minutes, including CPU feedback; its wall-time
-cap is two hours. CUDA sampling can vary across systems. Prompts, token IDs,
-seeds and executed-source snapshots document the original run.
+The downloader reuses cached files. An existing complete snapshot can instead be
+registered with `python scripts/download_model.py --root "$TSP_ROOT" --snapshot
+/path/to/snapshot`. It writes `TSP_ROOT/artifacts/model.json`. Discovery includes
+candidate generation, selection, freezing and development evaluation. The
+recorded 384-output run took about 19 minutes, including CPU feedback. Sampling
+can differ across CUDA and package versions; original prompts, replies, token
+IDs, seeds and program hashes are retained.
 
-For the initial interface, use `discover_full_function.py` with another output
-directory. Keep its results separate. Pinned model, data and reference-solver
-sources are in [docs/data_sources.md](docs/data_sources.md).
+For another model, `download_model.py` accepts `--model REPOSITORY --revision
+COMMIT`, or those options together with `--snapshot PATH` for local weights.
+Pass its manifest to `discover_rules.py --model-manifest PATH`. The loader uses
+Hugging Face `AutoModelForCausalLM` and the tokenizer's chat template, with
+`trust_remote_code=False`. `--compute-dtype float16` selects FP16 instead of the
+reported BF16; `--config PATH` supplies alternative experiment settings. Each run
+saves the effective settings, model identity, manifest hash and executed source.
+Different models or settings define new experiments rather than repetitions of
+the reported comparison.
 
-## 6. References, timing and report
+## 6. Development baselines
 
-With the GPU environment, GCC/make and the same `TSP_ROOT`:
+These commands reproduce the manual-rule, LKH and LEHD rows of Table 1, plus the
+serial solver timing sample. They use the included **development** instances;
+no final-test outcomes are needed to reproduce the milestone results.
 
 ```bash
 python scripts/setup_references.py --root "$TSP_ROOT"
@@ -198,46 +216,37 @@ python scripts/evaluate_references.py --root "$TSP_ROOT" --output outputs/refere
 python scripts/benchmark_rules.py --root "$TSP_ROOT" --output outputs/timing
 ```
 
-These verify/download pinned LEHD weights and LKH source, build LKH, repeat the
-quality references on the included 64 development inputs, and run a serial
-timing sample on 16 prespecified inputs with three repeats. LKH and LEHD use
-their own budgets; this is not an equal-compute comparison. Recorded reference
-and timing runs took 540 s and 32 s. Final data are not evaluated.
+Setup downloads/verifies the pinned LEHD checkpoint and LKH source, and builds
+LKH with GCC/make. LEHD runs on the GPU; LKH and the manual rules run on the CPU.
+The serial timing sample uses 16 prespecified inputs and three repeats. The
+recorded quality and timing runs took 540 s and 32 s. These solvers use different
+budgets, so their quality is context rather than an equal-compute treatment.
 
-To redraw the figures with an available serif font:
-
-```bash
-python scripts/plot_results.py --output outputs/figures
-```
-
-To rebuild the course PDF and editable Word file with the required font:
-
-```bash
-python -m pip install -r requirements-report.txt
-python scripts/plot_results.py --font-directory /path/to/TimesNewRoman --output report/figures
-python scripts/build_report.py --font-directory /path/to/TimesNewRoman
-```
-
-Text source: [build_report.py](scripts/build_report.py). The PDF, editable Word
-file and figures are in [report/](report/). Building the course PDF needs genuine
-Times New Roman fonts, which are not redistributed. It has four A4 body pages
-plus references, 12pt text and 2.5cm margins.
+Inputs come from the training release of
+[Joshi et al.](https://github.com/chaitjo/learning-tsp/tree/bb28f5795924d99f7e7d945695e884f8d1f7df45).
+Each released row retains its source location and hashes; the source license is
+in `third_party/learning-tsp-LICENSE.txt`. Continuous tour lengths are repriced
+locally, including negative gaps to the supplied, noncertified reference tours.
+LEHD is pinned to
+[CIAM-Group/NCO_code](https://github.com/CIAM-Group/NCO_code/tree/274df3c4975384592b60fe7f79fbb2441ce11c15/single_objective/LEHD);
+LKH 3.0.6 to the research-use
+[cerebis mirror](https://github.com/cerebis/LKH3/tree/9a51de3161f2746e969f7a2e33220f637da64e54),
+with `RUNS=1`, `MAX_TRIALS=1000` and distance scale 1e6. Asset settings and hashes
+are in `configs/reference_assets.json` and `configs/reference_asset_hashes.json`.
 
 ## Files
 
 | Location | Purpose |
 |---|---|
-| `src/tsp/` | Data, resumable GLS/2-opt and safe arithmetic rule compiler |
+| `src/tsp/` | Data, resumable GLS/2-opt and arithmetic rule compiler |
 | `scripts/state_feedback.py`, `scripts/feedback_worker.py` | Shared-state interventions |
 | `scripts/discover_rules.py`, `scripts/prompts.py`, `scripts/qwen_model.py` | Frozen-model discovery |
-| `scripts/analyze_results.py`, `scripts/replay_solvers.py` | CPU analysis and reproduction |
-| `configs/` | Fixed settings and author asset hashes |
-| `results/mechanism/`, `results/discovery/` | The two research comparisons |
-| `results/interface_check/` | Initial response-interface batch |
-| `results/reproduction/` | Actual verification outputs and costs |
-| `report/` | English PDF, editable source and figures |
+| `scripts/analyze_results.py`, `scripts/replay_solvers.py` | Result analysis and solver replay |
+| `configs/` | Experiment settings and author asset hashes |
+| `results/mechanism/`, `results/discovery/` | Branch records, generations, candidates, failures, lineage and evaluations |
+| `results/interface_check/` | Initial response-interface experiment |
+| `results/reproduction/` | Verification outputs and costs |
+| `report/` | English milestone PDF, editable Word file and figures |
 
-Raw records retain the original paths and executed-source hashes: those identify
-what ran, rather than the current layout. This checkout contains the code and
-evidence for the report. The next experiment, budget and decision points are in
-[docs/next_steps.md](docs/next_steps.md).
+The research interpretation and the final-project plan, including CPU/GPU
+allocation and continue/stop criteria, are in Sections 6–7 of the report.

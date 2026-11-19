@@ -46,8 +46,13 @@ def prepare(root,out,cfg):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--root',type=Path,required=True);ap.add_argument('--phase',choices=['pilot','full'],required=True)
-    ap.add_argument('--output',type=Path,default=CODE/'results/mechanism/bank');a=ap.parse_args();out=a.output;out.mkdir(parents=True,exist_ok=True)
-    cfg=read(CODE/'configs/state_feedback.json');begin,cpu=time.perf_counter(),time.process_time()
+    ap.add_argument('--output',type=Path,default=CODE/'results/mechanism/bank')
+    ap.add_argument('--workers',type=int,help='CPU processes; defaults to the recorded protocol')
+    a=ap.parse_args();out=a.output;out.mkdir(parents=True,exist_ok=True)
+    cfg=read(CODE/'configs/state_feedback.json')
+    if a.workers is not None:
+        assert a.workers>0;cfg['workers']=a.workers
+    begin,cpu=time.perf_counter(),time.process_time()
     sources=[Path(__file__),CODE/'scripts/state_feedback.py',*[CODE/f'src/tsp/{name}.py' for name in ('solver','programs','data')]]
     provenance=dict(config_sha256=digest(CODE/'configs/state_feedback.json'),source_sha256={p.relative_to(CODE).as_posix():digest(p) for p in sources},protocol=cfg)
     if (out/'protocol_frozen.json').exists():
