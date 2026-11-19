@@ -1,0 +1,108 @@
+{
+  "groups": [
+    {
+      "nodes": 50,
+      "horizon": 58750,
+      "states": 512,
+      "candidate_labels": 4096,
+      "zero_label_fraction": 0.97607421875,
+      "informative_state_fraction": 0.14453125,
+      "positive_fraction": 0.007080078125,
+      "negative_fraction": 0.016845703125,
+      "mean_benefit": 2.0681898550106666e-05,
+      "benefit_p05_p50_p95": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "identical_seed_label_fraction": 1.0,
+      "mean_seed_label_std": 0.0,
+      "seed_benefit_sign_disagreement_fraction": 0.0,
+      "identical_seed_terminal_trajectory_fraction": 1.0,
+      "branch_seconds_p50_p95": [
+        0.010085798799991608,
+        0.014517754316329956
+      ]
+    },
+    {
+      "nodes": 100,
+      "horizon": 970000,
+      "states": 512,
+      "candidate_labels": 4096,
+      "zero_label_fraction": 0.964111328125,
+      "informative_state_fraction": 0.212890625,
+      "positive_fraction": 0.0068359375,
+      "negative_fraction": 0.029052734375,
+      "mean_benefit": -4.368378979258655e-05,
+      "benefit_p05_p50_p95": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "identical_seed_label_fraction": 1.0,
+      "mean_seed_label_std": 0.0,
+      "seed_benefit_sign_disagreement_fraction": 0.0,
+      "identical_seed_terminal_trajectory_fraction": 1.0,
+      "branch_seconds_p50_p95": [
+        0.08034734800457954,
+        0.08664843160659075
+      ]
+    }
+  ],
+  "by_state": [
+    {
+      "penalty_events": 0,
+      "states": 256,
+      "informative_state_fraction": 0.15234375
+    },
+    {
+      "penalty_events": 8,
+      "states": 256,
+      "informative_state_fraction": 0.1953125
+    },
+    {
+      "penalty_events": 32,
+      "states": 256,
+      "informative_state_fraction": 0.15234375
+    },
+    {
+      "penalty_events": 96,
+      "states": 256,
+      "informative_state_fraction": 0.21484375
+    }
+  ],
+  "provenance": {
+    "started_at_utc": "2026-11-17T16:23:02.888877+00:00",
+    "config_sha256": "82cee8425f5e51b04db92d99178931b7d897a25c1d62675a049dd6cb553bb4c6",
+    "normalized_data_sha256": "43be012d1ec09a869b5071b10def2f90a1d55a1784f5ca819ddbdafb3fbab32f",
+    "manifest_sha256": "75b98081bfe6dece9325ac63032e98a2d71ca8a714486c7625ebbfb9fe606f3b",
+    "source_sha256": {
+      "scripts/stage2_labels.py": "7cbb6a5f35b0e309ef6b0ee696a175a5e8b8f2486afbef3f327177cddb5ac2e2",
+      "src/tsp_value/solver.py": "1a9040bea446dca89df2a5562afcec752d9df73cbcf522bd3641afea85c7000f"
+    },
+    "python": "3.10.8",
+    "numpy": "1.26.4",
+    "workers": 8,
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "reused_dataset_sha256": "2674696a9f59e4bf8db9a67c9b4ff58c7a2837bc0724b7c59156962156e820f0"
+  },
+  "instances": 256,
+  "states": 1024,
+  "branches_executed": 18432,
+  "reference_branches": 2048,
+  "new_branches_executed": 13824,
+  "reused_branches": 4608,
+  "wall_seconds": 82.54446365311742,
+  "branches_per_second": 167.47337602305586,
+  "worker_cpu_seconds": 646.8498221999998,
+  "max_worker_peak_rss_kib": 148520,
+  "sampled_aggregate_peak_rss_bytes": 1457090560,
+  "failures": [],
+  "gpu_used": false,
+  "selection_sha256": "42f340916c501d6fbd34fc69e1875fd128456a01e6cb202630037201ea795492",
+  "state_dataset_sha256": "f609336450545763f255f918d9a15d97407def98721ef4f5927145c5ae308dd1"
+}

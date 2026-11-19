@@ -1,0 +1,1088 @@
+{
+  "at_utc": "2026-11-18T10:30:57.842694+00:00",
+  "programs": [
+    {
+      "generator": "original",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "8be1a51c88b21f05e3d107319f5734c5295546ac19667aa4e5ca50812760a58f",
+        "a8fc0f15dc65856e9b78a060ec103bed0de3d6a5bf652cb71b5719087f72f63c",
+        "2a6d5465a0cf91477feb4355c76caf354fb2dbfc02f777e98af1a1661a3a6430"
+      ],
+      "program_select_mean_gap_percent": [
+        2.432164375430294,
+        2.432164375430294,
+        2.4343357190755714,
+        2.4343357190755714
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "frozen_at_utc": "2026-11-18T10:28:14.074333+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "original",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "e2d804eef8db955a814852fa8d6bfc8d09ab949e252beb01ecbb21d9996d5e80",
+        "03b2fe20a8fa129a38b10c42debc339c442ee5831cc37c203017fc9c5a81620e",
+        "1f79efe557340b2fbb27c1ae636c17514e63425b844115e0be61a136bb46d5b1",
+        "d378f00a3723c84e0dd218cff5be08754d867f651b46c4357d8bc159232ff425"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2854935929919966,
+        2.2844265590290003,
+        2.4232832946893383,
+        2.4232832946893383
+      ],
+      "selected_program": {
+        "expression": "(d + p * (max_d - mean_d) ** 2 * (1 + progress)) / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return (d + p * (max_d - mean_d) ** 2 * (1 + progress)) / (1 + p)\n",
+        "program_sha256": "03b2fe20a8fa129a38b10c42debc339c442ee5831cc37c203017fc9c5a81620e"
+      },
+      "frozen_at_utc": "2026-11-18T10:28:52.235683+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "original",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "119e3267342018e65f7e7d4af00234f17d46bb14a93d72d63f1fe21fe6bcb208",
+        "80b0c17fa498c192b8de790565f3bd5ddea1bfb35fd81d231536003d9ec4ed2e",
+        "f2af2347756508c9e7e2a3192ba788c43182911648ce6b69b3a57453b7966075"
+      ],
+      "program_select_mean_gap_percent": [
+        2.432164375430294,
+        2.432164375430294,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p)\n",
+        "program_sha256": "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      },
+      "frozen_at_utc": "2026-11-18T10:29:20.214333+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "sft",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:29:49.097951+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "sft",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:29:49.098322+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "sft",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:29:58.308318+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "sft",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:07.663458+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "sft",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:45.669304+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "sft",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "cfd09ce278b255df81378b39d8fdf1ef66341bc44816bc6bcb522c41693d31c6",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.1588325615524924,
+        2.3602226377079125
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.3 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.3 * p)\n",
+        "program_sha256": "cfd09ce278b255df81378b39d8fdf1ef66341bc44816bc6bcb522c41693d31c6"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.832628+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-701",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.833042+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-701",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.833332+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-701",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.833690+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-701",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.833919+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-701",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.834218+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-701",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.834495+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-702",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.834761+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-702",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.835017+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-702",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.835328+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-702",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.835544+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-702",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.835800+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-702",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.836074+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-703",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.836335+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-703",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.836582+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-703",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.836901+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-703",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.837112+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-703",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.25 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.25 * p)\n",
+        "program_sha256": "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.837362+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-terminal-703",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.837631+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-701",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.837893+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-701",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.838575+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-701",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.838892+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-701",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.839107+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-701",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.839372+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-701",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.839639+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-702",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.839905+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-702",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.840157+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-702",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.840452+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-702",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.840660+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-702",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.840933+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-702",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.841199+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-703",
+      "discovery_seed": 801,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.841446+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-703",
+      "discovery_seed": 801,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.432164375430294,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.841694+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-703",
+      "discovery_seed": 802,
+      "feedback_arm": "A",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "a7a79b8670a289832a0b1e09263c1031bf515a3f6c5966d80400349aa3845e48",
+        "82c024b2ece46f3247ea0634ac98a12c3c9d7f077e06ad8c875436fe81751c53",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.3852331899118044,
+        2.448637967521855,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.841981+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-703",
+      "discovery_seed": 802,
+      "feedback_arm": "B",
+      "elites": [
+        "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21",
+        "4de237718e6e0e2c97857527f448103ab17e466221340e0c95e44fd550907c6e",
+        "4f65cc633f20b9905a898b507e6c49381761e797fcf46bd11ff2cf0bfd0ae193"
+      ],
+      "program_select_mean_gap_percent": [
+        2.2967070324149597,
+        2.432164375430294,
+        2.432164375430294,
+        2.4690682783257376
+      ],
+      "selected_program": {
+        "expression": "d / (1 + p ** 0.5)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + p ** 0.5)\n",
+        "program_sha256": "214a9d6e194a9e3442a1544fc8e0d3762e5805192b33abf0bb6007fd74efa2f4"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.842186+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-703",
+      "discovery_seed": 803,
+      "feedback_arm": "A",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "b77a2dde96bbe9cc797043440a875ca67ce76d542a14cd7faad2fbaca568ee21"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.432164375430294
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.25 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.25 * p)\n",
+        "program_sha256": "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.842425+00:00",
+      "actual_outputs": 24
+    },
+    {
+      "generator": "grpo-state-703",
+      "discovery_seed": 803,
+      "feedback_arm": "B",
+      "elites": [
+        "b8579f30532f916c6db39e99453b1120ccf896a88b1e062e571ed6b325e9dd27",
+        "c264353b3a6a34042e528c154bacbfa0e33ae9c81304bf99316631a5dc665042",
+        "2ee953288920e462422800ddae32f7b38ec3c140b949d2248e5ef32e6fbc9b40",
+        "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      ],
+      "program_select_mean_gap_percent": [
+        2.1757852276367453,
+        2.305183954564594,
+        2.3602226377079125,
+        2.175247072934229
+      ],
+      "selected_program": {
+        "expression": "d / (1 + 0.1 * p)",
+        "source": "def priority(d, p, mean_d, max_d, lam, progress, stagnation, best_ratio):\n    return d / (1 + 0.1 * p)\n",
+        "program_sha256": "10124623f287ba30d4b7c24f88706b6908b365f0020d991e260ed6114e907e8f"
+      },
+      "frozen_at_utc": "2026-11-18T10:30:57.842682+00:00",
+      "actual_outputs": 24
+    }
+  ],
+  "all_programs_frozen_before_dev": true,
+  "program_selection_uses_only_real_route_quality": true,
+  "final_opened": false
+}

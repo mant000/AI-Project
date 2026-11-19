@@ -1,0 +1,839 @@
+{
+  "isolation": {
+    "train_instances": 256,
+    "val_instances": 64,
+    "train_states": 1024,
+    "val_states": 256,
+    "instance_id_overlap": [],
+    "coordinate_overlap": [],
+    "split_unit": "original instance; all four states and both common seeds inherit pool",
+    "train_dataset_sha256": "f609336450545763f255f918d9a15d97407def98721ef4f5927145c5ae308dd1",
+    "val_dataset_sha256": "467097469e57302326f705c1138483a7269972168c41eac4c1cc7b36a549b517"
+  },
+  "provenance": {
+    "config": {
+      "models": [
+        "mlp",
+        "transformer"
+      ],
+      "training_seeds": [
+        101,
+        202,
+        303
+      ],
+      "architecture": {
+        "hidden": 128,
+        "layers": 4,
+        "heads": 8,
+        "dropout": 0.1
+      },
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "batch_size": 16,
+      "max_epochs": 40,
+      "min_epochs": 10,
+      "patience": 8,
+      "checkpoint_selection": "minimum validation top1 regret with reference action allowed; tie retains earlier epoch",
+      "loss": "MSE in percentage points + 0.1 pairwise logistic ranking on non-tied labels, temperature 0.1 pp"
+    },
+    "python": "3.10.8",
+    "torch": "2.1.2+cu121",
+    "cuda": "12.1",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "config_sha256": "506e192a7b6b85f9d699f67a432632a596cf4a1f47d2c86c51c1b4b0946bbb75",
+    "source_sha256": {
+      "scripts/stage2_train.py": "ec0cf6d4e215f7c30c0182cbfca3fa0191081cff90decdef1943f3e52f3370d5",
+      "src/tsp_value/value_model.py": "c07b22a054bb60725ce2abc5123e610ac087e054d0a2ccad589e097ed0061fa2"
+    }
+  },
+  "methods": {
+    "gls": {
+      "states": 256,
+      "instances": 64,
+      "informative_states": 39,
+      "spearman": 0.11805427950051112,
+      "non_tied_pair_accuracy": 0.5906593406593407,
+      "top1_regret_pp": 0.029642501467606053,
+      "selected_benefit_pp": 0.0,
+      "oracle_benefit_pp": 0.029642501467606053,
+      "top1_optimal_fraction": 0.94921875,
+      "mse": 0.022616136481701687,
+      "informative_top1_regret_pp": 0.1945764198899269,
+      "by_nodes": {
+        "50": {
+          "states": 128,
+          "instances": 32,
+          "informative_states": 20,
+          "spearman": 0.1001217376185197,
+          "non_tied_pair_accuracy": 0.564702380952381,
+          "top1_regret_pp": 0.037768569542095065,
+          "selected_benefit_pp": 0.0,
+          "oracle_benefit_pp": 0.037768569542095065,
+          "top1_optimal_fraction": 0.9453125,
+          "mse": 0.030365886452273116,
+          "informative_top1_regret_pp": 0.2417188450694084
+        },
+        "100": {
+          "states": 128,
+          "instances": 32,
+          "informative_states": 19,
+          "spearman": 0.13693063937629155,
+          "non_tied_pair_accuracy": 0.6179824561403509,
+          "top1_regret_pp": 0.02151643339311704,
+          "selected_benefit_pp": 0.0,
+          "oracle_benefit_pp": 0.02151643339311704,
+          "top1_optimal_fraction": 0.953125,
+          "mse": 0.014866386511130258,
+          "informative_top1_regret_pp": 0.1449528144378411
+        }
+      },
+      "selected_benefit_pp_instance_bootstrap95": [
+        0.0,
+        0.0
+      ]
+    },
+    "reference": {
+      "states": 256,
+      "instances": 64,
+      "informative_states": 39,
+      "spearman": 0.05580723683345162,
+      "non_tied_pair_accuracy": 0.522286794402179,
+      "top1_regret_pp": 0.029642501467606053,
+      "selected_benefit_pp": 0.0,
+      "oracle_benefit_pp": 0.029642501467606053,
+      "top1_optimal_fraction": 0.94921875,
+      "mse": 0.1220075911670599,
+      "informative_top1_regret_pp": 0.1945764198899269,
+      "by_nodes": {
+        "50": {
+          "states": 128,
+          "instances": 32,
+          "informative_states": 20,
+          "spearman": 0.061949111825230684,
+          "non_tied_pair_accuracy": 0.5213759157509157,
+          "top1_regret_pp": 0.037768569542095065,
+          "selected_benefit_pp": 0.0,
+          "oracle_benefit_pp": 0.037768569542095065,
+          "top1_optimal_fraction": 0.9453125,
+          "mse": 0.12673354082519225,
+          "informative_top1_regret_pp": 0.2417188450694084
+        },
+        "100": {
+          "states": 128,
+          "instances": 32,
+          "informative_states": 19,
+          "spearman": 0.049342105263157895,
+          "non_tied_pair_accuracy": 0.5232456140350877,
+          "top1_regret_pp": 0.02151643339311704,
+          "selected_benefit_pp": 0.0,
+          "oracle_benefit_pp": 0.02151643339311704,
+          "top1_optimal_fraction": 0.953125,
+          "mse": 0.11728164150892756,
+          "informative_top1_regret_pp": 0.1449528144378411
+        }
+      },
+      "selected_benefit_pp_instance_bootstrap95": [
+        0.0,
+        0.0
+      ]
+    },
+    "random_expected": {
+      "selected_benefit_pp": -0.0025941599160432816,
+      "top1_regret_pp": 0.03223665803670883
+    },
+    "mlp-seed101": {
+      "validation": {
+        "states": 256,
+        "instances": 64,
+        "informative_states": 39,
+        "spearman": 0.23345446069585932,
+        "non_tied_pair_accuracy": 0.7074841113302652,
+        "top1_regret_pp": 0.030319817800773308,
+        "selected_benefit_pp": -0.0006773163331672549,
+        "oracle_benefit_pp": 0.029642501467606053,
+        "top1_optimal_fraction": 0.9609375,
+        "mse": 0.013330523102808911,
+        "informative_top1_regret_pp": 0.19902239376917863,
+        "by_nodes": {
+          "50": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 20,
+            "spearman": 0.257827859922772,
+            "non_tied_pair_accuracy": 0.7220940170940171,
+            "top1_regret_pp": 0.04107048106379807,
+            "selected_benefit_pp": -0.003301911521703005,
+            "oracle_benefit_pp": 0.037768569542095065,
+            "top1_optimal_fraction": 0.9609375,
+            "mse": 0.017953857485963454,
+            "informative_top1_regret_pp": 0.26285107880830766
+          },
+          "100": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 19,
+            "spearman": 0.20779825098331958,
+            "non_tied_pair_accuracy": 0.6921052631578948,
+            "top1_regret_pp": 0.019569154537748545,
+            "selected_benefit_pp": 0.001947278855368495,
+            "oracle_benefit_pp": 0.02151643339311704,
+            "top1_optimal_fraction": 0.9609375,
+            "mse": 0.008707188719654368,
+            "informative_top1_regret_pp": 0.13183430425430598
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.022694609125028364,
+          0.015365642739925524
+        ]
+      },
+      "train": {
+        "states": 1024,
+        "instances": 256,
+        "informative_states": 183,
+        "spearman": 0.23716475594691322,
+        "non_tied_pair_accuracy": 0.6956757251090823,
+        "top1_regret_pp": 0.029335668702742623,
+        "selected_benefit_pp": 0.002222103576059453,
+        "oracle_benefit_pp": 0.03155777227698309,
+        "top1_optimal_fraction": 0.953125,
+        "mse": 0.01119893412788997,
+        "informative_top1_regret_pp": 0.16415150137490955,
+        "by_nodes": {
+          "50": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 74,
+            "spearman": 0.14748355107992298,
+            "non_tied_pair_accuracy": 0.6183379031205118,
+            "top1_regret_pp": 0.04121353497112068,
+            "selected_benefit_pp": 0.004118370707146823,
+            "oracle_benefit_pp": 0.045331905674629525,
+            "top1_optimal_fraction": 0.955078125,
+            "mse": 0.014378576953163247,
+            "informative_top1_regret_pp": 0.28515310682721334
+          },
+          "100": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 109,
+            "spearman": 0.29804924365477803,
+            "non_tied_pair_accuracy": 0.7481803015049923,
+            "top1_regret_pp": 0.017457802434364567,
+            "selected_benefit_pp": 0.00032583644497208297,
+            "oracle_benefit_pp": 0.01778363887933665,
+            "top1_optimal_fraction": 0.951171875,
+            "mse": 0.008019291302616693,
+            "informative_top1_regret_pp": 0.08200362244398769
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.0009243851969586103,
+          0.006472082964501154
+        ]
+      },
+      "best_epoch": 1,
+      "epochs": 10,
+      "steps": 640,
+      "parameter_count": 20353,
+      "training_validation_wall_seconds": 8.047892484813929,
+      "peak_allocated_bytes": 73880576,
+      "peak_reserved_bytes": 92274688,
+      "resume_check": {
+        "uninterrupted_loss": 0.07648828625679016,
+        "resumed_loss": 0.07648828625679016,
+        "max_parameter_abs_error": 0.0,
+        "optimizer_and_rng_restored": true,
+        "optimizer_state_entries": 6,
+        "after_training_epoch": 1,
+        "checkpoint_sha256": "f93d9aa43e7959c6ebcfb6945aaa3c7c1200801488fc8274f7b3ecc5a064e2ab"
+      },
+      "symmetry": {
+        "permutation_max_abs_error_pp": 2.9802322387695312e-08,
+        "undirected_edge_max_abs_error_pp": 0.0,
+        "tolerance_pp": 0.0001
+      },
+      "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/mlp-seed101/best.pt",
+      "checkpoint_sha256": "721c1481693f3e2b6b9de08345992048a6857e6e492de3c35ba4f754d2b2b57f"
+    },
+    "mlp-seed202": {
+      "validation": {
+        "states": 256,
+        "instances": 64,
+        "informative_states": 39,
+        "spearman": 0.16549498053431122,
+        "non_tied_pair_accuracy": 0.646667292821139,
+        "top1_regret_pp": 0.029642501467606053,
+        "selected_benefit_pp": 0.0,
+        "oracle_benefit_pp": 0.029642501467606053,
+        "top1_optimal_fraction": 0.94921875,
+        "mse": 0.01344049900922073,
+        "informative_top1_regret_pp": 0.1945764198899269,
+        "by_nodes": {
+          "50": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 20,
+            "spearman": 0.16752715408210977,
+            "non_tied_pair_accuracy": 0.6493345543345544,
+            "top1_regret_pp": 0.037768569542095065,
+            "selected_benefit_pp": 0.0,
+            "oracle_benefit_pp": 0.037768569542095065,
+            "top1_optimal_fraction": 0.9453125,
+            "mse": 0.017528593441966223,
+            "informative_top1_regret_pp": 0.2417188450694084
+          },
+          "100": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 19,
+            "spearman": 0.1633558504839969,
+            "non_tied_pair_accuracy": 0.643859649122807,
+            "top1_regret_pp": 0.02151643339311704,
+            "selected_benefit_pp": 0.0,
+            "oracle_benefit_pp": 0.02151643339311704,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.009352404576475237,
+            "informative_top1_regret_pp": 0.1449528144378411
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          0.0,
+          0.0
+        ]
+      },
+      "train": {
+        "states": 1024,
+        "instances": 256,
+        "informative_states": 183,
+        "spearman": 0.2859515523136289,
+        "non_tied_pair_accuracy": 0.7341326220834418,
+        "top1_regret_pp": 0.029415844136792657,
+        "selected_benefit_pp": 0.00214192814019043,
+        "oracle_benefit_pp": 0.03155777227698309,
+        "top1_optimal_fraction": 0.9521484375,
+        "mse": 0.010854761131810164,
+        "informative_top1_regret_pp": 0.16460013331188897,
+        "by_nodes": {
+          "50": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 74,
+            "spearman": 0.17900404126404626,
+            "non_tied_pair_accuracy": 0.6437645720254416,
+            "top1_regret_pp": 0.044043428197710455,
+            "selected_benefit_pp": 0.0012884774769190699,
+            "oracle_benefit_pp": 0.045331905674629525,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.013903902173609595,
+            "informative_top1_regret_pp": 0.30473290861118585
+          },
+          "100": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 109,
+            "spearman": 0.3585581194482078,
+            "non_tied_pair_accuracy": 0.7954834083613501,
+            "top1_regret_pp": 0.01478826007587486,
+            "selected_benefit_pp": 0.00299537880346179,
+            "oracle_benefit_pp": 0.01778363887933665,
+            "top1_optimal_fraction": 0.951171875,
+            "mse": 0.007805620090010734,
+            "informative_top1_regret_pp": 0.06946412072337549
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.0025667231384431943,
+          0.0073497944646078355
+        ]
+      },
+      "best_epoch": 9,
+      "epochs": 17,
+      "steps": 1088,
+      "parameter_count": 20353,
+      "training_validation_wall_seconds": 13.83122256025672,
+      "peak_allocated_bytes": 73880576,
+      "peak_reserved_bytes": 92274688,
+      "resume_check": {
+        "uninterrupted_loss": 0.06012758985161781,
+        "resumed_loss": 0.06012758985161781,
+        "max_parameter_abs_error": 0.0,
+        "optimizer_and_rng_restored": true,
+        "optimizer_state_entries": 6,
+        "after_training_epoch": 1,
+        "checkpoint_sha256": "62507128513a4a5e094509dcda2dca345a234d7370c4386826ef28f95537ff1b"
+      },
+      "symmetry": {
+        "permutation_max_abs_error_pp": 2.9802322387695312e-08,
+        "undirected_edge_max_abs_error_pp": 0.0,
+        "tolerance_pp": 0.0001
+      },
+      "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/mlp-seed202/best.pt",
+      "checkpoint_sha256": "0106a22c12f55347c15427b6b4d6c9c8d2a0e8a0c1a9327ab7bd59d2d48a6b3a"
+    },
+    "mlp-seed303": {
+      "validation": {
+        "states": 256,
+        "instances": 64,
+        "informative_states": 39,
+        "spearman": 0.1515301465391037,
+        "non_tied_pair_accuracy": 0.6366261231645848,
+        "top1_regret_pp": 0.030233869998482987,
+        "selected_benefit_pp": -0.0005913685308769345,
+        "oracle_benefit_pp": 0.029642501467606053,
+        "top1_optimal_fraction": 0.95703125,
+        "mse": 0.012776729237259588,
+        "informative_top1_regret_pp": 0.19845822357978576,
+        "by_nodes": {
+          "50": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 20,
+            "spearman": 0.1300259298382333,
+            "non_tied_pair_accuracy": 0.6176709401709402,
+            "top1_regret_pp": 0.04827341693453491,
+            "selected_benefit_pp": -0.010504847392439842,
+            "oracle_benefit_pp": 0.037768569542095065,
+            "top1_optimal_fraction": 0.9453125,
+            "mse": 0.01778723940958571,
+            "informative_top1_regret_pp": 0.3089498683810234
+          },
+          "100": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 19,
+            "spearman": 0.17416616411896726,
+            "non_tied_pair_accuracy": 0.656578947368421,
+            "top1_regret_pp": 0.012194323062431067,
+            "selected_benefit_pp": 0.009322110330685973,
+            "oracle_benefit_pp": 0.02151643339311704,
+            "top1_optimal_fraction": 0.96875,
+            "mse": 0.007766219064933466,
+            "informative_top1_regret_pp": 0.0821512290521672
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.018357774009928107,
+          0.013017478023539255
+        ]
+      },
+      "train": {
+        "states": 1024,
+        "instances": 256,
+        "informative_states": 183,
+        "spearman": 0.19225831926352102,
+        "non_tied_pair_accuracy": 0.6589486436849231,
+        "top1_regret_pp": 0.03186370397384053,
+        "selected_benefit_pp": -0.0003059316659346223,
+        "oracle_benefit_pp": 0.03155777227698309,
+        "top1_optimal_fraction": 0.951171875,
+        "mse": 0.010136346386556028,
+        "informative_top1_regret_pp": 0.178297447372747,
+        "by_nodes": {
+          "50": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 74,
+            "spearman": 0.07995712454700041,
+            "non_tied_pair_accuracy": 0.5667415085893346,
+            "top1_regret_pp": 0.04425939914153787,
+            "selected_benefit_pp": 0.0010725065367296338,
+            "oracle_benefit_pp": 0.045331905674629525,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.013140426011453599,
+            "informative_top1_regret_pp": 0.30622719406037013
+          },
+          "100": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 109,
+            "spearman": 0.2684994973279478,
+            "non_tied_pair_accuracy": 0.7215479831076161,
+            "top1_regret_pp": 0.01946800880614319,
+            "selected_benefit_pp": -0.0016843698685988784,
+            "oracle_benefit_pp": 0.01778363887933665,
+            "top1_optimal_fraction": 0.94921875,
+            "mse": 0.007132266761658457,
+            "informative_top1_regret_pp": 0.09144605971325975
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.0030515843202010727,
+          0.002443875501376146
+        ]
+      },
+      "best_epoch": 1,
+      "epochs": 10,
+      "steps": 640,
+      "parameter_count": 20353,
+      "training_validation_wall_seconds": 8.090306129306555,
+      "peak_allocated_bytes": 73880576,
+      "peak_reserved_bytes": 92274688,
+      "resume_check": {
+        "uninterrupted_loss": 0.07093080133199692,
+        "resumed_loss": 0.07093080133199692,
+        "max_parameter_abs_error": 0.0,
+        "optimizer_and_rng_restored": true,
+        "optimizer_state_entries": 6,
+        "after_training_epoch": 1,
+        "checkpoint_sha256": "01f5a07c64b0893aba8bf7eb0f7a7ceeaab9793fa9b7dbc2602986cc2c0654a7"
+      },
+      "symmetry": {
+        "permutation_max_abs_error_pp": 4.470348358154297e-08,
+        "undirected_edge_max_abs_error_pp": 0.0,
+        "tolerance_pp": 0.0001
+      },
+      "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/mlp-seed303/best.pt",
+      "checkpoint_sha256": "1cdf04132a16d2faef754ede19377c93075ff494313e3ac355cd6e962a2e6901"
+    },
+    "transformer-seed101": {
+      "validation": {
+        "states": 256,
+        "instances": 64,
+        "informative_states": 39,
+        "spearman": 0.2003336308296281,
+        "non_tied_pair_accuracy": 0.6817499452114836,
+        "top1_regret_pp": 0.026332551380619407,
+        "selected_benefit_pp": 0.003309950086986646,
+        "oracle_benefit_pp": 0.029642501467606053,
+        "top1_optimal_fraction": 0.94921875,
+        "mse": 0.011184623201579313,
+        "informative_top1_regret_pp": 0.17284956803688636,
+        "by_nodes": {
+          "50": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 20,
+            "spearman": 0.1989476849909667,
+            "non_tied_pair_accuracy": 0.6781623931623932,
+            "top1_regret_pp": 0.026319198834244162,
+            "selected_benefit_pp": 0.011449370707850903,
+            "oracle_benefit_pp": 0.037768569542095065,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.015695560641233897,
+            "informative_top1_regret_pp": 0.16844287253916262
+          },
+          "100": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 19,
+            "spearman": 0.2017925211861138,
+            "non_tied_pair_accuracy": 0.6855263157894737,
+            "top1_regret_pp": 0.02634590392699465,
+            "selected_benefit_pp": -0.004829470533877611,
+            "oracle_benefit_pp": 0.02151643339311704,
+            "top1_optimal_fraction": 0.9453125,
+            "mse": 0.00667368576192473,
+            "informative_top1_regret_pp": 0.17748819487659553
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.0050439126789569855,
+          0.014954742131521925
+        ]
+      },
+      "train": {
+        "states": 1024,
+        "instances": 256,
+        "informative_states": 183,
+        "spearman": 0.21018915686053974,
+        "non_tied_pair_accuracy": 0.6747628475639879,
+        "top1_regret_pp": 0.028472644397879776,
+        "selected_benefit_pp": 0.003085127907070273,
+        "oracle_benefit_pp": 0.03155777227698309,
+        "top1_optimal_fraction": 0.9501953125,
+        "mse": 0.008709202392664706,
+        "informative_top1_regret_pp": 0.159322338051524,
+        "by_nodes": {
+          "50": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 74,
+            "spearman": 0.04579950032904206,
+            "non_tied_pair_accuracy": 0.53783130957044,
+            "top1_regret_pp": 0.03853227134641202,
+            "selected_benefit_pp": 0.006799634325943771,
+            "oracle_benefit_pp": 0.045331905674629525,
+            "top1_optimal_fraction": 0.94921875,
+            "mse": 0.011668113715806339,
+            "informative_top1_regret_pp": 0.2666016612076075
+          },
+          "100": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 109,
+            "spearman": 0.32179314386357494,
+            "non_tied_pair_accuracy": 0.7677255430825435,
+            "top1_regret_pp": 0.018413017449347535,
+            "selected_benefit_pp": -0.0006293785118032247,
+            "oracle_benefit_pp": 0.01778363887933665,
+            "top1_optimal_fraction": 0.951171875,
+            "mse": 0.0057502910695230725,
+            "informative_top1_regret_pp": 0.08649050398225631
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.0011886866028589793,
+          0.009128470254881903
+        ]
+      },
+      "best_epoch": 14,
+      "epochs": 22,
+      "steps": 1408,
+      "parameter_count": 862081,
+      "training_validation_wall_seconds": 66.71401975303888,
+      "peak_allocated_bytes": 200949760,
+      "peak_reserved_bytes": 226492416,
+      "resume_check": {
+        "uninterrupted_loss": 0.08067892491817474,
+        "resumed_loss": 0.08067892491817474,
+        "max_parameter_abs_error": 0.0,
+        "optimizer_and_rng_restored": true,
+        "optimizer_state_entries": 60,
+        "after_training_epoch": 1,
+        "checkpoint_sha256": "d4e0c8ad2a88b5e98d4038a081b4bd759817d911bb107035a88bd45dac86b44b"
+      },
+      "symmetry": {
+        "permutation_max_abs_error_pp": 5.960464477539063e-08,
+        "undirected_edge_max_abs_error_pp": 0.0,
+        "tolerance_pp": 0.0001
+      },
+      "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/transformer-seed101/best.pt",
+      "checkpoint_sha256": "03510fdb53e66f740d58e6545397ef9bf6830920461f6e7b1f4a6d10cf99b988"
+    },
+    "transformer-seed202": {
+      "validation": {
+        "states": 256,
+        "instances": 64,
+        "informative_states": 39,
+        "spearman": 0.20723868016569752,
+        "non_tied_pair_accuracy": 0.6841715976331361,
+        "top1_regret_pp": 0.027514090616023168,
+        "selected_benefit_pp": 0.002128410851582885,
+        "oracle_benefit_pp": 0.029642501467606053,
+        "top1_optimal_fraction": 0.95703125,
+        "mse": 0.011366864553753686,
+        "informative_top1_regret_pp": 0.18060531276158798,
+        "by_nodes": {
+          "50": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 20,
+            "spearman": 0.23409321576421482,
+            "non_tied_pair_accuracy": 0.707051282051282,
+            "top1_regret_pp": 0.033511747838929296,
+            "selected_benefit_pp": 0.00425682170316577,
+            "oracle_benefit_pp": 0.037768569542095065,
+            "top1_optimal_fraction": 0.9609375,
+            "mse": 0.015692308937104826,
+            "informative_top1_regret_pp": 0.21447518616914749
+          },
+          "100": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 19,
+            "spearman": 0.1789707479567319,
+            "non_tied_pair_accuracy": 0.6600877192982456,
+            "top1_regret_pp": 0.02151643339311704,
+            "selected_benefit_pp": 0.0,
+            "oracle_benefit_pp": 0.02151643339311704,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.007041420170402546,
+            "informative_top1_regret_pp": 0.1449528144378411
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          0.0,
+          0.005772748962044716
+        ]
+      },
+      "train": {
+        "states": 1024,
+        "instances": 256,
+        "informative_states": 183,
+        "spearman": 0.24744894787696298,
+        "non_tied_pair_accuracy": 0.7046040419810912,
+        "top1_regret_pp": 0.025305478028940342,
+        "selected_benefit_pp": 0.006252294248042745,
+        "oracle_benefit_pp": 0.03155777227698309,
+        "top1_optimal_fraction": 0.953125,
+        "mse": 0.008924073778076469,
+        "informative_top1_regret_pp": 0.14160005192150224,
+        "by_nodes": {
+          "50": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 74,
+            "spearman": 0.14895317875909386,
+            "non_tied_pair_accuracy": 0.6210322123365601,
+            "top1_regret_pp": 0.03309325794407414,
+            "selected_benefit_pp": 0.012238647730555385,
+            "oracle_benefit_pp": 0.045331905674629525,
+            "top1_optimal_fraction": 0.958984375,
+            "mse": 0.011788897236820972,
+            "informative_top1_regret_pp": 0.22896956847791836
+          },
+          "100": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 109,
+            "spearman": 0.3143176351679935,
+            "non_tied_pair_accuracy": 0.7613408804553599,
+            "top1_regret_pp": 0.017517698113806546,
+            "selected_benefit_pp": 0.0002659407655301038,
+            "oracle_benefit_pp": 0.01778363887933665,
+            "top1_optimal_fraction": 0.947265625,
+            "mse": 0.006059250319331966,
+            "informative_top1_regret_pp": 0.08228496728687111
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          0.0012888065622973955,
+          0.013035773591718676
+        ]
+      },
+      "best_epoch": 7,
+      "epochs": 15,
+      "steps": 960,
+      "parameter_count": 862081,
+      "training_validation_wall_seconds": 45.43850890547037,
+      "peak_allocated_bytes": 200949760,
+      "peak_reserved_bytes": 224395264,
+      "resume_check": {
+        "uninterrupted_loss": 0.07048144191503525,
+        "resumed_loss": 0.07048144191503525,
+        "max_parameter_abs_error": 0.0,
+        "optimizer_and_rng_restored": true,
+        "optimizer_state_entries": 60,
+        "after_training_epoch": 1,
+        "checkpoint_sha256": "76649437397cb6248c36f064531eaf0933bee3915a353ec40523977cae0ee525"
+      },
+      "symmetry": {
+        "permutation_max_abs_error_pp": 1.4901161193847656e-08,
+        "undirected_edge_max_abs_error_pp": 0.0,
+        "tolerance_pp": 0.0001
+      },
+      "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/transformer-seed202/best.pt",
+      "checkpoint_sha256": "2282d0776dd8901875986094c391a7df58ac788bf728c71f4c6ecc54ec220631"
+    },
+    "transformer-seed303": {
+      "validation": {
+        "states": 256,
+        "instances": 64,
+        "informative_states": 39,
+        "spearman": 0.19264703894055019,
+        "non_tied_pair_accuracy": 0.6709331267023575,
+        "top1_regret_pp": 0.023351804440608248,
+        "selected_benefit_pp": 0.006290697026997805,
+        "oracle_benefit_pp": 0.029642501467606053,
+        "top1_optimal_fraction": 0.953125,
+        "mse": 0.014033284706528093,
+        "informative_top1_regret_pp": 0.15328363940501824,
+        "by_nodes": {
+          "50": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 20,
+            "spearman": 0.2170504019898686,
+            "non_tied_pair_accuracy": 0.6879029304029304,
+            "top1_regret_pp": 0.025187175488099456,
+            "selected_benefit_pp": 0.01258139405399561,
+            "oracle_benefit_pp": 0.037768569542095065,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.017418034526599513,
+            "informative_top1_regret_pp": 0.16119792312383652
+          },
+          "100": {
+            "states": 128,
+            "instances": 32,
+            "informative_states": 19,
+            "spearman": 0.16695928836232035,
+            "non_tied_pair_accuracy": 0.6530701754385965,
+            "top1_regret_pp": 0.02151643339311704,
+            "selected_benefit_pp": 0.0,
+            "oracle_benefit_pp": 0.02151643339311704,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.010648534886456673,
+            "informative_top1_regret_pp": 0.1449528144378411
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          0.0,
+          0.018872091080993414
+        ]
+      },
+      "train": {
+        "states": 1024,
+        "instances": 256,
+        "informative_states": 183,
+        "spearman": 0.2804030944066457,
+        "non_tied_pair_accuracy": 0.7322424924670115,
+        "top1_regret_pp": 0.029793475941232828,
+        "selected_benefit_pp": 0.0017642963357502595,
+        "oracle_benefit_pp": 0.03155777227698309,
+        "top1_optimal_fraction": 0.9521484375,
+        "mse": 0.011045121838982652,
+        "informative_top1_regret_pp": 0.1667132205673356,
+        "by_nodes": {
+          "50": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 74,
+            "spearman": 0.18165930518659704,
+            "non_tied_pair_accuracy": 0.6512699811612855,
+            "top1_regret_pp": 0.044798691806590796,
+            "selected_benefit_pp": 0.0005332138680387288,
+            "oracle_benefit_pp": 0.045331905674629525,
+            "top1_optimal_fraction": 0.953125,
+            "mse": 0.013375852055872883,
+            "informative_top1_regret_pp": 0.309958516283439
+          },
+          "100": {
+            "states": 512,
+            "instances": 128,
+            "informative_states": 109,
+            "spearman": 0.34744016231750435,
+            "non_tied_pair_accuracy": 0.787214656105761,
+            "top1_regret_pp": 0.01478826007587486,
+            "selected_benefit_pp": 0.00299537880346179,
+            "oracle_benefit_pp": 0.01778363887933665,
+            "top1_optimal_fraction": 0.951171875,
+            "mse": 0.008714391622092421,
+            "informative_top1_regret_pp": 0.06946412072337549
+          }
+        },
+        "selected_benefit_pp_instance_bootstrap95": [
+          -0.0017322736093774438,
+          0.006285830837441608
+        ]
+      },
+      "best_epoch": 20,
+      "epochs": 28,
+      "steps": 1792,
+      "parameter_count": 862081,
+      "training_validation_wall_seconds": 84.17736207321286,
+      "peak_allocated_bytes": 200949760,
+      "peak_reserved_bytes": 226492416,
+      "resume_check": {
+        "uninterrupted_loss": 0.08065617829561234,
+        "resumed_loss": 0.08065617829561234,
+        "max_parameter_abs_error": 0.0,
+        "optimizer_and_rng_restored": true,
+        "optimizer_state_entries": 60,
+        "after_training_epoch": 1,
+        "checkpoint_sha256": "d8bae9bf4f430aabc674b0d7af7a4f4bec0327a4ea510dbc934f6cf10673c895"
+      },
+      "symmetry": {
+        "permutation_max_abs_error_pp": 7.450580596923828e-09,
+        "undirected_edge_max_abs_error_pp": 0.0,
+        "tolerance_pp": 0.0001
+      },
+      "checkpoint": "/root/autodl-tmp/tsp-state-value/checkpoints/stage2/training-v1/transformer-seed303/best.pt",
+      "checkpoint_sha256": "a3b9d0774c432233e1b000098f201fa0f171fdeacc64fc01ba857bdc1a29f053"
+    }
+  },
+  "wall_seconds": 235.15657569095492,
+  "process_cpu_seconds": 234.41053889,
+  "peak_rss_kib": 1393660,
+  "limitation": "One fixed train/validation subset; validation selects checkpoint. Seeds repeat optimization only; final data unopened."
+}

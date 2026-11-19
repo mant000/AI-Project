@@ -1,0 +1,27 @@
+{
+  "mode": "production",
+  "pool": "value_val",
+  "instances_per_size": 32,
+  "state_penalty_events": [
+    0,
+    8,
+    32,
+    96
+  ],
+  "candidate_sampling": "uniform",
+  "candidates": 8,
+  "seeds": [
+    71,
+    72
+  ],
+  "horizons": [
+    {
+      "by_nodes": {
+        "50": 58750,
+        "100": 970000
+      }
+    }
+  ],
+  "workers": 8,
+  "freeze_basis": "Train-only diagnosis v1/v2/v3. Uniform sampling retained; 50 sweeps for n50 and 200 for n100 maximize informative-state coverage within each size in v3. Long horizons converge; utility-biased candidates are less informative. State events kept fixed, with no label-dependent state filtering. No validation labels inspected."
+}

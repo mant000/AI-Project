@@ -2,32 +2,68 @@
 
 Hongye XU (72655146) · CS5491 Artificial Intelligence · Individual project
 
-[Milestone report](report/milestone.pdf) · **`milestone-2026-11-19-v3`**
+[Milestone report](report/milestone.pdf)
 
 I study how feedback from a search state can help a language model discover
 travelling salesman problem (TSP) heuristics. The model proposes an edge-priority
 formula inside guided local search (GLS). Actual complete-tour quality selects
 which formulas survive. A selected formula runs without a language model.
 
-## 1. How the project reached this question
+## 1. Research progress
 
-The original proposal combined action-value learning with LLM program discovery
-and generator adaptation. The route to the present experiment was not a direct
-jump from sparse labels to a new method:
+The proposal asks whether learned action values can guide LLM heuristic discovery,
+and whether adapting the generator makes this process more effective. I tested
+both parts before examining the time span represented by the feedback.
 
-| Earlier work | What it established |
-|---|---|
-| [Action-value models](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/STAGE2_RESULTS.md) | About 97% of training labels were zero. Transformer validation gains were small; this identified a weak signal, not its sole cause. |
-| [Frozen-generator A/B/C comparison](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/CORE_R1_RESULTS.md) | A used endpoint feedback, B added predicted values, and C added measured single-action values. Neither added feedback improved the selected rules. A [prompt audit](results/history/abc_feedback_audit.json) found that all 96 C prompts conveyed tied parent/child values, despite some nonzero alternatives in the small bank. |
-| [SFT and GRPO controls](https://github.com/mant000/AI-Project/blob/milestone-2026-11-19/docs/SOLVER_CONTROL_RESULTS.md) | Grammar-derived SFT improved development quality under that protocol. Additional state feedback and auxiliary GRPO rewards did not show a clear benefit. Better generator initialization therefore did not establish the value-feedback hypothesis. |
+**Learning action values.** I collected 1,024 training states from 256 TSP50/100
+instances and 256 validation states from 64 other instances. Each label measures
+one alternative edge penalty followed by conventional GLS. Training zero-label
+rates were 97.61% and 96.41%; the two continuation seeds produced identical
+outcomes. Across three optimization seeds, the graph Transformer selected actions
+with a mean validation benefit of **0.003910 percentage points** over the standard
+action. This was a small conditional-action gain, with checkpoints selected on
+the same validation set.
 
-These findings separated two issues: learning a useful prediction and measuring
-an intervention that actually distinguishes the proposed rules. The more direct
-motivation for this study was the gap between **changing one penalty decision**
-and **applying a modified rule repeatedly**, together with the lack of informative
-comparisons in the earlier C prompts. I test that gap directly before training
-another predictor. The earlier experiments remain in the linked historical
-version; their different pools and protocols are not pooled with this study.
+**Using the values in discovery.** Four paired discovery seeds generated 24
+outputs per arm. A received complete-tour feedback, B added the fixed three-model
+Transformer ensemble, and C added measured single-action feedback. On 32 fresh
+development instances with three solver seeds, the selected rules averaged
+**2.654706%, 2.687714% and 2.687714%** gap for A/B/C. All 96 C prompts gave tied
+parent/child values. Some alternative edges in the 32-state bank had nonzero
+values, but the proposed rules did not select them. This narrowed the problem
+from prediction accuracy to the information the generator actually received.
+
+**Adapting the generator.** I built execution-checked improvements from an
+arithmetic rule grammar, then trained a QLoRA adapter for two epochs. From that
+shared SFT initialization, I compared terminal-reward and state-augmented GRPO
+with three paired optimization seeds and 12 updates per run. All trained
+generators were tested with three discovery seeds; all selected programs were
+then evaluated on 64 development instances with five solver seeds:
+
+| Generator and feedback | Mean gap (%) ↓ |
+|---|---:|
+| Original generator, endpoints | 2.333741 |
+| SFT, endpoints | 2.202174 |
+| SFT, endpoints + predicted state values | 2.209870 |
+| Terminal-reward GRPO, endpoints | 2.202334 |
+| State-augmented GRPO, endpoints + predicted state values | 2.202174 |
+
+SFT improved the selected rules by **0.131567 gap points** (paired interval
+[−0.210681, −0.055730]). The state-GRPO comparison changed the gap by −0.000160
+points [−0.008923, +0.008655]. These intervals resample original instances,
+conditional on all frozen programs. There was one SFT training run, shared across
+the GRPO runs. Generator adaptation helped, while the added state signal still
+offered little guidance.
+
+These experiments lead to a more specific question: **does feedback for one
+penalty decision describe a rule that will be applied repeatedly?** I compare
+single decisions with sustained rule fragments at identical states and budgets,
+then test their effect on discovery. The comparisons above and below each retain
+their own instance pools, seeds and training settings.
+
+The supporting records are in [value_learning](results/value_learning),
+[abc](results/abc) and [adaptation](results/adaptation). Sections 3–4 give CPU
+commands to recompute their results and rerun their frozen rules.
 
 ## 2. Rule fragments and program discovery
 
@@ -80,8 +116,7 @@ Its complete batch and the subsequent expression-interface amendment are in
 
 ## 3. Environment and result analysis
 
-The reported runs used the following rented machine and software. These are
-reference measurements, not a requirement to own the same GPU.
+The reported runs used the following rented machine and software.
 
 | Component | Recorded setup |
 |---|---|
@@ -95,17 +130,23 @@ Analysis and solver replay need no GPU or model weights. The 256 input instances
 are included. The commands below use a Linux shell and Python 3.10:
 
 ```bash
-git clone --depth 1 --branch milestone-2026-11-19-v3 https://github.com/mant000/AI-Project.git
+git clone --depth 1 --branch milestone-2026-11-19-v4 https://github.com/mant000/AI-Project.git
 cd AI-Project
 python3.10 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-cpu.txt
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 python -m unittest discover -s tests
+python scripts/analyze_progress.py --output outputs/progress
 python scripts/analyze_results.py --output outputs/analysis
 ```
 
-This recomputes the mechanism statistics, A/P/F means and paired intervals from
+`outputs/progress/progress_summary.json` recomputes the action-label sparsity,
+saved model decisions, ABC prompt preferences and development results, and the
+SFT/GRPO comparisons. It checks 348 source records and reprices 2,112 unique
+frozen-program routes. Expected: `status: passed`.
+
+The second analysis recomputes the mechanism statistics, A/P/F means and paired intervals from
 raw routes, and checks parent updates, selection, freezing and feedback arithmetic.
 Expected: `status: passed` in `outputs/analysis/analysis_verification.json`.
 
@@ -122,6 +163,12 @@ python scripts/analyze_results.py --study results/interface_check/run --output o
 ```
 
 ## 4. Rerun the solver and branch measurements
+
+Rerun the 2,112 frozen-program routes from the ABC and adaptation experiments:
+
+```bash
+python scripts/analyze_progress.py --replay --workers 4 --output outputs/progress_replay
+```
 
 Reconstruct the bank and rerun all unique selected programs, NN and 2-opt:
 
@@ -155,6 +202,7 @@ and complete mechanism measurement with ten workers took 259 s. Worker counts
 can be changed with `--workers`; use the same count for a pilot and its full run.
 Timing varies with hardware. Use new output directories for repeated runs.
 [results/reproduction](results/reproduction) contains actual verification records.
+The ABC/adaptation analysis with all 2,112 solver replays took 38 s with four workers.
 
 ## 5. Run program discovery
 
@@ -164,14 +212,6 @@ revision `c03e6d358207e414f1eca0bb1891e29f1db0e242`, frozen with NF4 double
 quantization and BF16 computation. No adapter is loaded. I allowed about 25GB
 for the complete snapshot and cache. Model weights are downloaded from the
 author release and checked against its published hashes.
-
-The implementation uses CUDA, without restricting the GPU model. Another CUDA
-GPU, including a 4090, can be used with a compatible PyTorch/bitsandbytes build
-and sufficient memory. The observed memory above is a reference, not a tested
-minimum. The pinned requirements describe the original stack; a different GPU
-may need a different PyTorch/CUDA build. Upstream
-[bitsandbytes compatibility notes](https://huggingface.co/docs/bitsandbytes/v0.44.1/en/installation)
-cover the library requirements.
 
 After the mechanism run in Section 4:
 
@@ -207,8 +247,7 @@ the reported comparison.
 ## 6. Development baselines
 
 These commands reproduce the manual-rule, LKH and LEHD rows of Table 1, plus the
-serial solver timing sample. They use the included **development** instances;
-no final-test outcomes are needed to reproduce the milestone results.
+serial solver timing sample, using the included **development** instances.
 
 ```bash
 python scripts/setup_references.py --root "$TSP_ROOT"
@@ -241,9 +280,12 @@ are in `configs/reference_assets.json` and `configs/reference_asset_hashes.json`
 | `src/tsp/` | Data, resumable GLS/2-opt and arithmetic rule compiler |
 | `scripts/state_feedback.py`, `scripts/feedback_worker.py` | Shared-state interventions |
 | `scripts/discover_rules.py`, `scripts/prompts.py`, `scripts/qwen_model.py` | Frozen-model discovery |
-| `scripts/analyze_results.py`, `scripts/replay_solvers.py` | Result analysis and solver replay |
+| `scripts/analyze_progress.py` | Value-learning, ABC and adaptation result analysis and frozen-rule replay |
+| `scripts/analyze_results.py`, `scripts/replay_solvers.py` | Fragment study analysis and solver replay |
 | `configs/` | Experiment settings and author asset hashes |
 | `results/mechanism/`, `results/discovery/` | Branch records, generations, candidates, failures, lineage and evaluations |
+| `results/value_learning/`, `results/abc/`, `results/adaptation/` | Action labels/predictions, ABC prompts/outcomes and generator-training evaluation |
+| `results/research_inputs.jsonl`, `results/research_records.json` | Earlier development inputs and record provenance |
 | `results/interface_check/` | Initial response-interface experiment |
 | `results/reproduction/` | Verification outputs and costs |
 | `report/` | English milestone PDF, editable Word file and figures |

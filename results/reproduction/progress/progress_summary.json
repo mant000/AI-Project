@@ -1,0 +1,134 @@
+{
+  "status": "passed",
+  "source_records_verified": 348,
+  "value_learning": {
+    "train": {
+      "states": 1024,
+      "instances": 256,
+      "duplicate_seed_branch_pairs": 9216,
+      "zero_candidate_percent": {
+        "50": 97.607421875,
+        "100": 96.4111328125
+      }
+    },
+    "validation": {
+      "states": 256,
+      "instances": 64,
+      "duplicate_seed_branch_pairs": 2304,
+      "zero_candidate_percent": {
+        "50": 97.265625,
+        "100": 98.046875
+      }
+    },
+    "methods": {
+      "mlp": {
+        "runs": [
+          {
+            "seed": 101,
+            "selected_benefit_pp": -0.0006773163331672549,
+            "top1_regret_pp": 0.030319817800773308
+          },
+          {
+            "seed": 202,
+            "selected_benefit_pp": 0.0,
+            "top1_regret_pp": 0.029642501467606053
+          },
+          {
+            "seed": 303,
+            "selected_benefit_pp": -0.0005913685308769345,
+            "top1_regret_pp": 0.030233869998482987
+          }
+        ],
+        "mean_selected_benefit_pp": -0.0004228949546813965,
+        "mean_top1_regret_pp": 0.03006539642228745
+      },
+      "transformer": {
+        "runs": [
+          {
+            "seed": 101,
+            "selected_benefit_pp": 0.003309950086986646,
+            "top1_regret_pp": 0.026332551380619407
+          },
+          {
+            "seed": 202,
+            "selected_benefit_pp": 0.002128410851582885,
+            "top1_regret_pp": 0.027514090616023168
+          },
+          {
+            "seed": 303,
+            "selected_benefit_pp": 0.006290697026997805,
+            "top1_regret_pp": 0.023351804440608248
+          }
+        ],
+        "mean_selected_benefit_pp": 0.003909685988522445,
+        "mean_top1_regret_pp": 0.02573281547908361
+      }
+    }
+  },
+  "abc": {
+    "mean_gap_percent": {
+      "A": 2.654706006366445,
+      "B": 2.6877136554692864,
+      "C": 2.6877136554692864
+    },
+    "added_feedback_minus_endpoint_pp": {
+      "B": [
+        0.0,
+        0.0,
+        0.0,
+        0.13203059641136417
+      ],
+      "C": [
+        0.0,
+        0.0,
+        0.0,
+        0.13203059641136417
+      ]
+    },
+    "prompts_with_directional_feedback": {
+      "B": 18,
+      "C": 0
+    },
+    "prompt_count_per_arm": 96
+  },
+  "generator_adaptation": {
+    "mean_gap_percent": {
+      "original/A": 2.3337406218796484,
+      "sft/A": 2.202173859557669,
+      "sft/B": 2.209869807651672,
+      "terminal_grpo/A": 2.20233435309067,
+      "terminal_grpo/B": 2.202173859557669,
+      "state_grpo/A": 2.20233435309067,
+      "state_grpo/B": 2.202173859557669
+    },
+    "frozen_aliases": {
+      "original/A": 3,
+      "sft/A": 3,
+      "sft/B": 3,
+      "terminal_grpo/A": 9,
+      "terminal_grpo/B": 9,
+      "state_grpo/A": 9,
+      "state_grpo/B": 9
+    },
+    "contrasts": {
+      "sft/A minus original/A": {
+        "mean_gap_pp": -0.13156676232197917,
+        "ci95": [
+          -0.2106805324056672,
+          -0.05573013447859942
+        ]
+      },
+      "state_grpo/B minus terminal_grpo/A": {
+        "mean_gap_pp": -0.0001604935330012029,
+        "ci95": [
+          -0.008922966009610962,
+          0.00865461847864779
+        ]
+      }
+    },
+    "uncertainty": "Original-instance bootstrap conditional on all frozen programs; one shared SFT initialization and three GRPO optimization seeds."
+  },
+  "unique_frozen_routes_repriced": 2112,
+  "exact_solver_replays": 2112,
+  "wall_seconds": 37.59785305708647
+}
