@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "scope": "one-output FP16 reader-entry integration check; no method-effectiveness claim",
+  "failure_before_fix": {
+    "stage": "initial endpoint evaluation",
+    "subprocess_returncodes": [
+      -11,
+      -11,
+      -11,
+      -11,
+      0,
+      0,
+      0,
+      0
+    ],
+    "trace_sha256": "5eb3b23613cf3ba9c03c6fcbd0c792b4a7fa8cca2ce624f5d398aa078c6a2ab8"
+  },
+  "fix": "Apply recorded numeric-thread count in the isolated solver subprocess environment, independent of caller shell",
+  "retry_completed": {
+    "status": "completed",
+    "at_utc": "2026-11-19T07:34:11.679969+00:00",
+    "outputs": 1,
+    "valid": 0,
+    "input_tokens": 522,
+    "output_tokens": 23,
+    "frozen_lineages": 1,
+    "parameter_training": false,
+    "final_opened": false
+  },
+  "requested_precision": "float16",
+  "executed_source_sha256": {
+    "scripts/discover_rules.py": "3a2eb32fcf8929bde928626b144db30dcef3d7df90c26382ca570567479eb8b3",
+    "scripts/state_feedback.py": "28da913a3f793d8f285b6c5a5aed1793cd649b1c4477f38500b80623f9905815",
+    "scripts/feedback_worker.py": "905a315797ded606c536b135305c8c8ab78df490d3d7217a64c36aba576b0f19",
+    "scripts/experiment_io.py": "451cd70af47456f970597201009482688b92a19f4096d0d4169c452a523ad23a",
+    "scripts/prompts.py": "947aeacaa78afdc187951e035f0c8cd991372bcaeb6847a7e6abe7f39e7db368",
+    "scripts/solver_worker.py": "4124c4825bbb58cb7813e19421ea301188ffca2c40086ce28dd03f38cd1540da",
+    "scripts/qwen_model.py": "49c045b09b1cabe734fe9081989fe54f2f739ac4bf81c122882adb0989614479",
+    "scripts/gpu_monitor.py": "026ee7fb84764d3e56a3fbe2a259862c2ff698cd41229b9485829b977c3e969e",
+    "src/tsp/solver.py": "1a9040bea446dca89df2a5562afcec752d9df73cbcf522bd3641afea85c7000f",
+    "src/tsp/programs.py": "cbfcd3d291aed9a502e275f99cbbae14d5e38eb910cc662c66165f0bb05a3cfc"
+  },
+  "parameter_training": false,
+  "final_opened": false
+}

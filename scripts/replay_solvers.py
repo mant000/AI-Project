@@ -92,7 +92,7 @@ def main():
             if count==2:break
     write(a.output/'feedback_pair_replays.json',pair_replays)
     after=resource.getrusage(resource.RUSAGE_CHILDREN)
-    proof=dict(status='passed',scope='new CPU environment on the same rented physical server; no Torch/model/GPU',
+    proof=dict(status='passed',scope='CPU reconstruction of released states and solver routes; no model inference',
                bank_states_reconstructed_exact=bank_checks,unique_selected_programs_including_standard=len(programs),
                complete_dev_routes_replayed_exact=len(results),all_64_dev_instances=len(items)==64,
                solver_seeds=cfg['program_dev_eval_solver_seeds'],wall_seconds=time.perf_counter()-start,

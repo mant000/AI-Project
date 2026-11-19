@@ -17,7 +17,11 @@ from analyze_results import CODE,read,write,digest
 from tsp.data import distances,length,validate_tour
 
 
-def git(*args):return subprocess.check_output(['git','-C',str(CODE),*args],text=True).strip()
+def git(*args):
+    try:
+        return subprocess.check_output(['git','-C',str(CODE),*args],text=True,stderr=subprocess.DEVNULL).strip()
+    except (subprocess.CalledProcessError,FileNotFoundError):
+        return None  # A downloaded source archive has no Git metadata.
 
 
 def main():

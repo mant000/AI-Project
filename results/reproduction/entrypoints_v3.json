@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "source_commit": "b7d4246d8440a7c7d599fe6ec5836926860ceaa7",
+  "scope": "CPU analysis/replay, two-worker pilot equivalence, local snapshot registration, one-output model/config/worker integration test; no new effectiveness comparison",
+  "actual_commands": [
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "scripts/analyze_results.py",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/analysis"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "scripts/replay_solvers.py",
+      "--workers",
+      "4",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/replay"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "scripts/check_results.py",
+      "--analysis-proof",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/analysis/analysis_verification.json",
+      "--replay-proof",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/replay/replay_verification.json",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/cpu_checks"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "scripts/build_state_bank.py",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/worker2/bank"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "scripts/measure_feedback.py",
+      "--root",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs",
+      "--phase",
+      "pilot",
+      "--workers",
+      "2",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/worker2/bank"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone-cpu-repro/bin/python",
+      "scripts/download_model.py",
+      "--root",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/runtime",
+      "--snapshot",
+      "/root/autodl-tmp/tsp-state-value/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-7B-Instruct/snapshots/c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone/bin/python",
+      "scripts/discover_rules.py",
+      "--root",
+      "/root/autodl-tmp/tsp-state-value",
+      "--config",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/entry_test_config.json",
+      "--model-manifest",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/runtime/artifacts/model.json",
+      "--workers",
+      "2",
+      "--prepare",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/results/mechanism/bank",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/model_entry_test"
+    ],
+    [
+      "/root/autodl-tmp/tsp-state-value/envs/milestone/bin/python",
+      "scripts/check_results.py",
+      "--analysis-proof",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/analysis/analysis_verification.json",
+      "--replay-proof",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/replay/replay_verification.json",
+      "--output",
+      "/root/autodl-tmp/tsp-state-value/operations/milestone-v3-check/outputs/gpu_env_checks"
+    ]
+  ],
+  "analysis": {
+    "status": "passed",
+    "wall_seconds": 12.783487401902676,
+    "source_sha256": "436691cf97628a6008abf3cdd1f26075ad7f704bafd85543c7ba8396f7232651",
+    "scope": "raw record repricing, parent/selection/freeze/feedback checks and bootstrap; no model inference or new solver executions"
+  },
+  "replay": {
+    "status": "passed",
+    "scope": "new CPU environment on the same rented physical server; no Torch/model/GPU",
+    "bank_states_reconstructed_exact": 1536,
+    "unique_selected_programs_including_standard": 6,
+    "complete_dev_routes_replayed_exact": 2560,
+    "all_64_dev_instances": true,
+    "solver_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "wall_seconds": 56.617695435881615,
+    "actual_feedback_branches_independently_replayed": 6,
+    "parent_cpu_seconds": 24.818101367,
+    "waited_child_cpu_seconds": 128.938793,
+    "inputs_sha256": "d6f696d3eac0dfd7032d44abf5e50018475b79d675337ce349c5f15cf98c1b2d",
+    "study_freeze_sha256": "c25ac6afb088a8d67e5a84d41ae48092bd036c3dd769ed1a5dfd1d252c0ed227",
+    "python_version": "3.10.8 (main, Nov 24 2022, 14:13:03) [GCC 11.2.0]",
+    "source_sha256": "c28aed7d4a64a6d240fd85bb33e78e69bcdbe7fee0cb7a12c6f938881ea6bc7e"
+  },
+  "worker_override_states_exact": 192,
+  "worker_override_branches_exact": 7104,
+  "model_author_hashes_verified": true,
+  "model_manifest_and_config_override_recorded": true,
+  "one_output_integration_only": true,
+  "checker_accepts_gpu_environment": true,
+  "wall_seconds": 291.1112337894738
+}

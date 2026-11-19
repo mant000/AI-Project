@@ -3,6 +3,7 @@ from collections import Counter
 from datetime import datetime,timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import resource
 import subprocess
@@ -37,10 +38,14 @@ def choose(rows,pool,n):
 
 def worker(request,cfg):
     begin=time.perf_counter(); before=resource.getrusage(resource.RUSAGE_CHILDREN)
+    # Enforce the protocol's numeric-thread count even from a fresh shell.
+    env=dict(os.environ)
+    for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS'):
+        env[key]=str(cfg.get('threads',1))
     try:
         proc=subprocess.run([sys.executable,str(CODE/'scripts/solver_worker.py')],
             input=json.dumps(dict(**request,limits=cfg)),capture_output=True,text=True,
-            timeout=cfg['worker_wall_timeout_seconds'])
+            timeout=cfg['worker_wall_timeout_seconds'],env=env)
         try: result=json.loads(proc.stdout)
         except Exception: result=dict(ok=False,error='Worker returned no valid JSON',stdout=proc.stdout)
         result.update(returncode=proc.returncode,stderr=proc.stderr)
