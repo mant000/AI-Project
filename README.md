@@ -2,7 +2,7 @@
 
 Hongye XU (72655146) · CS5491 Artificial Intelligence · Individual project
 
-[Milestone report](report/milestone.pdf)
+[Milestone report](report/milestone.pdf) · [Code revision 5c4a6e6](https://github.com/mant000/AI-Project/tree/5c4a6e6ef1f61d8f7c238a851d628a638c4b3abd)
 
 I study how feedback from a search state can help a language model discover
 travelling salesman problem (TSP) heuristics. The model proposes an edge-priority
